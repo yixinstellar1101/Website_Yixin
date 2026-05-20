@@ -1,0 +1,605 @@
+export type Locale = "en" | "zh";
+
+type LocalizedString = Record<Locale, string>;
+
+export type NavItem = {
+  href: string;
+  label: LocalizedString;
+};
+
+export type CareerItem = {
+  id: string;
+  date: string;
+  role: LocalizedString;
+  organization: string;
+  location: LocalizedString;
+  description: LocalizedString;
+  linkLabel: string;
+  linkDescription: LocalizedString;
+  linkHref: string;
+  accent: string;
+  logo: string;
+  logoClass: string;
+  logoSrc: string;
+  logoAlt: string;
+};
+
+export type ProjectItem = {
+  slug: string;
+  date: string;
+  category: LocalizedString;
+  title: LocalizedString;
+  description: LocalizedString;
+  tags: string[];
+  cta: LocalizedString;
+  mediaLabel: LocalizedString;
+  gradient: string;
+  overview: LocalizedString;
+  problem: LocalizedString;
+  role: LocalizedString;
+  decisions: Record<Locale, string[]>;
+  impact: LocalizedString;
+};
+
+export const siteConfig = {
+  name: "Yixin Xia",
+  title: {
+    en: "Yixin Xia — AI Product Manager",
+    zh: "夏意欣｜AI 产品经理"
+  },
+  description: {
+    en: "Portfolio of Yixin Xia, an AI Product Manager and interaction designer building multimodal, 3D, and agentic product experiences.",
+    zh: "夏意欣的作品集，聚焦多模态 AI、3D 体验、Agentic Workflow 与产品叙事。"
+  },
+  keywords: [
+    "AI Product Manager",
+    "Interaction Design",
+    "Agentic AI",
+    "Multimodal AI",
+    "3D Product",
+    "AI Portfolio"
+  ],
+  linkedin: "https://www.linkedin.com/in/yixin-xia/",
+  email: "yixin_xia@outlook.com",
+  github: "",
+  resume: "/resume.pdf",
+  portrait: "/portrait.jpg"
+};
+
+export const navItems: NavItem[] = [
+  { href: "#about", label: { en: "ABOUT", zh: "关于" } },
+  { href: "#career", label: { en: "CAREER", zh: "经历" } },
+  { href: "#projects", label: { en: "PROJECTS", zh: "项目" } },
+  { href: "#content", label: { en: "CONTENT", zh: "内容" } }
+];
+
+export const pageCopy = {
+  localeSwitch: {
+    en: "CN",
+    zh: "EN"
+  },
+  letsTalk: {
+    en: "LET'S TALK",
+    zh: "聊聊合作"
+  },
+  hero: {
+    eyebrow: {
+      en: "AI PM · Interaction Design · Agentic Systems",
+      zh: "AI PM · 交互设计 · Agentic Systems"
+    },
+    title: {
+      en: "AI Product,\nInteraction, and\nAgentic Experience\nBuilder",
+      zh: "构建真正可用、\n可感知、可信任的\nAI 产品体验"
+    },
+    italicWord: {
+      en: "Agentic",
+      zh: "AI"
+    },
+    intro: {
+      en: "Hi. I'm Yixin Xia, an AI Product Manager and interaction designer building multimodal, 3D, and agentic product experiences. My work sits at the intersection of emerging AI capabilities, user-centered design, and product storytelling.",
+      zh: "你好，我是夏意欣，一名聚焦多模态 AI、3D 体验与 Agentic 产品的 AI 产品经理和交互设计师。我关注如何把新兴 AI 能力转译成用户真正能理解、能使用、也愿意使用的产品体验。"
+    },
+    primaryCta: {
+      en: "ABOUT ME",
+      zh: "了解我"
+    },
+    secondaryCta: {
+      en: "VIEW PROJECTS",
+      zh: "查看项目"
+    },
+    portraitCaption: {
+      en: "AI product manager shaping multimodal and spatial experiences.",
+      zh: "聚焦多模态、空间交互与 Agentic 产品体验。"
+    }
+  },
+  about: {
+    section: { en: "About", zh: "关于" },
+    title: {
+      en: "Turning ambiguous AI capabilities into products people actually need.",
+      zh: "把模糊的 AI 能力，变成用户真正需要的产品。"
+    },
+    body: [
+      {
+        en: "I'm an AI Product Manager with a background in interaction design, creative technology, and product strategy. Across AI incubation, 3D creation tools, enterprise workflows, and creative storytelling, I've learned to translate between user needs, technical possibilities, and shippable product experiences.",
+        zh: "我具备交互设计、创意技术与产品策略的复合背景，经历过 AI 孵化、3D 创作工具、企业工作流和创意叙事等不同场景，逐渐形成了在用户需求、技术可能性和可落地产品之间来回转译的工作方式。"
+      },
+      {
+        en: "My work focuses on the early stages of AI products: identifying the right user problem, shaping the product loop, prototyping the experience, defining evaluation signals, and communicating the value clearly.",
+        zh: "我尤其关注 AI 产品的早期阶段：找到值得解决的问题、搭建产品闭环、快速原型化、定义评估信号，并把产品价值讲清楚。"
+      },
+      {
+        en: "I'm especially interested in multimodal AI, agentic workflows, 3D interfaces, and products that make complex AI capabilities understandable and useful for real users.",
+        zh: "我持续关注多模态 AI、Agentic Workflow、3D 界面，以及那些能把复杂 AI 能力转化成真实可理解、可使用体验的产品。"
+      }
+    ],
+    cardTitle: {
+      en: "Product Foundation",
+      zh: "能力基底"
+    },
+    education: {
+      en: "Shanghai Jiao Tong University\nInteraction Design & Product Experience",
+      zh: "上海交通大学\n交互设计与产品体验"
+    },
+    focusTitle: {
+      en: "Focus Areas",
+      zh: "关注方向"
+    },
+    focuses: {
+      en: [
+        "AI Product Management",
+        "Interaction Design",
+        "Multimodal Experiences",
+        "Agentic Workflows",
+        "3D Product Interfaces",
+        "Product Storytelling"
+      ],
+      zh: [
+        "AI 产品管理",
+        "交互设计",
+        "多模态体验",
+        "Agentic 工作流",
+        "3D 产品界面",
+        "产品叙事"
+      ]
+    },
+    strengthsTitle: {
+      en: "Strengths",
+      zh: "工作方式"
+    },
+    strengths: {
+      en: [
+        "From ambiguity to product definition",
+        "From prototype to user feedback",
+        "From AI capability to product narrative"
+      ],
+      zh: [
+        "从模糊机会到产品定义",
+        "从原型验证到用户反馈",
+        "从 AI 能力到产品叙事"
+      ]
+    }
+  },
+  career: {
+    section: { en: "Career", zh: "经历" },
+    title: {
+      en: "Internship and building experience",
+      zh: "实习与构建经历"
+    },
+    subtitle: {
+      en: "A path across AI incubation, 3D systems, enterprise tooling, and storytelling.",
+      zh: "从 AI 孵化、3D 系统、企业工具到创意叙事，我一直在做“把技术翻译成体验”的工作。"
+    }
+  },
+  projects: {
+    section: { en: "Projects", zh: "项目" },
+    title: {
+      en: "Selected case studies",
+      zh: "精选案例"
+    },
+    subtitle: {
+      en: "A first-pass portfolio focused on product framing, spatial systems, and agentic experiences.",
+      zh: "第一版作品集重点展示产品 framing、空间系统与 agentic 体验。"
+    }
+  },
+  notes: {
+    section: { en: "Content", zh: "内容" },
+    title: {
+      en: "Notes on AI product, design, and agentic systems",
+      zh: "关于 AI 产品、设计与 Agentic 系统的思考"
+    },
+    items: [
+      {
+        en: "How I think about AI PM",
+        zh: "我如何理解 AI PM"
+      },
+      {
+        en: "Designing useful agentic workflows",
+        zh: "如何设计真正有用的 Agentic Workflow"
+      },
+      {
+        en: "From prototype to product signal",
+        zh: "从原型到产品信号"
+      }
+    ],
+    comingSoon: {
+      en: "Coming soon",
+      zh: "即将更新"
+    }
+  },
+  contact: {
+    section: { en: "Contact", zh: "联系" },
+    title: {
+      en: "Let's build something together.",
+      zh: "一起做点有意思的事。"
+    },
+    subtitle: {
+      en: "Open to conversations about AI product, multimodal experiences, 3D creation tools, agentic workflows, and product storytelling.",
+      zh: "欢迎交流 AI 产品、多模态体验、3D 创作工具、Agentic Workflow 与产品叙事相关机会。"
+    },
+    cardTitle: {
+      en: "Start a conversation",
+      zh: "开始联系"
+    },
+    cardBody: {
+      en: "Open to conversations about AI product, multimodal experiences, 3D creation tools, agentic workflows, and product storytelling.",
+      zh: "欢迎交流 AI 产品、多模态体验、3D 创作工具、Agentic Workflow 与产品叙事相关机会。"
+    },
+    email: {
+      en: "Email",
+      zh: "邮箱"
+    },
+    linkedin: {
+      en: "LinkedIn",
+      zh: "LinkedIn"
+    },
+    resume: {
+      en: "Resume",
+      zh: "简历"
+    },
+    github: {
+      en: "GitHub",
+      zh: "GitHub"
+    }
+  },
+  footer: {
+    en: "Designed for clarity, storytelling, and AI-native product thinking.",
+    zh: "为清晰表达、产品叙事与 AI-native 产品思维而设计。"
+  }
+};
+
+export const careerItems: CareerItem[] = [
+  {
+    id: "microsoft",
+    date: "2025",
+    role: {
+      en: "Product Manager Intern",
+      zh: "产品经理实习生"
+    },
+    organization: "Microsoft AI / Copilot Labs",
+    location: {
+      en: "Suzhou",
+      zh: "苏州"
+    },
+    description: {
+      en: "Worked on Copilot Labs and Copilot 3D, supporting AI-powered 3D creation experiences, launch storytelling, community activation, and product demos that translated emerging AI capabilities into user-facing narratives.",
+      zh: "参与 Copilot Labs 与 Copilot 3D，围绕 AI 驱动的 3D 创作体验、产品发布叙事、社区激活与 demo 演示，帮助把新兴 AI 能力转化成面向用户的表达与产品故事。"
+    },
+    linkLabel: "Copilot Labs",
+    linkDescription: {
+      en: "Experimental AI experiences and previews of new Copilot capabilities before broader release.",
+      zh: "聚焦实验性 AI 体验与 Copilot 新能力的前瞻展示。"
+    },
+    linkHref: "https://copilot.microsoft.com/labs",
+    accent: "from-sky-200/80 via-blue-100/50 to-white",
+    logo: "MS",
+    logoClass: "bg-white",
+    logoSrc: "/logos/microsoft.png",
+    logoAlt: "Microsoft logo"
+  },
+  {
+    id: "shipyard",
+    date: "2024",
+    role: {
+      en: "Product Manager Intern",
+      zh: "产品经理实习生"
+    },
+    organization: "Unity",
+    location: {
+      en: "Shanghai",
+      zh: "上海"
+    },
+    description: {
+      en: "Led product definition for a shipbuilding precision-management PoC, translating ambiguous enterprise needs into workflows for progress tracking, segment navigation, precision annotation, and 3D-enabled data maintenance.",
+      zh: "主导船舶精度管理 PoC 的产品定义，把复杂模糊的企业需求转译为进度跟踪、分段导航、精度标注与 3D 数据维护的完整工作流。"
+    },
+    linkLabel: "3D Digital Twin Workflow",
+    linkDescription: {
+      en: "Enterprise 3D workflow for shipbuilding progress visibility and precision management.",
+      zh: "服务船舶建造进度可视化与精度管理的企业级 3D 工作流。"
+    },
+    linkHref: "#projects",
+    accent: "from-cyan-200/70 via-emerald-100/50 to-white",
+    logo: "U",
+    logoClass: "bg-black text-white",
+    logoSrc: "/logos/unity.png",
+    logoAlt: "Unity logo"
+  },
+  {
+    id: "xiaohongshu",
+    date: "2024",
+    role: {
+      en: "Product Design Intern",
+      zh: "产品设计实习生"
+    },
+    organization: "Xiaohongshu",
+    location: {
+      en: "Shanghai",
+      zh: "上海"
+    },
+    description: {
+      en: "Worked on content-community product research and product analysis, translating user behavior, creator needs, and platform scenarios into clearer product opportunities and execution notes.",
+      zh: "参与内容社区方向的产品调研与产品分析，将用户行为、创作者需求和平台场景转化为更清晰的产品机会与执行记录。"
+    },
+    linkLabel: "Xiaohongshu",
+    linkDescription: {
+      en: "Lifestyle community platform centered on content discovery, sharing, commerce, and creator ecosystems.",
+      zh: "以内容发现、分享、交易与创作者生态为核心的生活方式社区平台。"
+    },
+    linkHref: "https://www.xiaohongshu.com/en",
+    accent: "from-rose-200/75 via-red-100/60 to-white",
+    logo: "RED",
+    logoClass: "bg-[#ff2442] text-white",
+    logoSrc: "/logos/xiaohongshu.png",
+    logoAlt: "Xiaohongshu logo"
+  },
+  {
+    id: "disney",
+    date: "2023–2024",
+    role: {
+      en: "Creative Design Intern",
+      zh: "创意设计实习生"
+    },
+    organization: "Disney",
+    location: {
+      en: "Shanghai",
+      zh: "上海"
+    },
+    description: {
+      en: "Contributed to creative concepts, visual direction, and product storytelling for consumer-facing brand experiences, learning how early-stage creative ideas become market-ready products.",
+      zh: "参与面向消费者品牌体验的创意概念、视觉方向与产品叙事，理解早期创意如何被打磨为面向市场的产品体验。"
+    },
+    linkLabel: "Creative Storytelling",
+    linkDescription: {
+      en: "From early visual concepts to shippable brand and retail experiences.",
+      zh: "从早期视觉概念到可落地的品牌与零售体验。"
+    },
+    linkHref: "#projects",
+    accent: "from-rose-200/75 via-orange-100/60 to-white",
+    logo: "D",
+    logoClass: "bg-[#425f96] text-white",
+    logoSrc: "/logos/disney.png",
+    logoAlt: "The Walt Disney Company logo"
+  }
+];
+
+export const projects: ProjectItem[] = [
+  {
+    slug: "copilot-3d",
+    date: "2025",
+    category: {
+      en: "AI · 3D · PRODUCT STORYTELLING",
+      zh: "AI · 3D · 产品叙事"
+    },
+    title: {
+      en: "Copilot 3D — Turning AI Generation into a Product Story",
+      zh: "Copilot 3D — 把 AI 生成能力讲成产品故事"
+    },
+    description: {
+      en: "Supported product storytelling, launch visuals, and demo experiences for AI-powered 3D asset generation, helping users understand how emerging generative AI capabilities could become practical creative workflows.",
+      zh: "围绕 AI 驱动的 3D 资产生成，参与产品叙事、发布视觉和 demo 体验设计，帮助用户理解生成式 AI 如何转化为真正可用的创作工作流。"
+    },
+    tags: ["AI PRODUCT", "3D GENERATION", "COPILOT", "PRODUCT DEMO"],
+    cta: {
+      en: "VIEW CASE STUDY",
+      zh: "查看案例"
+    },
+    mediaLabel: {
+      en: "Launch storytelling and demo framing",
+      zh: "发布叙事与 demo framing"
+    },
+    gradient: "from-sky-200 via-cyan-100 to-indigo-50",
+    overview: {
+      en: "This case study is being updated. For now, it highlights how 3D AI generation was framed as an understandable, usable product experience for broader audiences.",
+      zh: "案例内容仍在整理中。本页先展示如何把 3D AI 生成能力包装成更易理解、可体验、可传播的产品叙事。"
+    },
+    problem: {
+      en: "How might we turn emerging generative 3D capabilities into a narrative users can quickly grasp and trust?",
+      zh: "如何把新兴的 3D 生成能力转化为用户能快速理解并建立信任的产品叙事？"
+    },
+    role: {
+      en: "Product storytelling, demo experience support, and launch framing.",
+      zh: "负责产品叙事、demo 体验支持与发布 framing。"
+    },
+    decisions: {
+      en: [
+        "Clarified the user-facing value before showcasing technical novelty.",
+        "Used demos to bridge capability, workflow, and imagination.",
+        "Focused on making 3D generation legible to non-expert audiences."
+      ],
+      zh: [
+        "先讲清用户价值，再展示技术新颖性。",
+        "用 demo 连接能力、工作流与想象空间。",
+        "重点让非专业用户也能理解 3D 生成。"
+      ]
+    },
+    impact: {
+      en: "A stronger launch story and a clearer path from capability demo to product understanding.",
+      zh: "让能力展示更像产品，而不只是技术演示。"
+    }
+  },
+  {
+    slug: "curio",
+    date: "2025",
+    category: {
+      en: "AI · AGENTIC EXPERIENCE · CULTURE",
+      zh: "AI · Agentic Experience · 文化"
+    },
+    title: {
+      en: "Curio — AI Cultural Livestream",
+      zh: "Curio — AI 文化直播体验"
+    },
+    description: {
+      en: "An AI-powered cultural livestream where any uploaded object can become an interactive discussion. The system combines image understanding, artifact framing, character generation, multi-role dialogue, and a live room interface.",
+      zh: "一个 AI 驱动的文化直播体验，任何上传物件都可以被转化为可讨论的文化对象，系统串联图像理解、文物 framing、角色生成、多角色对话与直播间交互。"
+    },
+    tags: ["MULTIMODAL AI", "AGENTIC LOOP", "LIVE EXPERIENCE", "PROTOTYPE"],
+    cta: {
+      en: "VIEW CASE STUDY",
+      zh: "查看案例"
+    },
+    mediaLabel: {
+      en: "Image-to-character-to-dialogue pipeline",
+      zh: "从图像到角色再到对话的产品闭环"
+    },
+    gradient: "from-fuchsia-200 via-amber-50 to-violet-100",
+    overview: {
+      en: "Curio explores how AI can turn static cultural artifacts into live, participatory experiences.",
+      zh: "Curio 探索如何把静态文化对象转化为实时、可参与的 AI 体验。"
+    },
+    problem: {
+      en: "How might cultural interpretation become participatory rather than one-directional?",
+      zh: "如何让文化解读从单向输出变成可参与、可互动的体验？"
+    },
+    role: {
+      en: "Product concept, experience loop design, and AI interaction framing.",
+      zh: "负责产品概念、体验闭环与 AI 交互 framing。"
+    },
+    decisions: {
+      en: [
+        "Started from a strong input action: upload any object.",
+        "Used multi-character dialogue to increase interpretive depth.",
+        "Designed the live room as both interface and stage."
+      ],
+      zh: [
+        "从一个足够清晰的输入动作开始：上传任意物件。",
+        "用多角色对话提升解释层次和戏剧性。",
+        "把直播间同时设计成界面和舞台。"
+      ]
+    },
+    impact: {
+      en: "Demonstrated an agentic content loop that feels cultural, playful, and discussion-driven.",
+      zh: "验证了一种兼具文化感、讨论性和参与感的 agentic 内容闭环。"
+    }
+  },
+  {
+    slug: "shipyard-digital-twin",
+    date: "2024",
+    category: {
+      en: "ENTERPRISE · 3D · WORKFLOW",
+      zh: "企业 · 3D · 工作流"
+    },
+    title: {
+      en: "Shipbuilding Digital Twin — Precision Management PoC",
+      zh: "船舶数字孪生 — 精度管理 PoC"
+    },
+    description: {
+      en: "A 3D-enabled workflow platform for shipbuilding progress tracking, segment navigation, precision annotation, and data maintenance, designed to reduce manual cross-checking across drawings, spreadsheets, and model views.",
+      zh: "围绕船舶建造打造的 3D 工作流平台，覆盖进度跟踪、分段导航、精度标注与数据维护，帮助减少图纸、表格与模型之间的人肉交叉核对。"
+    },
+    tags: ["ENTERPRISE AI", "3D WORKFLOW", "PRD", "DIGITAL TWIN"],
+    cta: {
+      en: "VIEW CASE STUDY",
+      zh: "查看案例"
+    },
+    mediaLabel: {
+      en: "Precision management in a 3D enterprise workflow",
+      zh: "企业级 3D 精度管理工作流"
+    },
+    gradient: "from-cyan-100 via-slate-50 to-emerald-100",
+    overview: {
+      en: "A proof of concept focused on bringing progress visibility and precision control into one 3D-centered workflow.",
+      zh: "一个围绕 3D 工作流整合进度可视化与精度控制的概念验证项目。"
+    },
+    problem: {
+      en: "How might fragmented offline coordination become a more legible, traceable 3D workflow?",
+      zh: "如何让线下割裂的协同过程变成更清晰、可追溯的 3D 工作流？"
+    },
+    role: {
+      en: "Product definition, workflow design, and enterprise translation.",
+      zh: "负责产品定义、工作流设计与企业需求转译。"
+    },
+    decisions: {
+      en: [
+        "Mapped operational pain points before defining screens.",
+        "Used spatial navigation as the backbone of the workflow.",
+        "Balanced industrial detail with interface clarity."
+      ],
+      zh: [
+        "先梳理现场痛点，再定义界面与信息结构。",
+        "以空间导航作为整个工作流的主骨架。",
+        "在工业细节与界面清晰度之间做平衡。"
+      ]
+    },
+    impact: {
+      en: "Created a more coherent product direction for enterprise-grade 3D precision workflows.",
+      zh: "为企业级 3D 精度管理提供了更完整、可执行的产品方向。"
+    }
+  },
+  {
+    slug: "disney-spring-sketchbook",
+    date: "2024",
+    category: {
+      en: "CREATIVE DESIGN · BRAND STORYTELLING",
+      zh: "创意设计 · 品牌叙事"
+    },
+    title: {
+      en: "Disney Spring Sketchbook — From Concept to Retail Experience",
+      zh: "Disney Spring Sketchbook — 从概念到零售体验"
+    },
+    description: {
+      en: "Creative design work that explored how early storyboarding, visual direction, and product storytelling become consumer-facing brand experiences.",
+      zh: "围绕创意概念、视觉方向与产品叙事展开的设计工作，探索早期故事板如何走向面向消费者的品牌体验。"
+    },
+    tags: ["CREATIVE DESIGN", "STORYTELLING", "VISUAL DIRECTION", "BRAND EXPERIENCE"],
+    cta: {
+      en: "VIEW CASE STUDY",
+      zh: "查看案例"
+    },
+    mediaLabel: {
+      en: "Creative concepts translated into consumer experiences",
+      zh: "把创意概念转化为消费级体验"
+    },
+    gradient: "from-rose-100 via-orange-50 to-yellow-100",
+    overview: {
+      en: "A placeholder summary for work spanning visual concepting, storytelling, and retail-oriented experience design.",
+      zh: "一个围绕视觉概念、故事表达与零售体验设计的占位案例。"
+    },
+    problem: {
+      en: "How might visual narratives stay emotionally coherent as they move toward product and retail execution?",
+      zh: "当创意叙事走向商品化与零售化时，如何保持情感与视觉的一致性？"
+    },
+    role: {
+      en: "Creative concept support, visual direction, and storytelling.",
+      zh: "负责创意概念支持、视觉方向与故事表达。"
+    },
+    decisions: {
+      en: [
+        "Kept the concept emotionally legible from sketch to output.",
+        "Used visual systems to bridge brand tone and product surfaces.",
+        "Focused on how ideas feel, not only how they look."
+      ],
+      zh: [
+        "让创意从草图到落地都保持情绪上的可辨识度。",
+        "用视觉系统串联品牌调性与具体产品表面。",
+        "关注作品“给人的感觉”，不只关注形式。"
+      ]
+    },
+    impact: {
+      en: "Strengthened the connection between concept storytelling and consumer-facing design execution.",
+      zh: "加强了创意叙事与面向消费者的设计落地之间的连接。"
+    }
+  }
+];
+
+export const getProjectBySlug = (slug: string) =>
+  projects.find((project) => project.slug === slug);
