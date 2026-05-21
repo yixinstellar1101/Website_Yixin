@@ -1,3 +1,35 @@
+@font-face {
+  font-family: "ABC Ginto Career";
+  src: url("/fonts/ABCGintoNormal-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Ginto Career";
+  src: url("/fonts/ABCGintoNormal-BoldItalic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Ginto Nord";
+  src: url("/fonts/ABCGintoNord-Regular-Trial-BF651b7b7786b8a.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Ginto Normal Medium";
+  src: url("/fonts/ABCGintoNormal-Medium-Trial-BF651b7b785c106.otf") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

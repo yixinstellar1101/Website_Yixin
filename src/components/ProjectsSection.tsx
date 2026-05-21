@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 
 import { ProjectCard } from "@/components/ProjectCard";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { pageCopy, projects, type Locale } from "@/data/site";
 
 type ProjectsSectionProps = {
@@ -14,12 +13,18 @@ export function ProjectsSection({ locale }: ProjectsSectionProps) {
   return (
     <section id="projects" className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1280px]">
-        <SectionHeading
-          locale={locale}
-          section={pageCopy.projects.section}
-          title={pageCopy.projects.title}
-          subtitle={pageCopy.projects.subtitle}
-        />
+        <div className="mx-auto max-w-[980px] text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[rgba(11,34,66,0.48)]">
+            {pageCopy.projects.section[locale]}
+          </p>
+          <h2
+            className="mt-6 text-[clamp(3.1rem,7vw,5rem)] font-semibold leading-[0.96] tracking-[-0.025em] text-ink"
+            style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}
+          >
+            {locale === "en" ? "Selected Case Studies" : pageCopy.projects.title[locale]}
+          </h2>
+        </div>
+
         <div className="mt-14 grid gap-7 xl:grid-cols-2">
           {projects.map((project, index) => (
             <motion.div

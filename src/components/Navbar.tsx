@@ -103,7 +103,8 @@ export function Navbar({
               <button
                 type="button"
                 onClick={() => goTo("home")}
-                className="shrink-0 text-xl font-semibold tracking-[-0.03em] text-ink transition-opacity hover:opacity-80"
+                className="shrink-0 text-[1.72rem] font-semibold tracking-[-0.035em] text-ink transition-opacity hover:opacity-80"
+                style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}
               >
                 Yixin Xia
               </button>
@@ -135,10 +136,10 @@ export function Navbar({
                     <button
                       type="button"
                       onClick={() => setOpen((current) => !current)}
-                      className="rounded-full border border-[rgba(11,34,66,0.12)] bg-white/50 p-3 text-ink"
+                      className="rounded-full border border-[rgba(11,34,66,0.12)] bg-white/50 p-[11px] text-ink"
                       aria-label="Toggle menu"
                     >
-                      {open ? <X size={18} /> : <Menu size={18} />}
+                      {open ? <X size={17} /> : <Menu size={17} />}
                     </button>
                   </div>
                 </>
@@ -155,7 +156,7 @@ export function Navbar({
                     className="grid h-10 w-10 place-items-center rounded-full border border-[rgba(11,34,66,0.12)] bg-white/78 text-ink transition hover:-translate-y-0.5 hover:bg-white"
                     aria-label="Open navigation"
                   >
-                    {open ? <X size={17} /> : <MoreHorizontal size={18} />}
+                    {open ? <X size={16} /> : <MoreHorizontal size={17} />}
                   </button>
                 </motion.div>
               )}

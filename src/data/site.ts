@@ -30,6 +30,8 @@ export type ProjectItem = {
   category: LocalizedString;
   title: LocalizedString;
   description: LocalizedString;
+  coverType: "image" | "video";
+  coverSrc: string;
   tags: string[];
   cta: LocalizedString;
   mediaLabel: LocalizedString;
@@ -398,6 +400,8 @@ export const projects: ProjectItem[] = [
       en: "Supported product storytelling, launch visuals, and demo experiences for AI-powered 3D asset generation, helping users understand how emerging generative AI capabilities could become practical creative workflows.",
       zh: "围绕 AI 驱动的 3D 资产生成，参与产品叙事、发布视觉和 demo 体验设计，帮助用户理解生成式 AI 如何转化为真正可用的创作工作流。"
     },
+    coverType: "video",
+    coverSrc: "/projects/copilot-3d-cover-video.mp4",
     tags: ["AI PRODUCT", "3D GENERATION", "COPILOT", "PRODUCT DEMO"],
     cta: {
       en: "VIEW CASE STUDY",
@@ -452,6 +456,8 @@ export const projects: ProjectItem[] = [
       en: "An AI-powered cultural livestream where any uploaded object can become an interactive discussion. The system combines image understanding, artifact framing, character generation, multi-role dialogue, and a live room interface.",
       zh: "一个 AI 驱动的文化直播体验，任何上传物件都可以被转化为可讨论的文化对象，系统串联图像理解、文物 framing、角色生成、多角色对话与直播间交互。"
     },
+    coverType: "image",
+    coverSrc: "/projects/curio-cover.png",
     tags: ["MULTIMODAL AI", "AGENTIC LOOP", "LIVE EXPERIENCE", "PROTOTYPE"],
     cta: {
       en: "VIEW CASE STUDY",
@@ -506,6 +512,8 @@ export const projects: ProjectItem[] = [
       en: "A 3D-enabled workflow platform for shipbuilding progress tracking, segment navigation, precision annotation, and data maintenance, designed to reduce manual cross-checking across drawings, spreadsheets, and model views.",
       zh: "围绕船舶建造打造的 3D 工作流平台，覆盖进度跟踪、分段导航、精度标注与数据维护，帮助减少图纸、表格与模型之间的人肉交叉核对。"
     },
+    coverType: "image",
+    coverSrc: "/projects/unity-cover.png",
     tags: ["ENTERPRISE AI", "3D WORKFLOW", "PRD", "DIGITAL TWIN"],
     cta: {
       en: "VIEW CASE STUDY",
@@ -546,6 +554,62 @@ export const projects: ProjectItem[] = [
     }
   },
   {
+    slug: "xiaohongshu",
+    date: "2024",
+    category: {
+      en: "CONTENT COMMUNITY · USER RESEARCH · PRODUCT STRATEGY",
+      zh: "内容社区 · 用户研究 · 产品策略"
+    },
+    title: {
+      en: "Xiaohongshu - HRIS Design",
+      zh: "小红书 - HRIS 设计"
+    },
+    description: {
+      en: "Transforming HR experience with an intuitive interface and centralized data flow.",
+      zh: "通过更直观的界面与中心化数据流，重塑 HR 使用体验。"
+    },
+    coverType: "image",
+    coverSrc: "/projects/xiaohongshu-cover.svg",
+    tags: ["CONTENT COMMUNITY", "USER RESEARCH", "PRODUCT ANALYSIS", "PLATFORM STRATEGY"],
+    cta: {
+      en: "VIEW CASE STUDY",
+      zh: "查看案例"
+    },
+    mediaLabel: {
+      en: "Research synthesis and platform opportunity framing",
+      zh: "研究整合与平台机会 framing"
+    },
+    gradient: "from-rose-200 via-orange-50 to-red-100",
+    overview: {
+      en: "This case study captures how qualitative signals from a fast-moving content platform can be distilled into product insights, opportunity areas, and more actionable design directions.",
+      zh: "这个案例关注的是：如何把一个高速运转的内容平台中的大量定性信号，提炼成产品洞察、机会方向与更可执行的设计输入。"
+    },
+    problem: {
+      en: "How might we translate scattered community behavior, creator needs, and platform observations into concrete product opportunities that teams can actually act on?",
+      zh: "如何把分散的社区行为、创作者需求与平台观察，转译成团队真正可以行动的产品机会？"
+    },
+    role: {
+      en: "Product research, competitive analysis, insight synthesis, and opportunity framing.",
+      zh: "负责产品调研、竞品分析、洞察提炼与机会 framing。"
+    },
+    decisions: {
+      en: [
+        "Started from real platform behaviors instead of abstract feature ideation.",
+        "Combined user, creator, and ecosystem perspectives to avoid one-sided conclusions.",
+        "Turned broad observations into scoped hypotheses and clearer next-step directions."
+      ],
+      zh: [
+        "从真实的平台行为出发，而不是从抽象的功能想象出发。",
+        "同时结合用户、创作者和生态视角，避免得出单一结论。",
+        "把宽泛观察收束成有边界的假设与更清晰的后续方向。"
+      ]
+    },
+    impact: {
+      en: "Created a sharper bridge between community understanding and product decision-making, making research outputs easier to communicate and act on.",
+      zh: "让社区理解与产品决策之间的连接更清晰，也让研究产出更容易被沟通与推动。"
+    }
+  },
+  {
     slug: "disney-spring-sketchbook",
     date: "2024",
     category: {
@@ -560,6 +624,8 @@ export const projects: ProjectItem[] = [
       en: "Creative design work that explored how early storyboarding, visual direction, and product storytelling become consumer-facing brand experiences.",
       zh: "围绕创意概念、视觉方向与产品叙事展开的设计工作，探索早期故事板如何走向面向消费者的品牌体验。"
     },
+    coverType: "image",
+    coverSrc: "/projects/disney-cover.png",
     tags: ["CREATIVE DESIGN", "STORYTELLING", "VISUAL DIRECTION", "BRAND EXPERIENCE"],
     cta: {
       en: "VIEW CASE STUDY",

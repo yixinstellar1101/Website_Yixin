@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 import { Pill } from "@/components/ui/Pill";
@@ -14,52 +14,68 @@ type ProjectCardProps = {
 
 export function ProjectCard({ locale, project }: ProjectCardProps) {
   return (
-    <motion.article
-      whileHover={{ y: -6 }}
-      transition={{ type: "spring", stiffness: 260, damping: 22 }}
-      className="overflow-hidden rounded-[30px] border border-white/70 bg-white/48 shadow-glass backdrop-blur-2xl"
+    <Link
+      href={`/projects/${project.slug}`}
+      className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
+      aria-label={`View ${project.title.en}`}
     >
-      <div className="p-4 sm:p-5">
+      <motion.article
+        whileHover={{ y: -6 }}
+        transition={{ type: "spring", stiffness: 260, damping: 22 }}
+        className="overflow-hidden rounded-[30px] border border-white/70 bg-white/48 shadow-glass backdrop-blur-2xl"
+      >
+        <div className="p-4 sm:p-5">
         <div
-          className={`relative overflow-hidden rounded-[24px] border border-white/65 bg-gradient-to-br ${project.gradient} p-5`}
+          className={`relative overflow-hidden rounded-[24px] border border-white/65 bg-gradient-to-br ${project.gradient}`}
         >
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.55),rgba(255,255,255,0.1))]" />
-          <div className="relative flex min-h-[260px] flex-col justify-between sm:min-h-[320px]">
-            <div className="flex items-start justify-between gap-4">
-              <Pill className="bg-white/75">{project.date}</Pill>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/78 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink">
-                <Play size={14} />
-                {project.cta[locale]}
+          <div className="absolute inset-0 bg-[rgba(241,239,235,0.75)]" />
+          <div className="absolute inset-0">
+            {project.coverType === "video" ? (
+              <video
+                src={project.coverSrc}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-contain"
+              />
+            ) : (
+              <img
+                src={project.coverSrc}
+                alt={project.title.en}
+                className="h-full w-full object-contain"
+              />
+            )}
+          </div>
+          <div className="absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.58),rgba(255,255,255,0))]" />
+          <div className="relative aspect-[16/9]">
+            <div className="absolute right-4 top-4">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/82 text-ink shadow-[0_8px_24px_rgba(11,34,66,0.08)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                <ArrowUpRight size={17} />
               </span>
-            </div>
-
-            <div>
-              <p className="max-w-lg text-base font-medium leading-7 tracking-normal text-[rgba(11,34,66,0.72)]">
-                {project.mediaLabel[locale]}
-              </p>
-              <div className="mt-5 h-px w-full bg-[rgba(11,34,66,0.12)]" />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="p-6 pt-2 sm:p-8 sm:pt-3">
+
+        <div className="p-6 pt-2 sm:p-8 sm:pt-3">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[rgba(11,34,66,0.52)]">
               {project.category[locale]}
             </p>
-            <h3 className="mt-4 text-3xl font-semibold leading-tight tracking-normal text-ink">
+            <h3
+              className="mt-4 text-3xl leading-tight tracking-normal text-ink"
+              style={{ fontFamily: "ABC Ginto Normal Medium, Inter, sans-serif", fontWeight: 500 }}
+            >
               {project.title[locale]}
             </h3>
           </div>
-          <Link
-            href={`/projects/${project.slug}`}
-            className="rounded-full border border-[rgba(11,34,66,0.12)] bg-white/60 p-3 text-ink transition hover:bg-white/85"
-            aria-label={`View ${project.title.en}`}
-          >
+          <span className="rounded-full border border-[rgba(11,34,66,0.12)] bg-white/60 p-3 text-ink transition group-hover:bg-white/85">
             <ArrowUpRight size={18} />
-          </Link>
+          </span>
         </div>
 
         <p className="mt-5 text-base leading-8 text-[rgba(11,34,66,0.72)]">
@@ -71,7 +87,8 @@ export function ProjectCard({ locale, project }: ProjectCardProps) {
             <Pill key={tag}>{tag}</Pill>
           ))}
         </div>
-      </div>
-    </motion.article>
+        </div>
+      </motion.article>
+    </Link>
   );
 }

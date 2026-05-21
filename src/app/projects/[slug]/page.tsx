@@ -1,7 +1,11 @@
+import { existsSync } from "fs";
 import Link from "next/link";
+import { join } from "path";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
+import { PdfProjectCaseStudy } from "@/components/PdfProjectCaseStudy";
+import { XiaohongshuCaseStudy } from "@/components/XiaohongshuCaseStudy";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { getProjectBySlug } from "@/data/site";
@@ -19,6 +23,34 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  if (project.slug === "xiaohongshu") {
+    return <XiaohongshuCaseStudy project={project} />;
+  }
+
+  if (project.slug === "curio") {
+    const pdfPath = join(process.cwd(), "public", "projects", "Curio - Final Review Slide.pdf");
+    const videoPath = join(process.cwd(), "public", "projects", "Curio Hackthon demo vedio.mp4");
+
+    return (
+      <PdfProjectCaseStudy
+        project={project}
+        pdfSrc={existsSync(pdfPath) ? "/projects/Curio%20-%20Final%20Review%20Slide.pdf" : null}
+        videoSrc={existsSync(videoPath) ? "/projects/Curio%20Hackthon%20demo%20vedio.mp4" : null}
+      />
+    );
+  }
+
+  if (project.slug === "shipyard-digital-twin") {
+    const pdfPath = join(process.cwd(), "public", "projects", "unity2.pdf");
+
+    return (
+      <PdfProjectCaseStudy
+        project={project}
+        pdfSrc={existsSync(pdfPath) ? "/projects/unity2.pdf" : null}
+      />
+    );
+  }
+
   return (
     <main className="min-h-screen px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1040px]">
@@ -34,19 +66,68 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
           <div
             className={`mt-8 overflow-hidden rounded-[30px] border border-white/70 bg-gradient-to-br ${project.gradient} p-6 sm:p-8`}
           >
-            <div className="flex flex-wrap gap-3">
-              <Pill>{project.date}</Pill>
-              <Pill>{project.category.en}</Pill>
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_400px] lg:items-center">
+              <div>
+                <div className="flex flex-wrap gap-3">
+                  <Pill>{project.date}</Pill>
+                  <Pill>{project.category.en}</Pill>
+                </div>
+                <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-normal text-ink sm:text-6xl">
+                  {project.title.en}
+                </h1>
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-[rgba(11,34,66,0.74)]">
+                  {project.overview.en}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Pill key={tag} className="bg-white/68">
+                      {tag}
+                    </Pill>
+                  ))}
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-[28px] border border-white/75 bg-white/60 shadow-[0_24px_70px_rgba(255,255,255,0.28)]">
+                <div className="relative aspect-[4/3]">
+                  {project.coverType === "video" ? (
+                    <video
+                      src={project.coverSrc}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={project.coverSrc}
+                      alt={project.title.en}
+                      className="h-full w-full object-cover"
+                    />
+                  )}
+                </div>
+                <div className="border-t border-white/60 px-5 py-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[rgba(11,34,66,0.48)]">
+                    Project Snapshot
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-[rgba(11,34,66,0.72)]">
+                    {project.mediaLabel.en}
+                  </p>
+                </div>
+              </div>
             </div>
-            <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-normal text-ink sm:text-6xl">
-              {project.title.en}
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-[rgba(11,34,66,0.74)]">
-              {project.overview.en}
-            </p>
           </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <article className="rounded-[26px] border border-white/65 bg-white/55 p-6 lg:col-span-1">
+              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[rgba(11,34,66,0.48)]">
+                Overview
+              </p>
+              <p className="mt-4 text-base leading-8 text-[rgba(11,34,66,0.72)]">
+                {project.description.en}
+              </p>
+            </article>
             <article className="rounded-[26px] border border-white/65 bg-white/55 p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[rgba(11,34,66,0.48)]">
                 Problem

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="55" y1="22" x2="89" y2="176" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#35B8FF"/>
+      <stop offset="0.42" stop-color="#53B96E"/>
+      <stop offset="1" stop-color="#FFD400"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="168" y1="22" x2="221" y2="108" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D3FC2"/>
+      <stop offset="1" stop-color="#2395F4"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="125" y1="193" x2="88" y2="237" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F03D3F"/>
+      <stop offset="1" stop-color="#FF7A45"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="171" y1="97" x2="212" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B95AD8"/>
+      <stop offset="0.55" stop-color="#EA4F8A"/>
+      <stop offset="1" stop-color="#FFC15A"/>
+    </linearGradient>
+  </defs>
+  <path d="M38 142.5C38 123.7 40.2 110.5 43.9 94.3L57.7 39.1C67.4 1.7 89.7 22 104.5 22H163.8C177.4 22 184.6 31.3 184.6 45.3C184.6 49.7 183.8 53.8 182.9 57.5L156 163.6C149 191.9 132.6 196.9 118.6 196.9H61.6C47.2 196.9 38 178.7 38 142.5Z" fill="url(#g1)"/>
+  <path d="M145.8 22H191.9C208.1 22 219.4 28.6 224.7 49.1L235.3 90.4C237.3 97.8 238 103.6 238 108.3C238 132.7 222.5 144.6 201.4 144.6H129.8C115.6 144.6 109.1 134.4 109.1 121.7C109.1 118.5 109.6 115 110.6 111.3L126.2 51.8C132.3 29.3 138.5 22 145.8 22Z" fill="url(#g2)"/>
+  <path d="M50.6 175.6H125.2C140.7 175.6 146.5 184.1 151.4 201.1L159 227.8C161.3 235.8 162 242 162 247.2C162 262.9 152.2 273 133.9 273H102C83.1 273 74.1 262.8 69.8 245.6L59.5 204.7C57.5 197 50.9 191.6 43.1 190.6L36.3 189.7C22.4 187.8 15 178.8 15 166.8C15 160.5 17 154.2 21.4 148.1L42.7 118.6L75.7 147.9L50.6 175.6Z" transform="translate(28 -37)" fill="url(#g3)"/>
+  <path d="M162.3 144.6H220.3C245.7 144.6 256 157.8 256 182.8C256 188.9 255.4 195.7 253.9 203.1L245.3 245.2C236.6 287.3 214.9 324 179.2 324H99.4L137.7 175.2C142.9 155.3 150.4 144.6 162.3 144.6Z" transform="translate(-18 -64)" fill="url(#g4)"/>
+</svg>
