@@ -25,7 +25,7 @@ export function ProjectsSection({ locale }: ProjectsSectionProps) {
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-7 xl:grid-cols-2">
+        <div className="mt-14 grid gap-7 xl:grid-cols-2 xl:auto-rows-fr">
           {projects.map((project, index) => (
             <motion.div
               key={project.slug}
@@ -33,6 +33,7 @@ export function ProjectsSection({ locale }: ProjectsSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.6, delay: index * 0.05 }}
+              className="h-full"
             >
               <ProjectCard locale={locale} project={project} />
             </motion.div>

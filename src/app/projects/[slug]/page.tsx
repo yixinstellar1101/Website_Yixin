@@ -4,8 +4,11 @@ import { join } from "path";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
+import { CurioCaseStudy } from "@/components/CurioCaseStudy";
+import { InsideOutCaseStudy } from "@/components/InsideOutCaseStudy";
 import { PdfProjectCaseStudy } from "@/components/PdfProjectCaseStudy";
 import { XiaohongshuCaseStudy } from "@/components/XiaohongshuCaseStudy";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { getProjectBySlug } from "@/data/site";
@@ -32,12 +35,18 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
     const videoPath = join(process.cwd(), "public", "projects", "Curio Hackthon demo vedio.mp4");
 
     return (
-      <PdfProjectCaseStudy
+      <CurioCaseStudy
         project={project}
         pdfSrc={existsSync(pdfPath) ? "/projects/Curio%20-%20Final%20Review%20Slide.pdf" : null}
         videoSrc={existsSync(videoPath) ? "/projects/Curio%20Hackthon%20demo%20vedio.mp4" : null}
       />
     );
+  }
+
+  if (project.slug === "inside-out-h5") {
+    const pdfPath = join(process.cwd(), "public", "projects", "InsideOut", "InsideOut.pdf");
+
+    return <InsideOutCaseStudy project={project} pdfSrc={existsSync(pdfPath) ? "/projects/InsideOut/InsideOut.pdf" : null} />;
   }
 
   if (project.slug === "shipyard-digital-twin") {
@@ -100,10 +109,11 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <img
+                    <ZoomableImage
                       src={project.coverSrc}
                       alt={project.title.en}
-                      className="h-full w-full object-cover"
+                      className="h-full"
+                      imgClassName="h-full w-full object-cover"
                     />
                   )}
                 </div>

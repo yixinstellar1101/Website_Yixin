@@ -53,12 +53,14 @@ export function Button({
     );
   }
 
-  if (external) {
+  const isNativeAnchor = href.startsWith("mailto:") || href.startsWith("tel:");
+
+  if (external || isNativeAnchor) {
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noreferrer"
+        target={external ? "_blank" : undefined}
+        rel={external ? "noreferrer" : undefined}
         onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
       >
         <Base variant={variant} className={className}>

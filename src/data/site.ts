@@ -110,8 +110,8 @@ export const pageCopy = {
       zh: "查看项目"
     },
     portraitCaption: {
-      en: "AI product manager shaping multimodal and spatial experiences.",
-      zh: "聚焦多模态、空间交互与 Agentic 产品体验。"
+      en: "AI product manager shaping multimodal, 3D, and spatial experiences.",
+      zh: "聚焦多模态、3D 与空间交互体验的 AI 产品经理。"
     }
   },
   about: {
@@ -122,16 +122,16 @@ export const pageCopy = {
     },
     body: [
       {
-        en: "I'm an AI Product Manager with a background in interaction design, creative technology, and product strategy. Across AI incubation, 3D creation tools, enterprise workflows, and creative storytelling, I've learned to translate between user needs, technical possibilities, and shippable product experiences.",
-        zh: "我具备交互设计、创意技术与产品策略的复合背景，经历过 AI 孵化、3D 创作工具、企业工作流和创意叙事等不同场景，逐渐形成了在用户需求、技术可能性和可落地产品之间来回转译的工作方式。"
+        en: "I'm an AI Product Manager with a background in interaction design, creative technology, and product strategy.",
+        zh: "我是一名 AI 产品经理，具备交互设计、创意技术与产品策略的复合背景。"
       },
       {
-        en: "My work focuses on the early stages of AI products: identifying the right user problem, shaping the product loop, prototyping the experience, defining evaluation signals, and communicating the value clearly.",
-        zh: "我尤其关注 AI 产品的早期阶段：找到值得解决的问题、搭建产品闭环、快速原型化、定义评估信号，并把产品价值讲清楚。"
+        en: "Across Microsoft, Unity, Rednote, and Disney, I've worked on AI incubation, 3D creation tools, enterprise workflows, and consumer creative experiences. I'm especially interested in the early stages of AI products: identifying the right user problem, shaping the product loop, prototyping the experience, defining evaluation signals, and communicating value clearly.",
+        zh: "在 Microsoft、Unity、小红书和 Disney 的经历中，我参与过 AI 孵化、3D 创作工具、企业工作流与消费型创意体验。我尤其关注 AI 产品的早期阶段：识别真正的问题、搭建产品闭环、快速原型化、定义评估信号，并把产品价值讲清楚。"
       },
       {
-        en: "I'm especially interested in multimodal AI, agentic workflows, 3D interfaces, and products that make complex AI capabilities understandable and useful for real users.",
-        zh: "我持续关注多模态 AI、Agentic Workflow、3D 界面，以及那些能把复杂 AI 能力转化成真实可理解、可使用体验的产品。"
+        en: "My work focuses on multimodal AI, agentic workflows, 3D interfaces, and products that make complex AI capabilities understandable and useful for real users.",
+        zh: "我的工作聚焦多模态 AI、Agentic Workflow、3D 界面，以及那些能把复杂 AI 能力转化成真实可理解、可使用体验的产品。"
       }
     ],
     cardTitle: {
@@ -149,19 +149,21 @@ export const pageCopy = {
     focuses: {
       en: [
         "AI Product Management",
-        "Interaction Design",
-        "Multimodal Experiences",
-        "Agentic Workflows",
+        "Human-Computer Interaction",
+        "Multimodal AI",
         "3D Product Interfaces",
-        "Product Storytelling"
+        "Agentic Workflows",
+        "Product Storytelling",
+        "Evaluation Frameworks"
       ],
       zh: [
         "AI 产品管理",
-        "交互设计",
-        "多模态体验",
-        "Agentic 工作流",
+        "人机交互",
+        "多模态 AI",
         "3D 产品界面",
-        "产品叙事"
+        "Agentic 工作流",
+        "产品叙事",
+        "评估框架"
       ]
     },
     strengthsTitle: {
@@ -171,12 +173,14 @@ export const pageCopy = {
     strengths: {
       en: [
         "From ambiguity to product definition",
-        "From prototype to user feedback",
+        "From prototype to user validation",
+        "From subjective quality to evaluation signals",
         "From AI capability to product narrative"
       ],
       zh: [
         "从模糊机会到产品定义",
-        "从原型验证到用户反馈",
+        "从原型验证到用户确认",
+        "从主观质量到评估信号",
         "从 AI 能力到产品叙事"
       ]
     }
@@ -389,20 +393,20 @@ export const projects: ProjectItem[] = [
     slug: "copilot-3d",
     date: "2025",
     category: {
-      en: "AI · 3D · PRODUCT STORYTELLING",
+      en: "AI Product · 3D Generation · Quality Evaluation",
       zh: "AI · 3D · 产品叙事"
     },
     title: {
-      en: "Copilot 3D — Turning AI Generation into a Product Story",
+      en: "Copilot 3D — Image-to-3D AI Productization",
       zh: "Copilot 3D — 把 AI 生成能力讲成产品故事"
     },
     description: {
-      en: "Supported product storytelling, launch visuals, and demo experiences for AI-powered 3D asset generation, helping users understand how emerging generative AI capabilities could become practical creative workflows.",
+      en: "Helped productize MSRA image-to-3D research into a Copilot Labs experience, supporting launch activation, product storytelling, and benchmark-based quality evaluation.",
       zh: "围绕 AI 驱动的 3D 资产生成，参与产品叙事、发布视觉和 demo 体验设计，帮助用户理解生成式 AI 如何转化为真正可用的创作工作流。"
     },
     coverType: "video",
     coverSrc: "/projects/copilot-3d-cover-video.mp4",
-    tags: ["AI PRODUCT", "3D GENERATION", "COPILOT", "PRODUCT DEMO"],
+    tags: ["AI Product", "3D Generation", "Quality Evaluation", "Copilot Labs"],
     cta: {
       en: "VIEW CASE STUDY",
       zh: "查看案例"
@@ -445,20 +449,20 @@ export const projects: ProjectItem[] = [
     slug: "curio",
     date: "2025",
     category: {
-      en: "AI · AGENTIC EXPERIENCE · CULTURE",
+      en: "AI MVP · Agentic Experience · Cultural Tech",
       zh: "AI · Agentic Experience · 文化"
     },
     title: {
-      en: "Curio — AI Cultural Livestream",
+      en: "Curio — Multi-Agent Cultural Livestream",
       zh: "Curio — AI 文化直播体验"
     },
     description: {
-      en: "An AI-powered cultural livestream where any uploaded object can become an interactive discussion. The system combines image understanding, artifact framing, character generation, multi-role dialogue, and a live room interface.",
+      en: "Designed and shipped an AI interactive MVP that turns cultural artifacts into live multi-agent conversations, validating early demand through 100+ user activations.",
       zh: "一个 AI 驱动的文化直播体验，任何上传物件都可以被转化为可讨论的文化对象，系统串联图像理解、文物 framing、角色生成、多角色对话与直播间交互。"
     },
     coverType: "image",
     coverSrc: "/projects/curio-cover.png",
-    tags: ["MULTIMODAL AI", "AGENTIC LOOP", "LIVE EXPERIENCE", "PROTOTYPE"],
+    tags: ["AI MVP", "Multi-Agent AI", "Live Experience", "User Validation"],
     cta: {
       en: "VIEW CASE STUDY",
       zh: "查看案例"
@@ -501,7 +505,7 @@ export const projects: ProjectItem[] = [
     slug: "shipyard-digital-twin",
     date: "2024",
     category: {
-      en: "ENTERPRISE · 3D · WORKFLOW",
+      en: "Enterprise Product · 3D Workflow · Digital Twin",
       zh: "企业 · 3D · 工作流"
     },
     title: {
@@ -509,12 +513,12 @@ export const projects: ProjectItem[] = [
       zh: "船舶数字孪生 — 精度管理 PoC"
     },
     description: {
-      en: "A 3D-enabled workflow platform for shipbuilding progress tracking, segment navigation, precision annotation, and data maintenance, designed to reduce manual cross-checking across drawings, spreadsheets, and model views.",
+      en: "Defined product workflows and prototypes for a shipyard digital twin PoC, helping reduce manual data-checking across 2D drawings and Excel records by ~40%.",
       zh: "围绕船舶建造打造的 3D 工作流平台，覆盖进度跟踪、分段导航、精度标注与数据维护，帮助减少图纸、表格与模型之间的人肉交叉核对。"
     },
     coverType: "image",
     coverSrc: "/projects/unity-cover.png",
-    tags: ["ENTERPRISE AI", "3D WORKFLOW", "PRD", "DIGITAL TWIN"],
+    tags: ["Enterprise PM", "Digital Twin", "3D Workflow", "PRD"],
     cta: {
       en: "VIEW CASE STUDY",
       zh: "查看案例"
@@ -557,20 +561,20 @@ export const projects: ProjectItem[] = [
     slug: "xiaohongshu",
     date: "2024",
     category: {
-      en: "CONTENT COMMUNITY · USER RESEARCH · PRODUCT STRATEGY",
+      en: "Enterprise Tools · Workflow Design · Product Design",
       zh: "内容社区 · 用户研究 · 产品策略"
     },
     title: {
-      en: "Xiaohongshu - HRIS Design",
+      en: "Rednote HRIS — Enterprise Workflow Redesign",
       zh: "小红书 - HRIS 设计"
     },
     description: {
-      en: "Transforming HR experience with an intuitive interface and centralized data flow.",
+      en: "Redesigned HRIS workflows and enterprise tools, improving user satisfaction by 66.35% through workflow analysis, PRD refinement, and cross-functional iteration.",
       zh: "通过更直观的界面与中心化数据流，重塑 HR 使用体验。"
     },
     coverType: "image",
     coverSrc: "/projects/xiaohongshu-cover.svg",
-    tags: ["CONTENT COMMUNITY", "USER RESEARCH", "PRODUCT ANALYSIS", "PLATFORM STRATEGY"],
+    tags: ["Enterprise Tools", "Workflow Design", "User Research", "Design System"],
     cta: {
       en: "VIEW CASE STUDY",
       zh: "查看案例"
@@ -610,23 +614,85 @@ export const projects: ProjectItem[] = [
     }
   },
   {
+    slug: "inside-out-h5",
+    date: "2024.10",
+    category: {
+      en: "UI/UX · Flow Design · User Engagement",
+      zh: "UI/UX · 流程设计 · 用户参与"
+    },
+    title: {
+      en: "Inside Out — Interactive Emotion H5 Experience",
+      zh: "Inside Out — Interactive Emotion H5 Experience"
+    },
+    description: {
+      en: "Designed and prototyped an interactive H5 experience for Disney’s Inside Out 2, combining immersive scenario-based questions and randomized content to enhance user engagement and social sharing, driving video views over 500K.",
+      zh: "为迪士尼《头脑特工队 2》设计并原型化互动 H5 体验，通过沉浸式情境问答与随机结果内容，提升用户参与和社交传播，带动视频播放量超过 50 万。"
+    },
+    coverType: "image",
+    coverSrc: "/projects/InsideOut_cover.jpg",
+    tags: [
+      "UI/UX Design",
+      "Interactive H5",
+      "Flow & Prototype",
+      "User Engagement",
+      "Gamified Experience"
+    ],
+    cta: {
+      en: "VIEW CASE STUDY",
+      zh: "查看案例"
+    },
+    mediaLabel: {
+      en: "Interactive H5 flow and engagement-driven storytelling",
+      zh: "互动 H5 流程与参与驱动的内容体验"
+    },
+    gradient: "from-violet-300 via-indigo-100 to-fuchsia-100",
+    overview: {
+      en: "An interactive promotional H5 for Disney’s Inside Out 2 that blended playful emotion testing, randomized outputs, and lightweight sharing hooks to turn attention into repeat engagement.",
+      zh: "这是一个为迪士尼《头脑特工队 2》打造的互动推广 H5，通过情绪测试、随机结果和轻量分享机制，把注意力转化为更持续的互动参与。"
+    },
+    problem: {
+      en: "How might we make a film promotion feel participatory and shareable instead of just informational?",
+      zh: "如何让电影推广不只是信息展示，而是变成用户愿意参与和分享的互动体验？"
+    },
+    role: {
+      en: "UI/UX design, flow planning, prototyping, and copywriting.",
+      zh: "负责 UI/UX 设计、流程策划、原型设计与文案撰写。"
+    },
+    decisions: {
+      en: [
+        "Used scenario-based questions to make the interaction feel immersive instead of generic.",
+        "Introduced randomized result copy to increase replay value and social sharing.",
+        "Kept the flow lightweight so users could move quickly from curiosity to result."
+      ],
+      zh: [
+        "用情境化问题提升沉浸感，而不是做成普通测试题。",
+        "加入随机结果文案，增强重复游玩与分享意愿。",
+        "保持流程轻量，让用户快速从好奇走到结果反馈。"
+      ]
+    },
+    impact: {
+      en: "Improved engagement and sharing momentum for the campaign, contributing to video views exceeding 500K.",
+      zh: "提升了项目的互动参与和传播势能，推动相关视频播放量超过 50 万。"
+    }
+  },
+  {
     slug: "disney-spring-sketchbook",
     date: "2024",
     category: {
-      en: "CREATIVE DESIGN · BRAND STORYTELLING",
+      en: "Consumer Products · Brand Systems · Creative Strategy",
       zh: "创意设计 · 品牌叙事"
     },
     title: {
-      en: "Disney Spring Sketchbook — From Concept to Retail Experience",
+      en: "Disney Licensing — From Trend to Retail Experience",
       zh: "Disney Spring Sketchbook — 从概念到零售体验"
     },
     description: {
-      en: "Creative design work that explored how early storyboarding, visual direction, and product storytelling become consumer-facing brand experiences.",
+      en: "Created licensing design packets for Disney consumer products, translating audience insights, trend research, and brand guidelines into production-ready creative assets.",
       zh: "围绕创意概念、视觉方向与产品叙事展开的设计工作，探索早期故事板如何走向面向消费者的品牌体验。"
     },
     coverType: "image",
     coverSrc: "/projects/disney-cover.png",
-    tags: ["CREATIVE DESIGN", "STORYTELLING", "VISUAL DIRECTION", "BRAND EXPERIENCE"],
+    tags: ["Consumer Products", "Brand Strategy", "Trend Research", "Licensing"],
     cta: {
       en: "VIEW CASE STUDY",
       zh: "查看案例"

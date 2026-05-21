@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import type { ProjectItem } from "@/data/site";
 import { Button } from "@/components/ui/Button";
+import { ZoomableImage } from "@/components/ZoomableImage";
 
 const detailLinks = [
   { href: "/#about", label: "ABOUT" },
@@ -70,7 +71,8 @@ export function XiaohongshuCaseStudy({ project }: XiaohongshuCaseStudyProps) {
     }`;
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="relative min-h-screen">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[36rem] bg-[radial-gradient(circle_at_14%_82%,rgba(255,202,173,0.38),transparent_28%),radial-gradient(circle_at_84%_88%,rgba(180,204,255,0.4),transparent_30%),radial-gradient(circle_at_72%_58%,rgba(223,201,255,0.3),transparent_26%)]" />
       <div className="fixed inset-x-0 top-0 z-30 px-4 pt-3 sm:px-6 lg:px-8">
         <div className="pointer-events-none fixed left-0 top-0 z-[60] h-[3px] w-full bg-[rgba(11,34,66,0.08)]">
           <motion.div
@@ -235,10 +237,10 @@ export function XiaohongshuCaseStudy({ project }: XiaohongshuCaseStudyProps) {
           transition={{ type: "spring", stiffness: 220, damping: 26 }}
           className="group relative overflow-hidden rounded-[18px] border border-[#edf1ff] bg-white shadow-[0_18px_48px_rgba(38,64,146,0.08)]"
         >
-          <img
+          <ZoomableImage
             src="/projects/xiaohongshu-context.svg"
             alt="Xiaohongshu detail case study from Figma"
-            className="block h-auto w-full origin-center transition duration-500 group-hover:scale-[1.003]"
+            imgClassName="block h-auto w-full origin-center"
           />
         </motion.div>
       </motion.div>
