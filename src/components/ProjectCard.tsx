@@ -38,15 +38,28 @@ export function ProjectCard({ locale, project, priority = false }: ProjectCardPr
         >
           <div className="absolute inset-0 bg-[rgba(247,245,241,0.84)]" />
           <div className="absolute inset-0">
-            <Image
-              src={project.coverSrc}
-              alt={project.title.en}
-              fill
-              sizes="(min-width: 1280px) 560px, (min-width: 768px) 50vw, 100vw"
-              quality={92}
-              priority={priority}
-              className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-            />
+            {project.coverType === "video" ? (
+              <video
+                src={project.coverSrc}
+                poster={project.coverPosterSrc}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            ) : (
+              <Image
+                src={project.coverSrc}
+                alt={project.title.en}
+                fill
+                sizes="(min-width: 1280px) 560px, (min-width: 768px) 50vw, 100vw"
+                quality={92}
+                priority={priority}
+                className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            )}
           </div>
           <div className="absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.58),rgba(255,255,255,0))]" />
           {project.externalHref ? (

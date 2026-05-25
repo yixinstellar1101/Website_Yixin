@@ -32,6 +32,7 @@ export type ProjectItem = {
   description: LocalizedString;
   coverType: "image" | "video";
   coverSrc: string;
+  coverPosterSrc?: string;
   tags: string[];
   cta: LocalizedString;
   mediaLabel: LocalizedString;
@@ -67,7 +68,7 @@ export const siteConfig = {
   email: "yixin_xia@outlook.com",
   github: "",
   resume: "/resume.pdf",
-  portrait: "/yixin-image.webp"
+  portrait: "/yixin-image-portrait.webp"
 };
 
 export const navItems: NavItem[] = [
@@ -404,8 +405,9 @@ export const projects: ProjectItem[] = [
       en: "Helped productize MSRA image-to-3D research into a Copilot Labs experience, supporting launch activation, product storytelling, and benchmark-based quality evaluation.",
       zh: "围绕 AI 驱动的 3D 资产生成，参与产品叙事、发布视觉和 demo 体验设计，帮助用户理解生成式 AI 如何转化为真正可用的创作工作流。"
     },
-    coverType: "image",
-    coverSrc: "/projects/copilot-3d-cover.webp",
+    coverType: "video",
+    coverSrc: "/projects/copilot-3d-cover-video.mp4",
+    coverPosterSrc: "/projects/copilot-3d-cover.webp",
     tags: ["AI Product", "3D Generation", "Quality Evaluation", "Copilot Labs"],
     cta: {
       en: "VIEW CASE STUDY",
