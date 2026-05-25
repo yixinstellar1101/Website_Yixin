@@ -6,7 +6,7 @@ const nextConfig = {
   // emit the production build to Next.js' default `.next` for Vercel.
   distDir: isDevelopment ? process.env.NEXT_DIST_DIR || ".next" : ".next",
   images: {
-    unoptimized: true
+    formats: ["image/webp"]
   }
 };
 

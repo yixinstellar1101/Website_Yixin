@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
@@ -26,6 +27,7 @@ import {
 import { useEffect, useState } from "react";
 
 import { ImageGalleryLightbox } from "@/components/ImageGalleryLightbox";
+import { VideoPreviewCard } from "@/components/VideoPreviewCard";
 import { Button } from "@/components/ui/Button";
 import type { ProjectItem } from "@/data/site";
 
@@ -354,17 +356,15 @@ type CurioSlide = {
 type CurioCaseStudyProps = {
   project: ProjectItem;
   videoSrc: string | null;
-  pdfSrc: string | null;
 };
 
 const curioSlides: CurioSlide[] = Array.from({ length: 26 }, (_, index) => {
   const number = index + 1;
-  const ext = number === 11 || number === 18 ? "jpeg" : "jpg";
   const formatted = String(number).padStart(2, "0");
 
   return {
     id: formatted,
-    src: `/projects/CURIO/Curio%20-%20${formatted}.${ext}`,
+    src: `/projects/CURIO/Curio%20-%20${formatted}.webp`,
     alt: `Curio slide ${formatted}`
   };
 });
@@ -399,10 +399,17 @@ function SlideCard({
     <button
       type="button"
       onClick={() => onOpen(slideIndex)}
-      className={`group block w-full cursor-zoom-in overflow-hidden rounded-[24px] border border-white/80 bg-white/72 text-left shadow-[0_18px_52px_rgba(24,48,116,0.08)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent ${className}`}
+      className={`group relative block aspect-[16/9] w-full cursor-zoom-in overflow-hidden rounded-[24px] border border-white/80 bg-white/72 text-left shadow-[0_18px_52px_rgba(24,48,116,0.08)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent ${className}`}
       aria-label={`Open ${slide.alt}`}
     >
-      <img src={slide.src} alt={slide.alt} className="block h-auto w-full object-cover transition duration-500 group-hover:scale-[1.01]" />
+      <Image
+        src={slide.src}
+        alt={slide.alt}
+        fill
+        sizes="(min-width: 1024px) 900px, 100vw"
+        quality={93}
+        className="object-cover transition duration-500 group-hover:scale-[1.01]"
+      />
     </button>
   );
 }
@@ -560,17 +567,24 @@ function EqualHeightStack({ slides, onOpen }: { slides: CurioSlide[]; onOpen: (i
           key={slide.id}
           type="button"
           onClick={() => onOpen(Number(slide.id) - 1)}
-          className="group block aspect-[16/10] w-full cursor-zoom-in overflow-hidden rounded-[24px] border border-white/80 bg-white/72 text-left shadow-[0_18px_52px_rgba(24,48,116,0.08)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
+          className="group relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden rounded-[24px] border border-white/80 bg-white/72 text-left shadow-[0_18px_52px_rgba(24,48,116,0.08)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
           aria-label={`Open ${slide.alt}`}
         >
-          <img src={slide.src} alt={slide.alt} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.01]" />
+          <Image
+            src={slide.src}
+            alt={slide.alt}
+            fill
+            sizes="(min-width: 1024px) 640px, 100vw"
+            quality={93}
+            className="object-cover transition duration-500 group-hover:scale-[1.01]"
+          />
         </button>
       ))}
     </div>
   );
 }
 
-export function CurioCaseStudy({ project, videoSrc, pdfSrc }: CurioCaseStudyProps) {
+export function CurioCaseStudy({ project, videoSrc }: CurioCaseStudyProps) {
   const prefersReducedMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
@@ -785,9 +799,15 @@ export function CurioCaseStudy({ project, videoSrc, pdfSrc }: CurioCaseStudyProp
               ) : null}
             </div>
 
-            <div className="mt-24 overflow-hidden rounded-[28px] border border-white/75 bg-[rgba(248,246,242,0.62)] shadow-[0_22px_68px_rgba(26,49,118,0.08)] lg:mt-28 lg:self-end xl:mt-32">
+            <div className="mt-24 lg:mt-28 lg:self-end xl:mt-32">
               {videoSrc ? (
-                <video src={videoSrc} controls playsInline preload="metadata" className="aspect-video w-full bg-[#eef2fb] object-contain" />
+                <VideoPreviewCard
+                  title="Curio Demo Walkthrough"
+                  description="Watch the lightweight external demo instead of loading the original local MP4 directly on the page."
+                  href={videoSrc}
+                  thumbnailSrc={project.coverSrc}
+                  thumbnailAlt="Curio demo preview thumbnail"
+                />
               ) : (
                 <SlideCard slide={heroSlide} slideIndex={Number(heroSlide.id) - 1} onOpen={setActiveSlideIndex} className="rounded-none border-0 shadow-none" />
               )}
@@ -1030,18 +1050,6 @@ export function CurioCaseStudy({ project, videoSrc, pdfSrc }: CurioCaseStudyProp
           </motion.section>
         </div>
 
-        {pdfSrc ? (
-          <div className="mt-12 text-center">
-            <a
-              href={pdfSrc}
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm font-medium text-[rgba(11,34,66,0.62)] underline underline-offset-4 transition hover:text-ink"
-            >
-              View Full PDF
-            </a>
-          </div>
-        ) : null}
       </div>
 
       <ImageGalleryLightbox

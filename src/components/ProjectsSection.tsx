@@ -35,7 +35,7 @@ export function ProjectsSection({ locale }: ProjectsSectionProps) {
               transition={{ duration: 0.6, delay: index * 0.05 }}
               className="h-full"
             >
-              <ProjectCard locale={locale} project={project} />
+              <ProjectCard locale={locale} project={project} priority={index < 2} />
             </motion.div>
           ))}
         </div>

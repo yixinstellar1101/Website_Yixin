@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { ImageGalleryLightbox } from "@/components/ImageGalleryLightbox";
 import { Pill } from "@/components/ui/Pill";
 
-const toPublicSrc = (path: string) => encodeURI(path);
+const toPublicSrc = (path: string) => encodeURI(path.replace(/\.(png|jpe?g)$/i, ".webp"));
 
 type BeyondWorkCard = {
   title: string;
@@ -199,11 +200,13 @@ function PhotoRail({
                 className="group relative block h-[280px] w-[min(88vw,780px)] shrink-0 cursor-zoom-in overflow-hidden rounded-[22px] border border-white/80 bg-white/80 shadow-[0_16px_32px_rgba(31,45,96,0.08)] sm:h-[360px] sm:w-[620px] xl:h-[420px] xl:w-[760px]"
                 aria-label={`Open ${title} photo ${index + 1}`}
               >
-                <img
+                <Image
                   src={src}
                   alt={`${title} photo ${(index % images.length) + 1}`}
-                  className={`block h-full w-full ${src.includes("earth2.jpg") ? "object-cover object-top" : "object-cover object-center"} transition duration-500 group-hover:scale-[1.02]`}
-                  loading="lazy"
+                  fill
+                  sizes="(min-width: 1280px) 760px, (min-width: 640px) 620px, 88vw"
+                  quality={88}
+                  className={`${src.includes("earth2.webp") ? "object-cover object-top" : "object-cover object-center"} transition duration-500 group-hover:scale-[1.02]`}
                   draggable={false}
                 />
               </button>

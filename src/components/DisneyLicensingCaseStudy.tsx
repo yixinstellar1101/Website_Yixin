@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
@@ -50,11 +51,11 @@ type IconCard = {
 };
 
 const disneySlides: Slide[] = [
-  { id: "05", src: "/projects/DisneyLicensing/disney-page-05.jpg", alt: "Disney market visit sharing" },
-  { id: "01", src: "/projects/DisneyLicensing/disney-page-01.jpg", alt: "Disney design POV overview" },
-  { id: "02", src: "/projects/DisneyLicensing/disney-page-02.png", alt: "Disney badge design overview" },
-  { id: "03", src: "/projects/DisneyLicensing/disney-page-03.png", alt: "Toy Story Fiesta badge overview" },
-  { id: "04", src: "/projects/DisneyLicensing/disney-page-04.png", alt: "Pixar badge overview" }
+  { id: "05", src: "/projects/DisneyLicensing/disney-page-05.webp", alt: "Disney market visit sharing" },
+  { id: "01", src: "/projects/DisneyLicensing/disney-page-01.webp", alt: "Disney design POV overview" },
+  { id: "02", src: "/projects/DisneyLicensing/disney-page-02.webp", alt: "Disney badge design overview" },
+  { id: "03", src: "/projects/DisneyLicensing/disney-page-03.webp", alt: "Toy Story Fiesta badge overview" },
+  { id: "04", src: "/projects/DisneyLicensing/disney-page-04.webp", alt: "Pixar badge overview" }
 ];
 
 const researchSlide = disneySlides[0];
@@ -135,13 +136,16 @@ function SlideCard({
     <button
       type="button"
       onClick={() => onOpen(slideIndex)}
-      className={`group block w-full cursor-zoom-in overflow-hidden rounded-[24px] border border-white/80 bg-white/72 text-left shadow-[0_18px_52px_rgba(24,48,116,0.08)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent ${className}`}
+      className={`group relative block aspect-[16/9] w-full cursor-zoom-in overflow-hidden rounded-[24px] border border-white/80 bg-white/72 text-left shadow-[0_18px_52px_rgba(24,48,116,0.08)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent ${className}`}
       aria-label={`Open ${slide.alt}`}
     >
-      <img
+      <Image
         src={slide.src}
         alt={slide.alt}
-        className={`block h-auto w-full object-cover transition duration-500 group-hover:scale-[1.01] ${imageClassName}`}
+        fill
+        sizes="(min-width: 1024px) 900px, 100vw"
+        quality={95}
+        className={`object-cover transition duration-500 group-hover:scale-[1.01] ${imageClassName}`}
       />
     </button>
   );
@@ -364,7 +368,16 @@ export function DisneyLicensingCaseStudy({ project }: DisneyLicensingCaseStudyPr
             </div>
 
             <div className="overflow-hidden rounded-[28px] border border-white/80 bg-white/72 shadow-[0_24px_70px_rgba(255,255,255,0.28)]">
-              <img src={project.coverSrc} alt={project.title.en} className="block h-auto w-full object-cover" />
+              <div className="relative aspect-[16/9]">
+                <Image
+                  src={project.coverSrc}
+                  alt={project.title.en}
+                  fill
+                  sizes="(min-width: 1280px) 540px, 100vw"
+                  quality={94}
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </motion.section>

@@ -238,7 +238,7 @@ export function XiaohongshuCaseStudy({ project }: XiaohongshuCaseStudyProps) {
           className="group relative overflow-hidden rounded-[18px] border border-[#edf1ff] bg-white shadow-[0_18px_48px_rgba(38,64,146,0.08)]"
         >
           <ZoomableImage
-            src="/projects/xiaohongshu-context.svg"
+            src="/projects/xiaohongshu-context.webp"
             alt="Xiaohongshu detail case study from Figma"
             imgClassName="block h-auto w-full origin-center"
           />

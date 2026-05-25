@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
@@ -46,7 +47,6 @@ const detailLinks = [
 
 type ShipbuildingDigitalTwinCaseStudyProps = {
   project: ProjectItem;
-  pdfSrc: string | null;
 };
 
 type Slide = {
@@ -66,7 +66,7 @@ const unitySlides: Slide[] = Array.from({ length: 12 }, (_, index) => {
 
   return {
     id: number,
-    src: `/projects/Unity_Projects/unity-${number}.jpg`,
+    src: `/projects/Unity_Projects/unity-${number}.webp`,
     alt: `Shipbuilding digital twin slide ${number}`
   };
 });
@@ -338,13 +338,16 @@ function SlideCard({
     <button
       type="button"
       onClick={() => onOpen(slideIndex)}
-      className={`group block w-full cursor-zoom-in overflow-hidden rounded-[24px] border border-white/80 bg-white/72 text-left shadow-[0_18px_52px_rgba(24,48,116,0.08)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent ${className}`}
+      className={`group relative block aspect-[16/9] w-full cursor-zoom-in overflow-hidden rounded-[24px] border border-white/80 bg-white/72 text-left shadow-[0_18px_52px_rgba(24,48,116,0.08)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent ${className}`}
       aria-label={`Open ${slide.alt}`}
     >
-      <img
+      <Image
         src={slide.src}
         alt={slide.alt}
-        className={`block h-auto w-full object-cover transition duration-500 group-hover:scale-[1.01] ${imageClassName}`}
+        fill
+        sizes="(min-width: 1024px) 900px, 100vw"
+        quality={93}
+        className={`object-cover transition duration-500 group-hover:scale-[1.01] ${imageClassName}`}
       />
     </button>
   );
@@ -497,7 +500,7 @@ function InfoCard({ title, body, icon: Icon }: IconCard) {
   );
 }
 
-export function ShipbuildingDigitalTwinCaseStudy({ project, pdfSrc }: ShipbuildingDigitalTwinCaseStudyProps) {
+export function ShipbuildingDigitalTwinCaseStudy({ project }: ShipbuildingDigitalTwinCaseStudyProps) {
   const prefersReducedMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
@@ -883,13 +886,6 @@ export function ShipbuildingDigitalTwinCaseStudy({ project, pdfSrc }: Shipbuildi
           </Section>
         </div>
 
-        {pdfSrc ? (
-          <div className="mt-10 text-center">
-            <a href={pdfSrc} target="_blank" rel="noreferrer" className="text-sm font-medium text-[rgba(11,34,66,0.62)] underline underline-offset-4 transition hover:text-ink">
-              View Full PDF
-            </a>
-          </div>
-        ) : null}
       </div>
 
       <ImageGalleryLightbox images={unitySlides} activeIndex={activeSlideIndex} onClose={() => setActiveSlideIndex(null)} onNavigate={setActiveSlideIndex} />

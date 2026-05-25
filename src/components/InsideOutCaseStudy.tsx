@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
@@ -30,7 +31,6 @@ const detailLinks = [
 
 type InsideOutCaseStudyProps = {
   project: ProjectItem;
-  pdfSrc: string | null;
 };
 
 type InsideOutSlide = {
@@ -41,7 +41,7 @@ type InsideOutSlide = {
 
 const insideOutSlides: InsideOutSlide[] = Array.from({ length: 7 }, (_, index) => ({
   id: String(index),
-  src: `/projects/InsideOut/InsideOut-images-${index}.jpg`,
+  src: `/projects/InsideOut/InsideOut-images-${index}.webp`,
   alt: `Inside Out H5 case study slide ${index + 1}`
 }));
 
@@ -149,10 +149,17 @@ function SlideCard({
     <button
       type="button"
       onClick={() => onOpen(slideIndex)}
-      className={`group block w-full cursor-zoom-in overflow-hidden rounded-[28px] border border-white/80 bg-white/78 text-left shadow-[0_24px_72px_rgba(45,36,117,0.10)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent ${className}`}
+      className={`group relative block aspect-[16/9] w-full cursor-zoom-in overflow-hidden rounded-[28px] border border-white/80 bg-white/78 text-left shadow-[0_24px_72px_rgba(45,36,117,0.10)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(128,110,255,0.46)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent ${className}`}
       aria-label={`Open ${slide.alt}`}
     >
-      <img src={slide.src} alt={slide.alt} className="block h-auto w-full object-cover transition duration-500 group-hover:scale-[1.01]" />
+      <Image
+        src={slide.src}
+        alt={slide.alt}
+        fill
+        sizes="(min-width: 1024px) 900px, 100vw"
+        quality={92}
+        className="object-cover transition duration-500 group-hover:scale-[1.01]"
+      />
     </button>
   );
 }
@@ -182,7 +189,7 @@ function SectionHeader({
   );
 }
 
-export function InsideOutCaseStudy({ project, pdfSrc }: InsideOutCaseStudyProps) {
+export function InsideOutCaseStudy({ project }: InsideOutCaseStudyProps) {
   const prefersReducedMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
@@ -696,20 +703,6 @@ export function InsideOutCaseStudy({ project, pdfSrc }: InsideOutCaseStudyProps)
           </motion.section>
         </div>
 
-        <div className="mt-12 text-center">
-          {pdfSrc ? (
-            <a
-              href={pdfSrc}
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm font-medium text-[rgba(11,34,66,0.62)] underline underline-offset-4 transition hover:text-ink"
-            >
-              View Full PDF
-            </a>
-          ) : (
-            <span className="text-sm font-medium text-[rgba(11,34,66,0.42)]">View Full PDF</span>
-          )}
-        </div>
       </div>
 
       <ImageGalleryLightbox

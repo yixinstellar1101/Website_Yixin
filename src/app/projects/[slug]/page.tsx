@@ -1,6 +1,4 @@
-import { existsSync } from "fs";
 import Link from "next/link";
-import { join } from "path";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -37,22 +35,16 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
   }
 
   if (project.slug === "curio") {
-    const pdfPath = join(process.cwd(), "public", "projects", "Curio - Final Review Slide.pdf");
-    const videoPath = join(process.cwd(), "public", "projects", "Curio Hackthon demo vedio.mp4");
-
     return (
       <CurioCaseStudy
         project={project}
-        pdfSrc={existsSync(pdfPath) ? "/projects/Curio%20-%20Final%20Review%20Slide.pdf" : null}
-        videoSrc={existsSync(videoPath) ? "/projects/Curio%20Hackthon%20demo%20vedio.mp4" : null}
+        videoSrc="https://youtu.be/FVQatjoiDss?si=PnKBZHfrpXgh3271"
       />
     );
   }
 
   if (project.slug === "inside-out-h5") {
-    const pdfPath = join(process.cwd(), "public", "projects", "InsideOut", "InsideOut.pdf");
-
-    return <InsideOutCaseStudy project={project} pdfSrc={existsSync(pdfPath) ? "/projects/InsideOut/InsideOut.pdf" : null} />;
+    return <InsideOutCaseStudy project={project} />;
   }
 
   if (project.slug === "disney-spring-sketchbook") {
@@ -60,14 +52,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
   }
 
   if (project.slug === "shipyard-digital-twin") {
-    const pdfPath = join(process.cwd(), "public", "projects", "unity2.pdf");
-
-    return (
-      <ShipbuildingDigitalTwinCaseStudy
-        project={project}
-        pdfSrc={existsSync(pdfPath) ? "/projects/unity2.pdf" : null}
-      />
-    );
+    return <ShipbuildingDigitalTwinCaseStudy project={project} />;
   }
 
   return (
@@ -108,24 +93,12 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
 
               <div className="overflow-hidden rounded-[28px] border border-white/75 bg-white/60 shadow-[0_24px_70px_rgba(255,255,255,0.28)]">
                 <div className="relative aspect-[4/3]">
-                  {project.coverType === "video" ? (
-                    <video
-                      src={project.coverSrc}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <ZoomableImage
-                      src={project.coverSrc}
-                      alt={project.title.en}
-                      className="h-full"
-                      imgClassName="h-full w-full object-cover"
-                    />
-                  )}
+                  <ZoomableImage
+                    src={project.coverSrc}
+                    alt={project.title.en}
+                    className="h-full"
+                    imgClassName="h-full w-full object-cover"
+                  />
                 </div>
                 <div className="border-t border-white/60 px-5 py-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[rgba(11,34,66,0.48)]">

@@ -67,7 +67,7 @@ export const siteConfig = {
   email: "yixin_xia@outlook.com",
   github: "",
   resume: "/resume.pdf",
-  portrait: "/yixin%20image.png"
+  portrait: "/yixin-image.webp"
 };
 
 export const navItems: NavItem[] = [
@@ -404,8 +404,8 @@ export const projects: ProjectItem[] = [
       en: "Helped productize MSRA image-to-3D research into a Copilot Labs experience, supporting launch activation, product storytelling, and benchmark-based quality evaluation.",
       zh: "围绕 AI 驱动的 3D 资产生成，参与产品叙事、发布视觉和 demo 体验设计，帮助用户理解生成式 AI 如何转化为真正可用的创作工作流。"
     },
-    coverType: "video",
-    coverSrc: "/projects/copilot-3d-cover-video.mp4",
+    coverType: "image",
+    coverSrc: "/projects/copilot-3d-cover.webp",
     tags: ["AI Product", "3D Generation", "Quality Evaluation", "Copilot Labs"],
     cta: {
       en: "VIEW CASE STUDY",
@@ -466,7 +466,7 @@ export const projects: ProjectItem[] = [
       zh: "一个 AI 驱动的文化直播体验，任何上传物件都可以被转化为可讨论的文化对象，系统串联图像理解、文物 framing、角色生成、多角色对话与直播间交互。"
     },
     coverType: "image",
-    coverSrc: "/projects/curio-cover.png",
+    coverSrc: "/projects/curio-cover.webp",
     tags: ["AI MVP", "Multi-Agent AI", "Live Experience", "User Validation"],
     cta: {
       en: "VIEW CASE STUDY",
@@ -527,7 +527,7 @@ export const projects: ProjectItem[] = [
       zh: "围绕船舶建造打造的 3D 工作流平台，覆盖进度跟踪、分段导航、精度标注与数据维护，帮助减少图纸、表格与模型之间的人肉交叉核对。"
     },
     coverType: "image",
-    coverSrc: "/projects/unity-cover.png",
+    coverSrc: "/projects/unity-cover.webp",
     tags: ["Enterprise PM", "Digital Twin", "3D Workflow", "PRD"],
     cta: {
       en: "VIEW CASE STUDY",
@@ -639,7 +639,7 @@ export const projects: ProjectItem[] = [
       zh: "为《头脑特工队 2》设计移动端 H5 性格测试活动，通过情境化问题、本地化文案与可分享结果卡片带动互动参与与社交传播。"
     },
     coverType: "image",
-    coverSrc: "/projects/InsideOut_cover.jpg",
+    coverSrc: "/projects/InsideOut_cover.webp",
     tags: ["UI/UX", "Interactive H5", "Campaign Design", "User Engagement", "Disney"],
     cta: {
       en: "VIEW CASE STUDY",
@@ -695,7 +695,7 @@ export const projects: ProjectItem[] = [
       zh: "围绕创意概念、视觉方向与产品叙事展开的设计工作，探索早期故事板如何走向面向消费者的品牌体验。"
     },
     coverType: "image",
-    coverSrc: "/projects/disney-cover.png",
+    coverSrc: "/projects/disney-cover.webp",
     tags: ["Consumer Products", "Brand Strategy", "Trend Research", "Licensing"],
     cta: {
       en: "VIEW CASE STUDY",

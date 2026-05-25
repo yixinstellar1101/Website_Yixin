@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
@@ -59,17 +60,11 @@ type MatrixRow = {
   icon: LucideIcon;
 };
 
-type JourneyMedia =
-  | {
-      type: "image";
-      src: string;
-      alt: string;
-    }
-  | {
-      type: "video";
-      src: string;
-      alt: string;
-    };
+type JourneyMedia = {
+  type: "image";
+  src: string;
+  alt: string;
+};
 
 type JourneyStep = {
   label: string;
@@ -145,7 +140,7 @@ const journeySteps: JourneyStep[] = [
     icon: Compass,
     media: {
       type: "image",
-      src: "/projects/Copilot 3D user journey/Browse inspiration.jpg",
+      src: "/projects/Copilot%203D%20user%20journey/Browse%20inspiration.webp",
       alt: "Copilot 3D inspiration browsing screen"
     }
   },
@@ -153,27 +148,27 @@ const journeySteps: JourneyStep[] = [
     label: "Upload image",
     icon: Upload,
     media: {
-      type: "video",
-      src: "/projects/Copilot 3D user journey/Upload image.mov",
-      alt: "Copilot 3D upload image flow"
+      type: "image",
+      src: "/projects/Copilot%203D%20user%20journey/Browse%20inspiration.webp",
+      alt: "Copilot 3D upload image entry point"
     }
   },
   {
     label: "Generate 3D asset",
     icon: Sparkles,
     media: {
-      type: "video",
-      src: "/projects/Copilot 3D user journey/Generate 3D asset.mov",
-      alt: "Copilot 3D asset generation in progress"
+      type: "image",
+      src: "/projects/Copilot%203D%20user%20journey/Export%20model.webp",
+      alt: "Copilot 3D generation result and export preparation"
     }
   },
   {
     label: "Preview model",
     icon: ScanSearch,
     media: {
-      type: "video",
-      src: "/projects/Copilot 3D user journey/Preview model.mov",
-      alt: "Copilot 3D model preview"
+      type: "image",
+      src: "/projects/Copilot%203D%20user%20journey/Save%20in%20my%20creations.webp",
+      alt: "Copilot 3D model preview and saved asset view"
     }
   },
   {
@@ -181,7 +176,7 @@ const journeySteps: JourneyStep[] = [
     icon: Boxes,
     media: {
       type: "image",
-      src: "/projects/Copilot 3D user journey/Save in my creations.jpg",
+      src: "/projects/Copilot%203D%20user%20journey/Save%20in%20my%20creations.webp",
       alt: "Copilot 3D saved assets view"
     }
   },
@@ -190,7 +185,7 @@ const journeySteps: JourneyStep[] = [
     icon: Download,
     media: {
       type: "image",
-      src: "/projects/Copilot 3D user journey/Export model.png",
+      src: "/projects/Copilot%203D%20user%20journey/Export%20model.webp",
       alt: "Copilot 3D export model dialog"
     }
   },
@@ -199,7 +194,7 @@ const journeySteps: JourneyStep[] = [
     icon: Share2,
     media: {
       type: "image",
-      src: "/projects/Copilot 3D user journey/Share result.png",
+      src: "/projects/Copilot%203D%20user%20journey/Share%20result.webp",
       alt: "Copilot 3D share result flow"
     }
   }
@@ -716,26 +711,15 @@ function JourneyLightbox({
               <p className="mt-2 text-lg" style={{ fontFamily: "ABC Ginto Normal Medium, Inter, sans-serif", fontWeight: 500 }}>{step.label}</p>
             </div>
 
-            <div className="bg-[linear-gradient(180deg,rgba(10,16,30,0.74),rgba(22,34,58,0.64))]">
-              {step.media.type === "video" ? (
-                <video
-                  src={step.media.src}
-                  aria-label={step.media.alt}
-                  controls
-                  autoPlay={!prefersReducedMotion}
-                  muted
-                  loop={!prefersReducedMotion}
-                  playsInline
-                  preload="metadata"
-                  className="block max-h-[78vh] w-full object-contain"
-                />
-              ) : (
-                <img
-                  src={step.media.src}
-                  alt={step.media.alt}
-                  className="block max-h-[78vh] w-full object-contain"
-                />
-              )}
+            <div className="relative min-h-[44vh] bg-[linear-gradient(180deg,rgba(10,16,30,0.74),rgba(22,34,58,0.64))]">
+              <Image
+                src={step.media.src}
+                alt={step.media.alt}
+                fill
+                sizes="100vw"
+                quality={95}
+                className="object-contain"
+              />
             </div>
           </motion.div>
         </div>
@@ -750,14 +734,12 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
   const [compact, setCompact] = useState(false);
   const [progress, setProgress] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(1440);
-  const [hasMounted, setHasMounted] = useState(false);
   const [activeJourneyIndex, setActiveJourneyIndex] = useState<number | null>(null);
   const [journeyProgress, setJourneyProgress] = useState(0);
   const [journeyCanScroll, setJourneyCanScroll] = useState(false);
   const journeyScrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setHasMounted(true);
     const syncViewport = () => setViewportWidth(window.innerWidth);
     syncViewport();
     window.addEventListener("resize", syncViewport);
@@ -911,13 +893,16 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
             </div>
 
             <div className="overflow-hidden rounded-[28px] border border-white/75 bg-[rgba(248,246,242,0.62)] shadow-[0_22px_68px_rgba(26,49,118,0.08)]">
-              {hasMounted ? (
-                <video src={project.coverSrc} autoPlay muted loop playsInline preload="metadata" className="aspect-video w-full bg-[#eef6ff] object-cover" />
-              ) : (
-                <div className="flex aspect-video w-full items-center justify-center bg-[radial-gradient(circle_at_22%_20%,rgba(165,216,255,0.34),transparent_22%),linear-gradient(135deg,#eef6ff,#f9fbff)]">
-                  <div className="rounded-full border border-white/80 bg-white/78 px-5 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-[rgba(11,34,66,0.62)] shadow-[0_12px_30px_rgba(24,48,116,0.08)]">Copilot 3D Demo</div>
-                </div>
-              )}
+              <div className="relative aspect-video bg-[radial-gradient(circle_at_22%_20%,rgba(165,216,255,0.34),transparent_22%),linear-gradient(135deg,#eef6ff,#f9fbff)]">
+                <Image
+                  src={project.coverSrc}
+                  alt={project.title.en}
+                  fill
+                  sizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 100vw"
+                  quality={94}
+                  className="object-contain"
+                />
+              </div>
               <div className="border-t border-white/65 px-5 py-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[rgba(11,34,66,0.46)]">Project Snapshot</p>
                 <p className="mt-3 text-sm leading-7 text-[rgba(11,34,66,0.74)]">Productizing MSRA’s image-to-3D capability for broader consumer adoption on Copilot Labs.</p>
@@ -1021,25 +1006,14 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
                             className="group relative mt-4 flex flex-1 cursor-zoom-in overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.86)] bg-[linear-gradient(180deg,rgba(240,246,255,0.9),rgba(231,239,252,0.78))] text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.88)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(23,59,120,0.34)]"
                             aria-label={`Open ${step.label}`}
                           >
-                            {step.media.type === "video" ? (
-                              <video
-                                src={step.media.src}
-                                aria-label={step.media.alt}
-                                autoPlay={!prefersReducedMotion}
-                                muted
-                                loop={!prefersReducedMotion}
-                                playsInline
-                                preload="metadata"
-                                className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                              />
-                            ) : (
-                              <img
-                                src={step.media.src}
-                                alt={step.media.alt}
-                                loading="lazy"
-                                className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                              />
-                            )}
+                            <Image
+                              src={step.media.src}
+                              alt={step.media.alt}
+                              fill
+                              sizes="258px"
+                              quality={95}
+                              className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+                            />
                             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-[linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0.82))]" />
                             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(17,32,63,0),rgba(17,32,63,0.08))] opacity-0 transition group-hover:opacity-100" />
                             <span className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1 rounded-full border border-white/80 bg-white/88 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[rgba(11,34,66,0.62)] shadow-[0_10px_22px_rgba(24,48,116,0.12)]">
