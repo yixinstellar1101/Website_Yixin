@@ -76,7 +76,7 @@ export function ImageGalleryLightbox({
                   event.stopPropagation();
                   onNavigate(activeIndex - 1);
                 }}
-                className="group/prev absolute left-0 top-0 z-10 h-full w-24 focus-visible:outline-none"
+                className="group/prev absolute left-0 top-0 z-10 h-full w-1/2 focus-visible:outline-none"
                 aria-label="Previous image"
               >
                 <span className="absolute left-4 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/16 bg-[rgba(255,255,255,0.10)] text-white opacity-0 transition hover:bg-[rgba(255,255,255,0.16)] group-hover/prev:opacity-100 focus-visible:opacity-100">
@@ -92,7 +92,7 @@ export function ImageGalleryLightbox({
                   event.stopPropagation();
                   onNavigate(activeIndex + 1);
                 }}
-                className="group/next absolute right-0 top-0 z-10 h-full w-24 focus-visible:outline-none"
+                className="group/next absolute right-0 top-0 z-10 h-full w-1/2 focus-visible:outline-none"
                 aria-label="Next image"
               >
                 <span className="absolute right-4 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/16 bg-[rgba(255,255,255,0.10)] text-white opacity-0 transition hover:bg-[rgba(255,255,255,0.16)] group-hover/next:opacity-100 focus-visible:opacity-100">

@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
-
 import { Pill } from "@/components/ui/Pill";
 import type { Locale, ProjectItem } from "@/data/site";
 
@@ -13,17 +12,24 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ locale, project }: ProjectCardProps) {
+  const router = useRouter();
+
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
+    <motion.article
+      role="link"
+      tabIndex={0}
+      onClick={() => router.push(`/projects/${project.slug}`)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          router.push(`/projects/${project.slug}`);
+        }
+      }}
+      whileHover={{ y: -10, scale: 1.012, boxShadow: "0 32px 88px rgba(29,57,128,0.14)" }}
+      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[30px] border border-white/82 bg-white/56 shadow-[0_26px_72px_rgba(31,54,124,0.09)] backdrop-blur-2xl transition-colors duration-300 group-hover:bg-white/64 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
       aria-label={`View ${project.title.en}`}
     >
-      <motion.article
-        whileHover={{ y: -10, scale: 1.012, boxShadow: "0 32px 88px rgba(29,57,128,0.14)" }}
-        transition={{ type: "spring", stiffness: 260, damping: 22 }}
-        className="flex h-full flex-col overflow-hidden rounded-[30px] border border-white/82 bg-white/56 shadow-[0_26px_72px_rgba(31,54,124,0.09)] backdrop-blur-2xl transition-colors duration-300 group-hover:bg-white/64"
-      >
         <div className="p-4 sm:p-5">
         <div
           className={`relative overflow-hidden rounded-[24px] border border-white/65 bg-gradient-to-br ${project.gradient}`}
@@ -49,6 +55,20 @@ export function ProjectCard({ locale, project }: ProjectCardProps) {
             )}
           </div>
           <div className="absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.58),rgba(255,255,255,0))]" />
+          {project.externalHref ? (
+            <div className="absolute bottom-4 left-4 z-10">
+              <a
+                href={project.externalHref}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(event) => event.stopPropagation()}
+                className="inline-flex items-center gap-2 rounded-full border border-white/82 bg-[rgba(255,255,255,0.9)] px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-ink shadow-[0_14px_32px_rgba(24,48,116,0.14)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white"
+              >
+                {project.externalLabel?.[locale] ?? "Open Live"}
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
+          ) : null}
           <div className="relative aspect-[16/9]" />
         </div>
       </div>
@@ -81,8 +101,8 @@ export function ProjectCard({ locale, project }: ProjectCardProps) {
             <Pill key={tag}>{tag}</Pill>
           ))}
         </div>
+
         </div>
       </motion.article>
-    </Link>
   );
 }

@@ -41,6 +41,8 @@ export type ProjectItem = {
   role: LocalizedString;
   decisions: Record<Locale, string[]>;
   impact: LocalizedString;
+  externalHref?: string;
+  externalLabel?: LocalizedString;
 };
 
 export const siteConfig = {
@@ -71,8 +73,7 @@ export const siteConfig = {
 export const navItems: NavItem[] = [
   { href: "#about", label: { en: "ABOUT", zh: "关于" } },
   { href: "#career", label: { en: "CAREER", zh: "经历" } },
-  { href: "#projects", label: { en: "PROJECTS", zh: "项目" } },
-  { href: "#content", label: { en: "CONTENT", zh: "内容" } }
+  { href: "#projects", label: { en: "PROJECTS", zh: "项目" } }
 ];
 
 export const pageCopy = {
@@ -151,7 +152,6 @@ export const pageCopy = {
         "AI Product Management",
         "Human-Computer Interaction",
         "Multimodal AI",
-        "3D Product Interfaces",
         "Agentic Workflows",
         "Product Storytelling",
         "Evaluation Frameworks"
@@ -160,7 +160,6 @@ export const pageCopy = {
         "AI 产品管理",
         "人机交互",
         "多模态 AI",
-        "3D 产品界面",
         "Agentic 工作流",
         "产品叙事",
         "评估框架"
@@ -443,6 +442,11 @@ export const projects: ProjectItem[] = [
     impact: {
       en: "A stronger launch story and a clearer path from capability demo to product understanding.",
       zh: "让能力展示更像产品，而不只是技术演示。"
+    },
+    externalHref: "https://copilot.microsoft.com/labs",
+    externalLabel: {
+      en: "Try Copilot 3D",
+      zh: "体验 Copilot 3D"
     }
   },
   {
@@ -499,6 +503,11 @@ export const projects: ProjectItem[] = [
     impact: {
       en: "Demonstrated an agentic content loop that feels cultural, playful, and discussion-driven.",
       zh: "验证了一种兼具文化感、讨论性和参与感的 agentic 内容闭环。"
+    },
+    externalHref: "https://icy-pond-07ba69f10-preview.centralus.2.azurestaticapps.net/",
+    externalLabel: {
+      en: "Try Curio Demo",
+      zh: "体验 Curio Demo"
     }
   },
   {
@@ -617,26 +626,20 @@ export const projects: ProjectItem[] = [
     slug: "inside-out-h5",
     date: "2024.10",
     category: {
-      en: "UI/UX · Flow Design · User Engagement",
-      zh: "UI/UX · 流程设计 · 用户参与"
+      en: "UI/UX · CAMPAIGN DESIGN · USER ENGAGEMENT",
+      zh: "UI/UX · 活动设计 · 用户参与"
     },
     title: {
-      en: "Inside Out — Interactive Emotion H5 Experience",
-      zh: "Inside Out — Interactive Emotion H5 Experience"
+      en: "Inside Out 2 - Designing a Shareable Campaign Loop",
+      zh: "Inside Out 2 - Designing a Shareable Campaign Loop"
     },
     description: {
-      en: "Designed and prototyped an interactive H5 experience for Disney’s Inside Out 2, combining immersive scenario-based questions and randomized content to enhance user engagement and social sharing, driving video views over 500K.",
-      zh: "为迪士尼《头脑特工队 2》设计并原型化互动 H5 体验，通过沉浸式情境问答与随机结果内容，提升用户参与和社交传播，带动视频播放量超过 50 万。"
+      en: "Designed a mobile H5 personality-test campaign for Inside Out 2, using scenario-based questions, localized copy, and shareable result cards to drive engagement and social sharing.",
+      zh: "为《头脑特工队 2》设计移动端 H5 性格测试活动，通过情境化问题、本地化文案与可分享结果卡片带动互动参与与社交传播。"
     },
     coverType: "image",
     coverSrc: "/projects/InsideOut_cover.jpg",
-    tags: [
-      "UI/UX Design",
-      "Interactive H5",
-      "Flow & Prototype",
-      "User Engagement",
-      "Gamified Experience"
-    ],
+    tags: ["UI/UX", "Interactive H5", "Campaign Design", "User Engagement", "Disney"],
     cta: {
       en: "VIEW CASE STUDY",
       zh: "查看案例"
@@ -647,32 +650,32 @@ export const projects: ProjectItem[] = [
     },
     gradient: "from-violet-300 via-indigo-100 to-fuchsia-100",
     overview: {
-      en: "An interactive promotional H5 for Disney’s Inside Out 2 that blended playful emotion testing, randomized outputs, and lightweight sharing hooks to turn attention into repeat engagement.",
-      zh: "这是一个为迪士尼《头脑特工队 2》打造的互动推广 H5，通过情绪测试、随机结果和轻量分享机制，把注意力转化为更持续的互动参与。"
+      en: "An interactive promotional H5 for Disney’s Inside Out 2 that turned emotion testing into a lightweight mobile campaign loop, combining quick participation, playful self-identification, and shareable results.",
+      zh: "这是一个为迪士尼《头脑特工队 2》打造的互动推广 H5，把情绪测试转化为轻量的移动端活动闭环，结合快速参与、自我代入和可分享结果。"
     },
     problem: {
-      en: "How might we make a film promotion feel participatory and shareable instead of just informational?",
-      zh: "如何让电影推广不只是信息展示，而是变成用户愿意参与和分享的互动体验？"
+      en: "How might we make a film campaign feel participatory, emotionally resonant, and worth sharing instead of just informational?",
+      zh: "如何让电影活动不只是信息传播，而是更具参与感、情绪共鸣和分享意愿？"
     },
     role: {
-      en: "UI/UX design, flow planning, prototyping, and copywriting.",
-      zh: "负责 UI/UX 设计、流程策划、原型设计与文案撰写。"
+      en: "UI/UX design, user flow planning, interaction prototyping, and campaign copywriting.",
+      zh: "负责 UI/UX 设计、用户流程规划、交互原型与活动文案。"
     },
     decisions: {
       en: [
-        "Used scenario-based questions to make the interaction feel immersive instead of generic.",
-        "Introduced randomized result copy to increase replay value and social sharing.",
-        "Kept the flow lightweight so users could move quickly from curiosity to result."
+        "Used scenario-based questions to make the experience feel like a short story instead of a generic quiz.",
+        "Localized emotion keywords and result copy to improve resonance for local audiences.",
+        "Designed result cards as social assets to support replay, comparison, and sharing."
       ],
       zh: [
-        "用情境化问题提升沉浸感，而不是做成普通测试题。",
-        "加入随机结果文案，增强重复游玩与分享意愿。",
-        "保持流程轻量，让用户快速从好奇走到结果反馈。"
+        "用情境化问题让体验更像一段小故事，而不是普通问答。",
+        "通过本地化情绪关键词和结果文案增强用户共鸣。",
+        "把结果页设计成社交传播素材，支持复玩、比较和分享。"
       ]
     },
     impact: {
-      en: "Improved engagement and sharing momentum for the campaign, contributing to video views exceeding 500K.",
-      zh: "提升了项目的互动参与和传播势能，推动相关视频播放量超过 50 万。"
+      en: "Increased engagement, sharing, and replay value for the campaign, contributing to 500K+ video views and strong social discussion.",
+      zh: "提升了活动的互动参与、分享传播和复玩价值，带动相关视频播放量超过 50 万并引发社区讨论。"
     }
   },
   {

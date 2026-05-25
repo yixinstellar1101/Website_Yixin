@@ -9,11 +9,10 @@ import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { Navbar, type PageView } from "@/components/Navbar";
-import { NotesSection } from "@/components/NotesSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { navItems, pageCopy, type Locale } from "@/data/site";
 
-const views: PageView[] = ["home", "about", "career", "projects", "content", "contact"];
+const views: PageView[] = ["home", "about", "career", "projects", "contact"];
 
 const viewFromHash = (hash: string): PageView => {
   const normalized = hash.replace("#", "") as PageView;
@@ -54,8 +53,6 @@ export function PortfolioPage() {
         return <CareerTimeline locale={locale} />;
       case "projects":
         return <ProjectsSection locale={locale} />;
-      case "content":
-        return <NotesSection locale={locale} />;
       case "contact":
         return <ContactSection locale={locale} />;
       default:

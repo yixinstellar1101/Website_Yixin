@@ -4,9 +4,11 @@ import { join } from "path";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
+import { Copilot3DCaseStudy } from "@/components/Copilot3DCaseStudy";
 import { CurioCaseStudy } from "@/components/CurioCaseStudy";
+import { DisneyLicensingCaseStudy } from "@/components/DisneyLicensingCaseStudy";
 import { InsideOutCaseStudy } from "@/components/InsideOutCaseStudy";
-import { PdfProjectCaseStudy } from "@/components/PdfProjectCaseStudy";
+import { ShipbuildingDigitalTwinCaseStudy } from "@/components/ShipbuildingDigitalTwinCaseStudy";
 import { XiaohongshuCaseStudy } from "@/components/XiaohongshuCaseStudy";
 import { ZoomableImage } from "@/components/ZoomableImage";
 import { Button } from "@/components/ui/Button";
@@ -30,6 +32,10 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
     return <XiaohongshuCaseStudy project={project} />;
   }
 
+  if (project.slug === "copilot-3d") {
+    return <Copilot3DCaseStudy project={project} />;
+  }
+
   if (project.slug === "curio") {
     const pdfPath = join(process.cwd(), "public", "projects", "Curio - Final Review Slide.pdf");
     const videoPath = join(process.cwd(), "public", "projects", "Curio Hackthon demo vedio.mp4");
@@ -49,11 +55,15 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
     return <InsideOutCaseStudy project={project} pdfSrc={existsSync(pdfPath) ? "/projects/InsideOut/InsideOut.pdf" : null} />;
   }
 
+  if (project.slug === "disney-spring-sketchbook") {
+    return <DisneyLicensingCaseStudy project={project} />;
+  }
+
   if (project.slug === "shipyard-digital-twin") {
     const pdfPath = join(process.cwd(), "public", "projects", "unity2.pdf");
 
     return (
-      <PdfProjectCaseStudy
+      <ShipbuildingDigitalTwinCaseStudy
         project={project}
         pdfSrc={existsSync(pdfPath) ? "/projects/unity2.pdf" : null}
       />

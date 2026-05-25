@@ -26,7 +26,7 @@ const educationEntries = {
       school: "The Hong Kong Polytechnic University",
       program: "Exchange, Interactive Media",
       detail: "School of Design",
-      meta: "Hong Kong"
+      meta: ""
     }
   ],
   zh: [
@@ -44,7 +44,7 @@ const educationEntries = {
       school: "香港理工大学",
       program: "交换项目 · 交互媒体",
       detail: "设计学院",
-      meta: "香港"
+      meta: ""
     }
   ]
 } as const;
@@ -80,6 +80,19 @@ export function AboutSection({ locale }: AboutSectionProps) {
                 <p key={paragraph.en}>{paragraph[locale]}</p>
               ))}
             </div>
+
+            <div className="mt-10 rounded-[26px] border border-white/72 bg-[linear-gradient(135deg,rgba(255,255,255,0.84),rgba(247,242,250,0.68))] p-6 shadow-[0_16px_42px_rgba(17,35,82,0.05)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[rgba(11,34,66,0.48)]">
+                {pageCopy.about.focusTitle[locale]}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2.5">
+                {pageCopy.about.focuses[locale].map((item) => (
+                  <Pill key={item} className="bg-white/82">
+                    {item}
+                  </Pill>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           <motion.aside
@@ -97,13 +110,12 @@ export function AboutSection({ locale }: AboutSectionProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[rgba(11,34,66,0.48)]">
                 {pageCopy.about.education[locale]}
               </p>
-              <div className="mt-5 space-y-8">
+              <div className="relative mt-5 space-y-8 before:absolute before:bottom-6 before:left-[0.76rem] before:top-8 before:w-px before:bg-[linear-gradient(180deg,rgba(11,34,66,0.18),rgba(11,34,66,0.08))]">
                 {schools.map((school, index) => (
-                  <div key={school.school} className="relative pl-7">
-                    {index < schools.length - 1 ? (
-                      <div className="absolute left-[13px] top-9 h-[calc(100%+1.5rem)] w-px bg-[rgba(11,34,66,0.12)]" />
-                    ) : null}
-                    <div className="absolute left-0 top-2.5 h-3.5 w-3.5 rounded-full bg-ink" />
+                  <div key={school.school} className="relative pl-8">
+                    <div className="absolute left-0 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-[rgba(255,255,255,0.88)] shadow-[0_10px_22px_rgba(17,35,82,0.08)]">
+                      <div className="h-3.5 w-3.5 rounded-full bg-ink ring-[4px] ring-[rgba(255,255,255,0.9)]" />
+                    </div>
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[rgba(11,34,66,0.58)]">
                       {school.years}
                     </p>
@@ -127,23 +139,14 @@ export function AboutSection({ locale }: AboutSectionProps) {
                         <p className="text-[0.98rem] leading-7 text-[rgba(11,34,66,0.72)]">
                           {school.detail}
                         </p>
-                        <p className="mt-2 text-sm font-medium uppercase tracking-[0.18em] text-[rgba(11,34,66,0.52)]">
-                          {school.meta}
-                        </p>
+                        {school.meta ? (
+                          <p className="mt-2 text-sm font-medium uppercase tracking-[0.18em] text-[rgba(11,34,66,0.52)]">
+                            {school.meta}
+                          </p>
+                        ) : null}
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[rgba(11,34,66,0.48)]">
-                {pageCopy.about.focusTitle[locale]}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {pageCopy.about.focuses[locale].map((item) => (
-                  <Pill key={item}>{item}</Pill>
                 ))}
               </div>
             </div>
