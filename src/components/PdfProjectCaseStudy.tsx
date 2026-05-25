@@ -12,7 +12,8 @@ import { Button } from "@/components/ui/Button";
 const detailLinks = [
   { href: "/#about", label: "ABOUT" },
   { href: "/#career", label: "CAREER" },
-  { href: "/#projects", label: "PROJECTS" }
+  { href: "/#projects", label: "PROJECTS" },
+  { href: "/#beyond-work", label: "BEYOND WORK" }
 ];
 
 type PdfProjectCaseStudyProps = {

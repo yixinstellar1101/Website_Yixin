@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import type { Locale, NavItem } from "@/data/site";
 
-export type PageView = "home" | "about" | "career" | "projects" | "contact";
+export type PageView = "home" | "about" | "career" | "projects" | "beyond-work" | "contact";
 
 type NavbarProps = {
   locale: Locale;

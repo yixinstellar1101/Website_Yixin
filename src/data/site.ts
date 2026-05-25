@@ -67,13 +67,14 @@ export const siteConfig = {
   email: "yixin_xia@outlook.com",
   github: "",
   resume: "/resume.pdf",
-  portrait: "/portrait.jpg"
+  portrait: "/yixin%20image.png"
 };
 
 export const navItems: NavItem[] = [
   { href: "#about", label: { en: "ABOUT", zh: "关于" } },
   { href: "#career", label: { en: "CAREER", zh: "经历" } },
-  { href: "#projects", label: { en: "PROJECTS", zh: "项目" } }
+  { href: "#projects", label: { en: "PROJECTS", zh: "项目" } },
+  { href: "#beyond-work", label: { en: "BEYOND WORK", zh: "工作之外" } }
 ];
 
 export const pageCopy = {
@@ -443,7 +444,7 @@ export const projects: ProjectItem[] = [
       en: "A stronger launch story and a clearer path from capability demo to product understanding.",
       zh: "让能力展示更像产品，而不只是技术演示。"
     },
-    externalHref: "https://copilot.microsoft.com/labs",
+    externalHref: "https://copilot.microsoft.com/labs/experiments/copilot-3d",
     externalLabel: {
       en: "Try Copilot 3D",
       zh: "体验 Copilot 3D"

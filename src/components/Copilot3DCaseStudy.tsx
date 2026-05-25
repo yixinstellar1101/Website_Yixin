@@ -13,6 +13,7 @@ import {
   Compass,
   Cpu,
   Download,
+  Expand,
   FlaskConical,
   Gauge,
   Lightbulb,
@@ -28,7 +29,7 @@ import {
   X,
   type LucideIcon
 } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import type { ProjectItem } from "@/data/site";
 import { Button } from "@/components/ui/Button";
@@ -37,7 +38,8 @@ import { Pill } from "@/components/ui/Pill";
 const detailLinks = [
   { href: "/#about", label: "ABOUT" },
   { href: "/#career", label: "CAREER" },
-  { href: "/#projects", label: "PROJECTS" }
+  { href: "/#projects", label: "PROJECTS" },
+  { href: "/#beyond-work", label: "BEYOND WORK" }
 ];
 
 type Copilot3DCaseStudyProps = {
@@ -55,6 +57,24 @@ type MatrixRow = {
   inspect: string;
   failure: string;
   icon: LucideIcon;
+};
+
+type JourneyMedia =
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+    }
+  | {
+      type: "video";
+      src: string;
+      alt: string;
+    };
+
+type JourneyStep = {
+  label: string;
+  icon: LucideIcon;
+  media: JourneyMedia;
 };
 
 const heroTags = [
@@ -119,15 +139,71 @@ const positioningCards: IconCard[] = [
   }
 ];
 
-const journeySteps = [
-  { label: "Browse inspiration", icon: Compass },
-  { label: "Upload image", icon: Upload },
-  { label: "Generate 3D asset", icon: Sparkles },
-  { label: "Preview model", icon: ScanSearch },
-  { label: "Save in My Creations", icon: Boxes },
-  { label: "Export model", icon: Download },
-  { label: "Share result", icon: Share2 }
-] as const;
+const journeySteps: JourneyStep[] = [
+  {
+    label: "Browse inspiration",
+    icon: Compass,
+    media: {
+      type: "image",
+      src: "/projects/Copilot 3D user journey/Browse inspiration.jpg",
+      alt: "Copilot 3D inspiration browsing screen"
+    }
+  },
+  {
+    label: "Upload image",
+    icon: Upload,
+    media: {
+      type: "video",
+      src: "/projects/Copilot 3D user journey/Upload image.mov",
+      alt: "Copilot 3D upload image flow"
+    }
+  },
+  {
+    label: "Generate 3D asset",
+    icon: Sparkles,
+    media: {
+      type: "video",
+      src: "/projects/Copilot 3D user journey/Generate 3D asset.mov",
+      alt: "Copilot 3D asset generation in progress"
+    }
+  },
+  {
+    label: "Preview model",
+    icon: ScanSearch,
+    media: {
+      type: "video",
+      src: "/projects/Copilot 3D user journey/Preview model.mov",
+      alt: "Copilot 3D model preview"
+    }
+  },
+  {
+    label: "Save in My Creations",
+    icon: Boxes,
+    media: {
+      type: "image",
+      src: "/projects/Copilot 3D user journey/Save in my creations.jpg",
+      alt: "Copilot 3D saved assets view"
+    }
+  },
+  {
+    label: "Export model",
+    icon: Download,
+    media: {
+      type: "image",
+      src: "/projects/Copilot 3D user journey/Export model.png",
+      alt: "Copilot 3D export model dialog"
+    }
+  },
+  {
+    label: "Share result",
+    icon: Share2,
+    media: {
+      type: "image",
+      src: "/projects/Copilot 3D user journey/Share result.png",
+      alt: "Copilot 3D share result flow"
+    }
+  }
+];
 
 const mvpModules: IconCard[] = [
   {
@@ -525,6 +601,149 @@ function MatrixTable() {
   );
 }
 
+function JourneyConnector() {
+  return (
+    <div className="flex items-center justify-center px-1 py-2">
+      <div className="relative h-px w-12 bg-[linear-gradient(90deg,rgba(151,171,202,0.22),rgba(86,116,173,0.64),rgba(151,171,202,0.16))]">
+        <span className="absolute left-0 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/80 bg-[rgba(130,158,211,0.78)] shadow-[0_6px_16px_rgba(34,63,123,0.12)]" />
+        <span className="absolute right-0 top-1/2 h-2.5 w-2.5 -translate-y-1/2 translate-x-[2px] rotate-45 border-r border-t border-[rgba(58,90,152,0.82)] bg-[rgba(255,255,255,0.92)] shadow-[0_4px_12px_rgba(34,63,123,0.08)]" />
+      </div>
+    </div>
+  );
+}
+
+function JourneyLightbox({
+  activeIndex,
+  onClose,
+  onNavigate,
+  prefersReducedMotion
+}: {
+  activeIndex: number | null;
+  onClose: () => void;
+  onNavigate: (index: number) => void;
+  prefersReducedMotion: boolean;
+}) {
+  useEffect(() => {
+    if (activeIndex === null) return;
+
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+
+      if (event.key === "ArrowLeft" && activeIndex > 0) {
+        onNavigate(activeIndex - 1);
+      }
+
+      if (event.key === "ArrowRight" && activeIndex < journeySteps.length - 1) {
+        onNavigate(activeIndex + 1);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeydown);
+    return () => window.removeEventListener("keydown", handleKeydown);
+  }, [activeIndex, onClose, onNavigate]);
+
+  if (activeIndex === null) {
+    return null;
+  }
+
+  const step = journeySteps[activeIndex];
+  const canGoPrev = activeIndex > 0;
+  const canGoNext = activeIndex < journeySteps.length - 1;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 z-[90] overflow-y-auto bg-[rgba(8,12,24,0.78)] p-4 sm:p-6 lg:p-10"
+      >
+        <div className="flex min-h-full items-center justify-center py-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.97, y: 8 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            onClick={(event) => event.stopPropagation()}
+            className="relative mx-auto my-6 w-full max-w-[1560px] overflow-hidden rounded-[28px] border border-white/10 bg-[rgba(255,255,255,0.05)] shadow-[0_30px_90px_rgba(0,0,0,0.38)]"
+          >
+            {canGoPrev ? (
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onNavigate(activeIndex - 1);
+                }}
+                className="group/prev absolute left-0 top-0 z-10 h-full w-1/2 focus-visible:outline-none"
+                aria-label="Previous journey step"
+              >
+                <span className="absolute left-4 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/16 bg-[rgba(255,255,255,0.10)] text-white opacity-0 transition hover:bg-[rgba(255,255,255,0.16)] group-hover/prev:opacity-100 focus-visible:opacity-100">
+                  <ArrowLeft size={20} />
+                </span>
+              </button>
+            ) : null}
+
+            {canGoNext ? (
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onNavigate(activeIndex + 1);
+                }}
+                className="group/next absolute right-0 top-0 z-10 h-full w-1/2 focus-visible:outline-none"
+                aria-label="Next journey step"
+              >
+                <span className="absolute right-4 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/16 bg-[rgba(255,255,255,0.10)] text-white opacity-0 transition hover:bg-[rgba(255,255,255,0.16)] group-hover/next:opacity-100 focus-visible:opacity-100">
+                  <ArrowRight size={20} />
+                </span>
+              </button>
+            ) : null}
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="absolute right-4 top-4 z-20 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/16 bg-[rgba(255,255,255,0.10)] text-white transition hover:bg-[rgba(255,255,255,0.16)]"
+              aria-label="Close preview"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="border-b border-white/10 px-5 py-4 text-white/86 sm:px-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/56">User Journey Step 0{activeIndex + 1}</p>
+              <p className="mt-2 text-lg" style={{ fontFamily: "ABC Ginto Normal Medium, Inter, sans-serif", fontWeight: 500 }}>{step.label}</p>
+            </div>
+
+            <div className="bg-[linear-gradient(180deg,rgba(10,16,30,0.74),rgba(22,34,58,0.64))]">
+              {step.media.type === "video" ? (
+                <video
+                  src={step.media.src}
+                  aria-label={step.media.alt}
+                  controls
+                  autoPlay={!prefersReducedMotion}
+                  muted
+                  loop={!prefersReducedMotion}
+                  playsInline
+                  preload="metadata"
+                  className="block max-h-[78vh] w-full object-contain"
+                />
+              ) : (
+                <img
+                  src={step.media.src}
+                  alt={step.media.alt}
+                  className="block max-h-[78vh] w-full object-contain"
+                />
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
   const prefersReducedMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
@@ -532,6 +751,10 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
   const [progress, setProgress] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(1440);
   const [hasMounted, setHasMounted] = useState(false);
+  const [activeJourneyIndex, setActiveJourneyIndex] = useState<number | null>(null);
+  const [journeyProgress, setJourneyProgress] = useState(0);
+  const [journeyCanScroll, setJourneyCanScroll] = useState(false);
+  const journeyScrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setHasMounted(true);
@@ -563,6 +786,26 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
   useEffect(() => {
     if (!compact) setOpen(false);
   }, [compact]);
+
+  useEffect(() => {
+    const node = journeyScrollRef.current;
+    if (!node) return;
+
+    const syncJourneyProgress = () => {
+      const maxScrollLeft = node.scrollWidth - node.clientWidth;
+      setJourneyCanScroll(maxScrollLeft > 12);
+      setJourneyProgress(maxScrollLeft > 0 ? node.scrollLeft / maxScrollLeft : 0);
+    };
+
+    syncJourneyProgress();
+    node.addEventListener("scroll", syncJourneyProgress, { passive: true });
+    window.addEventListener("resize", syncJourneyProgress);
+
+    return () => {
+      node.removeEventListener("scroll", syncJourneyProgress);
+      window.removeEventListener("resize", syncJourneyProgress);
+    };
+  }, []);
 
   const compactWidth = viewportWidth < 640 ? 212 : 252;
   const navButtonClass = (active = false) =>
@@ -754,22 +997,78 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
             <div className="space-y-8">
               <div className="overflow-hidden rounded-[26px] border border-white/76 bg-white/70 shadow-[0_18px_52px_rgba(24,48,116,0.07)]">
                 <div className="border-b border-[rgba(11,34,66,0.08)] px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-[rgba(11,34,66,0.48)]">User Journey</div>
-                <div className="grid gap-4 p-5 xl:grid-cols-[repeat(7,minmax(0,1fr))] xl:items-center">
+                <div
+                  ref={journeyScrollRef}
+                  className="flex gap-2 overflow-x-auto px-5 py-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                >
                   {journeySteps.map((step, index) => {
                     const Icon = step.icon;
                     return (
-                      <div key={step.label} className="flex items-center gap-3 xl:contents">
-                        <motion.div whileHover={{ y: -4 }} className="flex min-h-[138px] flex-1 flex-col justify-between rounded-[22px] border border-white/78 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(247,250,255,0.92))] p-4 shadow-[0_12px_30px_rgba(24,48,116,0.06)] xl:min-h-[180px]">
+                      <div key={step.label} className="flex shrink-0 items-center">
+                        <motion.article
+                          whileHover={prefersReducedMotion ? undefined : { y: -6 }}
+                          transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                          className="flex min-h-[290px] w-[258px] flex-col rounded-[24px] border border-white/82 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(244,248,255,0.92))] p-4 shadow-[0_16px_38px_rgba(24,48,116,0.08)]"
+                        >
                           <div className="flex items-center justify-between gap-3">
                             <span className="grid h-10 w-10 place-items-center rounded-full border border-white/80 bg-white text-ink shadow-[0_8px_18px_rgba(24,48,116,0.08)]"><Icon size={18} /></span>
                             <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[rgba(11,34,66,0.46)]">0{index + 1}</span>
                           </div>
-                          <p className="mt-6 text-base leading-6 text-ink" style={{ fontFamily: "ABC Ginto Normal Medium, Inter, sans-serif", fontWeight: 500 }}>{step.label}</p>
-                        </motion.div>
-                        {index < journeySteps.length - 1 ? <div className="hidden xl:flex items-center justify-center text-[rgba(11,34,66,0.36)]"><ArrowRight size={18} /></div> : null}
+
+                          <button
+                            type="button"
+                            onClick={() => setActiveJourneyIndex(index)}
+                            className="group relative mt-4 flex flex-1 cursor-zoom-in overflow-hidden rounded-[18px] border border-[rgba(255,255,255,0.86)] bg-[linear-gradient(180deg,rgba(240,246,255,0.9),rgba(231,239,252,0.78))] text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.88)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(23,59,120,0.34)]"
+                            aria-label={`Open ${step.label}`}
+                          >
+                            {step.media.type === "video" ? (
+                              <video
+                                src={step.media.src}
+                                aria-label={step.media.alt}
+                                autoPlay={!prefersReducedMotion}
+                                muted
+                                loop={!prefersReducedMotion}
+                                playsInline
+                                preload="metadata"
+                                className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+                              />
+                            ) : (
+                              <img
+                                src={step.media.src}
+                                alt={step.media.alt}
+                                loading="lazy"
+                                className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]"
+                              />
+                            )}
+                            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-[linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0.82))]" />
+                            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(17,32,63,0),rgba(17,32,63,0.08))] opacity-0 transition group-hover:opacity-100" />
+                            <span className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1 rounded-full border border-white/80 bg-white/88 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[rgba(11,34,66,0.62)] shadow-[0_10px_22px_rgba(24,48,116,0.12)]">
+                              <Expand size={12} />
+                              Open
+                            </span>
+                          </button>
+
+                          <p className="mt-4 text-base leading-6 text-ink" style={{ fontFamily: "ABC Ginto Normal Medium, Inter, sans-serif", fontWeight: 500 }}>{step.label}</p>
+                        </motion.article>
+                        {index < journeySteps.length - 1 ? <JourneyConnector /> : null}
                       </div>
                     );
                   })}
+                </div>
+                <div className="border-t border-[rgba(11,34,66,0.08)] px-5 pb-5 pt-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[rgba(11,34,66,0.44)]">
+                      {journeyCanScroll ? "Scroll right to explore the full journey" : "Tap any step to enlarge"}
+                    </p>
+                    <p className="text-xs text-[rgba(11,34,66,0.5)]">{Math.round(journeyProgress * 100)}%</p>
+                  </div>
+                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-[rgba(11,34,66,0.08)]">
+                    <motion.div
+                      className="h-full rounded-full bg-[linear-gradient(90deg,#f3d7d4,#e7b8b4)]"
+                      animate={{ width: `${journeyCanScroll ? Math.max(14, journeyProgress * 100) : 100}%` }}
+                      transition={{ duration: 0.18, ease: "easeOut" }}
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -894,6 +1193,13 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
           </Section>
         </div>
       </div>
+
+      <JourneyLightbox
+        activeIndex={activeJourneyIndex}
+        onClose={() => setActiveJourneyIndex(null)}
+        onNavigate={setActiveJourneyIndex}
+        prefersReducedMotion={!!prefersReducedMotion}
+      />
     </main>
   );
 }

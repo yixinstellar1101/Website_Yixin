@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { AboutSection } from "@/components/AboutSection";
+import { BeyondWorkSection } from "@/components/BeyondWorkSection";
 import { CareerTimeline } from "@/components/CareerTimeline";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
@@ -12,7 +13,7 @@ import { Navbar, type PageView } from "@/components/Navbar";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { navItems, pageCopy, type Locale } from "@/data/site";
 
-const views: PageView[] = ["home", "about", "career", "projects", "contact"];
+const views: PageView[] = ["home", "about", "career", "projects", "beyond-work", "contact"];
 
 const viewFromHash = (hash: string): PageView => {
   const normalized = hash.replace("#", "") as PageView;
@@ -22,30 +23,70 @@ const viewFromHash = (hash: string): PageView => {
 export function PortfolioPage() {
   const locale: Locale = "en";
   const [activeView, setActiveView] = useState<PageView>("home");
+  const pendingAnchorRef = useRef<"about" | "beyond-work" | null>(null);
 
   useEffect(() => {
-    setActiveView(viewFromHash(window.location.hash));
+    const initialView = viewFromHash(window.location.hash);
+    setActiveView(initialView);
 
-    const syncHash = () => setActiveView(viewFromHash(window.location.hash));
+    if (initialView === "about" || initialView === "beyond-work") {
+      pendingAnchorRef.current = initialView;
+    }
+
+    const syncHash = () => {
+      const nextView = viewFromHash(window.location.hash);
+      setActiveView(nextView);
+
+      if (nextView === "about" || nextView === "beyond-work") {
+        pendingAnchorRef.current = nextView;
+      }
+    };
+
     window.addEventListener("hashchange", syncHash);
 
     return () => window.removeEventListener("hashchange", syncHash);
   }, []);
 
   const navigateTo = (view: PageView) => {
-    if (view === "about") {
-      setActiveView("home");
-      window.history.pushState(null, "", "#about");
-      window.setTimeout(() => {
-        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-      }, 80);
+    if (view === "about" || view === "beyond-work") {
+      pendingAnchorRef.current = view;
+      setActiveView(view);
+      window.history.pushState(null, "", `#${view}`);
       return;
     }
 
+    pendingAnchorRef.current = null;
     setActiveView(view);
     window.history.pushState(null, "", view === "home" ? "/" : `#${view}`);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const targetId = pendingAnchorRef.current;
+    if (!targetId) return;
+
+    let attempts = 0;
+    let timeoutId = 0;
+
+    const scrollWhenReady = () => {
+      const element = document.getElementById(targetId);
+
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        pendingAnchorRef.current = null;
+        return;
+      }
+
+      if (attempts < 18) {
+        attempts += 1;
+        timeoutId = window.setTimeout(scrollWhenReady, 40);
+      }
+    };
+
+    timeoutId = window.setTimeout(scrollWhenReady, 40);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [activeView]);
 
   const renderView = () => {
     switch (activeView) {
@@ -60,6 +101,7 @@ export function PortfolioPage() {
           <>
             <HeroSection locale={locale} onNavigate={navigateTo} />
             <AboutSection locale={locale} />
+            <BeyondWorkSection />
           </>
         );
     }

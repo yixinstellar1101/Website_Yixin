@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/portrait.jpg",
+        url: "/yixin%20image.png",
         width: 1200,
         height: 630,
         alt: "Yixin Xia portfolio preview"
