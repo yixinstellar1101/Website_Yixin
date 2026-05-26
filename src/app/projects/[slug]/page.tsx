@@ -7,12 +7,13 @@ import { CurioCaseStudy } from "@/components/CurioCaseStudy";
 import { DisneyLicensingCaseStudy } from "@/components/DisneyLicensingCaseStudy";
 import { InsideOutCaseStudy } from "@/components/InsideOutCaseStudy";
 import { ShipbuildingDigitalTwinCaseStudy } from "@/components/ShipbuildingDigitalTwinCaseStudy";
+import { StudentExperimentCaseStudy } from "@/components/StudentExperimentCaseStudy";
 import { XiaohongshuCaseStudy } from "@/components/XiaohongshuCaseStudy";
 import { ZoomableImage } from "@/components/ZoomableImage";
 import { ProjectDetailFooterNav } from "@/components/ProjectDetailFooterNav";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
-import { getProjectBySlug } from "@/data/site";
+import { getProjectBySlug, getStudentExperimentBySlug } from "@/data/site";
 
 type ProjectPageProps = {
   params: {
@@ -22,6 +23,11 @@ type ProjectPageProps = {
 
 export default function ProjectDetailPage({ params }: ProjectPageProps) {
   const project = getProjectBySlug(params.slug);
+  const studentExperiment = getStudentExperimentBySlug(params.slug);
+
+  if (studentExperiment) {
+    return <StudentExperimentCaseStudy project={studentExperiment} />;
+  }
 
   if (!project) {
     notFound();

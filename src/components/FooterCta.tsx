@@ -24,7 +24,7 @@ export function FooterCta({ locale }: FooterCtaProps) {
                 {pageCopy.contact.title[locale]}
               </h2>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[rgba(11,34,66,0.72)]">
-                A lightweight landing page should still make the next step obvious. If something here resonates, let&apos;s talk.
+                If something here resonates, let&apos;s talk.
               </p>
             </div>
 

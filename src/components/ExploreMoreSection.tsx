@@ -1,9 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { ArrowUpRight } from "lucide-react";
 
 import { Pill } from "@/components/ui/Pill";
 import { careerItems, type Locale } from "@/data/site";
+
+const ClientAutoplayVideo = dynamic(
+  () => import("@/components/ClientAutoplayVideo").then((mod) => mod.ClientAutoplayVideo),
+  { ssr: false }
+);
 
 type ExploreMoreSectionProps = {
   locale: Locale;
@@ -119,16 +125,21 @@ export function ExploreMoreSection({ locale }: ExploreMoreSectionProps) {
                   }`}
                 >
                   {item.type === "video" ? (
-                    <video
-                      src={item.src}
-                      poster={item.poster}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-                    />
+                    <>
+                      <Image
+                        src={item.poster}
+                        alt={item.alt}
+                        fill
+                        sizes="(min-width: 1024px) 360px, 100vw"
+                        quality={92}
+                        className="object-cover transition duration-500 group-hover:scale-[1.02]"
+                      />
+                      <ClientAutoplayVideo
+                        src={item.src}
+                        poster={item.poster}
+                        className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+                      />
+                    </>
                   ) : (
                     <Image
                       src={item.src}

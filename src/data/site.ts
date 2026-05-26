@@ -46,6 +46,38 @@ export type ProjectItem = {
   externalLabel?: LocalizedString;
 };
 
+export type StudentExperimentVideoLink = {
+  label: string;
+  href: string;
+  embedSrc: string;
+  title: string;
+  description: string;
+};
+
+export type StudentExperimentSection = {
+  eyebrow: string;
+  title: string;
+  body: string[];
+  bullets?: string[];
+  imageSrc?: string;
+  imageAlt?: string;
+  imageCaption?: string;
+};
+
+export type StudentExperimentItem = {
+  slug: string;
+  category: string;
+  title: string;
+  description: string;
+  tags: string[];
+  coverSrc: string;
+  gradient: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  videoLinks: StudentExperimentVideoLink[];
+  sections: StudentExperimentSection[];
+};
+
 export const siteConfig = {
   name: "Yixin Xia",
   title: {
@@ -206,6 +238,17 @@ export const pageCopy = {
     subtitle: {
       en: "A first-pass portfolio focused on product framing, spatial systems, and agentic experiences.",
       zh: "第一版作品集重点展示产品 framing、空间系统与 agentic 体验。"
+    }
+  },
+  studentExperiments: {
+    section: { en: "Student Experiments", zh: "学生实验" },
+    title: {
+      en: "Student Experiments",
+      zh: "Student Experiments"
+    },
+    subtitle: {
+      en: "Early explorations in spatial experience, interactive storytelling, and motion-based visual systems.",
+      zh: "Early explorations in spatial experience, interactive storytelling, and motion-based visual systems."
     }
   },
   notes: {
@@ -739,5 +782,233 @@ export const projects: ProjectItem[] = [
   }
 ];
 
+export const studentExperiments: StudentExperimentItem[] = [
+  {
+    slug: "phygital-fusion",
+    category: "SPATIAL EXPERIENCE · AR/VR · 3D SYNTHESIS",
+    title: "Phygital Fusion — Spatial Reconstruction Experiment",
+    description:
+      "An experimental AR/VR architecture project exploring how physical plans, digital reconstruction, complex geometry, and spatial inversion can merge into an immersive phygital environment.",
+    tags: ["Spatial Design", "AR/VR", "3D Modeling", "Phygital", "Rhino"],
+    coverSrc: "/projects/Phygital Fusion/Reconstruction cover & 1.webp",
+    gradient: "from-sky-100 via-cyan-50 to-indigo-100",
+    heroTitle: "Phygital Fusion — Spatial Reconstruction Experiment",
+    heroSubtitle:
+      "Exploring how 2D plans, physical model testing, and digital 3D reconstruction can transform architectural space into an immersive phygital experience.",
+    videoLinks: [
+      {
+        label: "Watch Video",
+        href: "https://youtu.be/Rv8Wf6zKKII",
+        embedSrc: "https://www.youtube-nocookie.com/embed/Rv8Wf6zKKII?rel=0",
+        title: "Phygital Fusion Demo",
+        description: "A walkthrough of the final spatial reconstruction experiment and immersive phygital environment."
+      }
+    ],
+    sections: [
+      {
+        eyebrow: "Overview",
+        title: "Whitespace Reimagined Through A Phygital Architectural Experiment",
+        body: [
+          "This project explored “whitespace” through a phygital architectural experiment. Starting from a 2D spatial plan, it tested how complex interior geometries and smooth exterior curves could create unexpected spatial transitions in 3D."
+        ]
+      },
+      {
+        eyebrow: "Process",
+        title: "From Plan Study To Physical Model Testing And Digital Reconstruction",
+        body: [
+          "The process moved from plan study to physical model testing, then into digital reconstruction and interactive spatial presentation.",
+          "Physical materials such as stoppers, cotton, paper, textile, and wire were used to test wrapping forms before the final 3D model was built."
+        ],
+        imageSrc: "/projects/Phygital Fusion/Reconstruction 2.webp",
+        imageAlt: "Plan study and physical model testing for Phygital Fusion",
+        imageCaption: "Plan study and physical material testing before digital reconstruction."
+      },
+      {
+        eyebrow: "Design Focus",
+        title: "Balancing Structure, Wrapping, And Spatial Inversion",
+        body: [
+          "The project focused on how structure and flow could coexist: a more complex interior geometry held by a smoother exterior wrapping."
+        ],
+        bullets: [
+          "2D-to-3D transformation",
+          "Physical model testing",
+          "Complex interior geometry",
+          "Smooth exterior wrapping",
+          "Immersive spatial experience"
+        ],
+        imageSrc: "/projects/Phygital Fusion/Reconstruction 3.webp",
+        imageAlt: "Exploded diagram and renderings for Phygital Fusion",
+        imageCaption: "Exploded diagram and renderings showing the transition from concept to reconstructed space."
+      },
+      {
+        eyebrow: "What I Learned",
+        title: "Using Structure And Flow To Shape Spatial Experience",
+        body: [
+          "This project helped me understand how spatial experience can be shaped through the tension between structure and flow, physical material testing, and digital reconstruction."
+        ],
+        imageSrc: "/projects/Phygital Fusion/Reconstruction 4.webp",
+        imageAlt: "Technical drawing and interactive preview for Phygital Fusion",
+        imageCaption: "Technical drawing and interactive spatial preview of the final phygital environment."
+      }
+    ]
+  },
+  {
+    slug: "spring-interactive-picture-book",
+    category: "INTERACTIVE STORYTELLING · UNITY · SOCIAL IMPACT",
+    title: "Spring — Interactive Picture Book",
+    description:
+      "An interactive picture book exploring inequality through a fairy-tale world of herbivores and carnivores, combining narrative design, character development, and Unity-based interaction.",
+    tags: ["Interactive Storytelling", "Unity", "Picture Book", "SDGs", "Narrative Design"],
+    coverSrc: "/projects/Spring Interactive Picture Book/Spring cover & 1.webp",
+    gradient: "from-emerald-100 via-lime-50 to-amber-100",
+    heroTitle: "Spring — Interactive Picture Book",
+    heroSubtitle:
+      "A Unity-based interactive picture book using a fairy-tale narrative to explore inequality, courage, and collective hope.",
+    videoLinks: [
+      {
+        label: "Watch Video 1",
+        href: "https://youtu.be/pMLI8owEGpQ",
+        embedSrc: "https://www.youtube-nocookie.com/embed/pMLI8owEGpQ?rel=0",
+        title: "Spring Demo Walkthrough",
+        description: "A walkthrough of the interactive picture book and the main story flow built in Unity."
+      },
+      {
+        label: "Watch Video 2",
+        href: "https://youtu.be/BT2i3-XMoOw",
+        embedSrc: "https://www.youtube-nocookie.com/embed/BT2i3-XMoOw?rel=0",
+        title: "Spring Secondary Demo",
+        description: "An additional video showing more of the interactive scenes and final presentation."
+      }
+    ],
+    sections: [
+      {
+        eyebrow: "Overview",
+        title: "A Fairy-tale World Built To Talk About Inequality",
+        body: [
+          "Spring is an interactive picture book set in a forest where carnivores occupy the center and herbivores live in hidden spaces.",
+          "Through the journey of a fawn disguising itself to win the golden spring, the story reflects on inequality, discrimination, courage, and resistance."
+        ]
+      },
+      {
+        eyebrow: "Narrative Goal",
+        title: "Using A Fairy-tale Structure To Discuss Social Inequality",
+        body: [
+          "The project used a fairy-tale structure to discuss the UN Sustainable Development Goal of reducing inequalities.",
+          "It asked how marginalized groups resist unequal systems and what kind of hope can survive within difficult environments."
+        ],
+        imageSrc: "/projects/Spring Interactive Picture Book/Spring 2.webp",
+        imageAlt: "Conceptualization and character setting for Spring",
+        imageCaption: "Concept development and character setting for the fairy-tale world."
+      },
+      {
+        eyebrow: "Process",
+        title: "From Story Concept To Unity Production",
+        body: [
+          "The project included story concept development, scriptwriting, storyboard design, character setting, visual design, interaction design, and Unity production."
+        ],
+        imageSrc: "/projects/Spring Interactive Picture Book/Spring 3.webp",
+        imageAlt: "Storyboard and story interaction for Spring",
+        imageCaption: "Storyboard planning and interaction framing for the story experience."
+      },
+      {
+        eyebrow: "Design Focus",
+        title: "Building Empathy Through Interaction And Narrative",
+        body: [
+          "The design challenge was to keep the story emotionally accessible while still carrying a clear social message."
+        ],
+        bullets: [
+          "Branching story flow",
+          "Character setting",
+          "Interactive scenes",
+          "Unity production",
+          "Social issue storytelling"
+        ]
+      },
+      {
+        eyebrow: "What I Learned",
+        title: "How Interaction Can Deepen Narrative Empathy",
+        body: [
+          "This project taught me how interaction can deepen narrative empathy.",
+          "It also helped me practice turning a complex social topic into an accessible emotional experience."
+        ],
+        imageSrc: "/projects/Spring Interactive Picture Book/Spring 4.webp",
+        imageAlt: "Unity production and final scenes for Spring",
+        imageCaption: "Unity production process, reflection, and the final scenes of the story."
+      }
+    ]
+  },
+  {
+    slug: "swan-lake-motion-graphics",
+    category: "MOTION GRAPHICS · MUSIC VISUALIZATION · VISUAL SYSTEM",
+    title: "Swan Lake — Motion Graphics Animation",
+    description:
+      "A motion graphics animation inspired by Tchaikovsky’s Swan Lake, translating musical rhythm, notes, geometry, and color into a playful visual system.",
+    tags: ["Motion Graphics", "Music Visualization", "After Effects", "Visual System", "Animation"],
+    coverSrc: "/projects/Swan Lake Motion Graphics/Motion cover & 1.webp",
+    gradient: "from-rose-100 via-amber-50 to-fuchsia-100",
+    heroTitle: "Swan Lake — Motion Graphics Animation",
+    heroSubtitle:
+      "A motion graphics experiment translating Tchaikovsky’s Swan Lake into rhythmic visuals through notes, geometric shapes, color, and animated transitions.",
+    videoLinks: [
+      {
+        label: "Watch Video",
+        href: "https://youtu.be/lz2Y1pOBBaE",
+        embedSrc: "https://www.youtube-nocookie.com/embed/lz2Y1pOBBaE?rel=0",
+        title: "Swan Lake Motion Graphics",
+        description: "A short animation translating musical notes, shapes, and poster language into rhythmic motion."
+      }
+    ],
+    sections: [
+      {
+        eyebrow: "Overview",
+        title: "Reinterpreting Swan Lake As A Motion-based Visual System",
+        body: [
+          "This motion graphics project reinterpreted Tchaikovsky’s Swan Lake, using Dance of the Four Little Swans as the background music and building a visual rhythm around musical notes, pentagrams, geometric shapes, and color transitions."
+        ]
+      },
+      {
+        eyebrow: "Creative Direction",
+        title: "From Poster Elements To Brighter Motion Language",
+        body: [
+          "The animation extracted elements from the original poster, including notes, typography, circles, pentagrams, and monochrome contrast, then transformed them into a brighter and more dynamic motion language."
+        ],
+        imageSrc: "/projects/Swan Lake Motion Graphics/Motion 2.webp",
+        imageAlt: "Element extraction and creative concept for Swan Lake",
+        imageCaption: "Element extraction and the creative concept behind the animation system."
+      },
+      {
+        eyebrow: "Design Focus",
+        title: "Letting Rhythm, Geometry, And Contrast Drive The Motion",
+        body: [
+          "The project focused on how a static visual system could become kinetic without losing its graphic identity."
+        ],
+        bullets: [
+          "Musical rhythm",
+          "Geometric motion",
+          "Color contrast",
+          "Poster-to-animation transformation",
+          "Motion transitions"
+        ],
+        imageSrc: "/projects/Swan Lake Motion Graphics/Motion 3.webp",
+        imageAlt: "Motion storyboard frames for Swan Lake",
+        imageCaption: "Storyboard frames and rhythm-based motion planning."
+      },
+      {
+        eyebrow: "What I Learned",
+        title: "Carrying A Visual System Across Media",
+        body: [
+          "This project helped me understand how visual systems can move across media — from poster composition to animation, from static symbols to rhythm-based storytelling."
+        ],
+        imageSrc: "/projects/Swan Lake Motion Graphics/Motion 4.webp",
+        imageAlt: "Original poster comparison and final visual system for Swan Lake",
+        imageCaption: "Comparing the original poster language with the final animation system."
+      }
+    ]
+  }
+];
+
 export const getProjectBySlug = (slug: string) =>
   projects.find((project) => project.slug === slug);
+
+export const getStudentExperimentBySlug = (slug: string) =>
+  studentExperiments.find((project) => project.slug === slug);

@@ -1,11 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { Pill } from "@/components/ui/Pill";
 import type { Locale, ProjectItem } from "@/data/site";
+
+const ClientAutoplayVideo = dynamic(
+  () => import("@/components/ClientAutoplayVideo").then((mod) => mod.ClientAutoplayVideo),
+  { ssr: false }
+);
 
 type ProjectCardProps = {
   locale: Locale;
@@ -39,16 +45,22 @@ export function ProjectCard({ locale, project, priority = false }: ProjectCardPr
           <div className="absolute inset-0 bg-[rgba(247,245,241,0.84)]" />
           <div className="absolute inset-0">
             {project.coverType === "video" ? (
-              <video
-                src={project.coverSrc}
-                poster={project.coverPosterSrc}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              />
+              <>
+                <Image
+                  src={project.coverPosterSrc ?? project.coverSrc}
+                  alt={project.title.en}
+                  fill
+                  sizes="(min-width: 1280px) 560px, (min-width: 768px) 50vw, 100vw"
+                  quality={92}
+                  priority={priority}
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <ClientAutoplayVideo
+                  src={project.coverSrc}
+                  poster={project.coverPosterSrc}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </>
             ) : (
               <Image
                 src={project.coverSrc}

@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, MoreHorizontal, X } from "lucide-react";
+import { ArrowLeft, Menu, MoreHorizontal, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,12 +13,16 @@ type NavbarProps = {
   locale: Locale;
   navItems: NavItem[];
   letsTalkLabel: string;
+  backHref?: string;
+  backLabel?: string;
 };
 
 export function Navbar({
   locale,
   navItems,
-  letsTalkLabel
+  letsTalkLabel,
+  backHref,
+  backLabel = "Back to Projects"
 }: NavbarProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -69,6 +73,7 @@ export function Navbar({
     }`;
 
   const compactWidth = viewportWidth < 640 ? 212 : 252;
+  const hasBackButton = Boolean(backHref);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6 lg:px-8">
@@ -82,8 +87,29 @@ export function Navbar({
 
       <div className="mx-auto max-w-[1280px]">
         <div className="relative h-[92px]">
+          {hasBackButton ? (
+            <motion.div
+              initial={false}
+              animate={{ scale: compact ? 0.96 : 1, x: compact ? 10 : 0 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="pointer-events-auto absolute left-0 top-3 z-10"
+            >
+              <Link
+                href={backHref!}
+                aria-label={backLabel}
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(11,34,66,0.1)] bg-white/92 text-ink shadow-[0_12px_30px_rgba(25,48,118,0.12),0_2px_8px_rgba(25,48,118,0.06)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white"
+              >
+                <ArrowLeft size={18} />
+              </Link>
+            </motion.div>
+          ) : null}
+
           <motion.div
-            className="pointer-events-auto absolute left-1/2 top-0 w-[calc(100vw-32px)] max-w-[1280px] -translate-x-1/2 rounded-[30px] border border-white/80 bg-[rgba(251,248,244,0.82)] shadow-glass backdrop-blur-2xl transition-[width,border-radius] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:w-[calc(100vw-48px)] lg:w-[calc(100vw-64px)]"
+            className={`pointer-events-auto absolute left-1/2 top-0 -translate-x-1/2 rounded-[30px] border border-white/80 bg-[rgba(251,248,244,0.82)] shadow-glass backdrop-blur-2xl transition-[width,border-radius] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              hasBackButton
+                ? "w-[calc(100vw-112px)] max-w-[1208px] sm:w-[calc(100vw-144px)] lg:w-[calc(100vw-196px)]"
+                : "w-[calc(100vw-32px)] max-w-[1280px] sm:w-[calc(100vw-48px)] lg:w-[calc(100vw-64px)]"
+            }`}
             style={{
               width: compact ? compactWidth : undefined,
               borderRadius: compact ? 999 : 30
