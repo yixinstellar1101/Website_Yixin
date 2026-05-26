@@ -27,9 +27,9 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
         </div>
 
         <div className="relative mx-auto mt-24 max-w-[1080px]">
-          <div className="absolute left-10 top-0 h-full w-px bg-[linear-gradient(to_bottom,rgba(11,34,66,0.04),rgba(11,34,66,0.16),rgba(11,34,66,0.04))] md:left-1/2" />
+          <div className="absolute left-10 top-0 h-full w-px bg-[linear-gradient(to_bottom,rgba(11,34,66,0.04),rgba(11,34,66,0.16),rgba(11,34,66,0.04))] lg:left-1/2" />
 
-          <div className="space-y-20 md:space-y-28">
+          <div className="space-y-20 lg:space-y-28">
             {careerItems.map((item, index) => {
               const isRight = index % 2 === 1;
               const linkHost = item.linkHref.startsWith("http")
@@ -38,8 +38,8 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
                   ? "portfolio case study"
                   : item.linkHref.replace("#", "");
               const contentClass = isRight
-                ? "md:col-start-3 md:text-left"
-                : "md:col-start-1 md:text-right";
+                ? "lg:col-start-3 lg:text-left"
+                : "lg:col-start-1 lg:text-right";
               const cardLogoSrc = item.id === "microsoft" ? "/logos/copilot.png" : item.logoSrc;
               const cardLogoAlt = item.id === "microsoft" ? "Copilot logo" : item.logoAlt;
 
@@ -50,9 +50,9 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ duration: 0.62, delay: index * 0.04 }}
-                  className="relative grid gap-6 pl-28 md:grid-cols-[1fr_136px_1fr] md:pl-0"
+                  className="relative grid gap-6 pl-28 lg:grid-cols-[1fr_136px_1fr] lg:pl-0"
                 >
-                  <div className="absolute left-0 top-2 flex h-24 w-24 items-center justify-center rounded-[28px] bg-white shadow-[0_22px_52px_rgba(28,54,124,0.14)] ring-2 ring-white/90 md:left-1/2 md:-translate-x-1/2">
+                  <div className="absolute left-0 top-2 flex h-24 w-24 items-center justify-center rounded-[28px] bg-white shadow-[0_22px_52px_rgba(28,54,124,0.14)] ring-2 ring-white/90 lg:left-1/2 lg:-translate-x-1/2">
                     <div
                       className={`flex h-[86px] w-[86px] items-center justify-center overflow-hidden rounded-[24px] text-sm font-semibold tracking-normal text-ink ${item.logoClass}`}
                     >
@@ -70,7 +70,7 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[rgba(11,34,66,0.5)]">
                       {item.date}
                     </p>
-                    <h3 className="mt-4 whitespace-nowrap text-[2.35rem] font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[2.6rem]" style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}>
+                    <h3 className="mt-4 max-w-[16ch] text-[clamp(2.15rem,5.8vw,2.6rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-ink" style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}>
                       {item.role[locale]}
                     </h3>
                     <p className="mt-3 text-xl leading-8 text-[rgba(11,34,66,0.76)]">

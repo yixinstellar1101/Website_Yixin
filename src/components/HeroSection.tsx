@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Mail, ScrollText } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
@@ -30,6 +31,22 @@ function renderHeadline(text: string, italicWord: string) {
 }
 
 export function HeroSection({ locale, onNavigate }: HeroSectionProps) {
+  const [emailFeedback, setEmailFeedback] = useState<string | null>(null);
+
+  const handleEmailClick = async (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+
+    try {
+      await navigator.clipboard.writeText(siteConfig.email);
+      setEmailFeedback(`Copied: ${siteConfig.email}`);
+    } catch {
+      setEmailFeedback(`Email: ${siteConfig.email}`);
+    }
+
+    window.location.href = `mailto:${siteConfig.email}`;
+    window.setTimeout(() => setEmailFeedback(null), 2400);
+  };
+
   return (
     <section
       id="top"
@@ -66,7 +83,7 @@ export function HeroSection({ locale, onNavigate }: HeroSectionProps) {
               <Linkedin size={15} className="mr-2" />
               LinkedIn
             </Button>
-            <Button href={`mailto:${siteConfig.email}`} variant="ghost">
+            <Button href={`mailto:${siteConfig.email}`} variant="ghost" onClick={handleEmailClick}>
               <Mail size={15} className="mr-2" />
               Email
             </Button>
@@ -81,6 +98,9 @@ export function HeroSection({ locale, onNavigate }: HeroSectionProps) {
               Resume
             </Button>
           </div>
+          {emailFeedback ? (
+            <p className="mt-4 text-sm font-medium text-[rgba(11,34,66,0.64)]">{emailFeedback}</p>
+          ) : null}
         </motion.div>
 
         <motion.div

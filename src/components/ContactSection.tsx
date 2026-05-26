@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Mail, ScrollText } from "lucide-react";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -12,6 +13,22 @@ type ContactSectionProps = {
 };
 
 export function ContactSection({ locale }: ContactSectionProps) {
+  const [emailFeedback, setEmailFeedback] = useState<string | null>(null);
+
+  const handleEmailClick = async (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    try {
+      await navigator.clipboard.writeText(siteConfig.email);
+      setEmailFeedback(`Copied: ${siteConfig.email}`);
+    } catch {
+      setEmailFeedback(`Email: ${siteConfig.email}`);
+    }
+
+    window.location.href = `mailto:${siteConfig.email}`;
+    window.setTimeout(() => setEmailFeedback(null), 2400);
+  };
+
   return (
     <section id="contact" className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-[1280px]">
@@ -48,6 +65,7 @@ export function ContactSection({ locale }: ContactSectionProps) {
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               <a
                 href={`mailto:${siteConfig.email}`}
+                onClick={handleEmailClick}
                 className="group rounded-[24px] border border-white/70 bg-white/55 p-5 transition duration-300 hover:-translate-y-1 hover:shadow-float"
               >
                 <div className="flex items-center justify-between">
@@ -87,6 +105,10 @@ export function ContactSection({ locale }: ContactSectionProps) {
                 </p>
               </a>
             </div>
+
+            {emailFeedback ? (
+              <p className="mt-5 text-sm font-medium text-[rgba(11,34,66,0.64)]">{emailFeedback}</p>
+            ) : null}
 
             {siteConfig.github ? (
               <div className="mt-8">
