@@ -32,14 +32,15 @@ import {
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import type { ProjectItem } from "@/data/site";
+import { ProjectDetailFooterNav } from "@/components/ProjectDetailFooterNav";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 
 const detailLinks = [
-  { href: "/#about", label: "ABOUT" },
-  { href: "/#career", label: "CAREER" },
-  { href: "/#projects", label: "PROJECTS" },
-  { href: "/#beyond-work", label: "BEYOND WORK" }
+  { href: "/", label: "ABOUT" },
+  { href: "/career", label: "CAREER" },
+  { href: "/projects", label: "PROJECTS" },
+  { href: "/beyond-work", label: "BEYOND WORK" }
 ];
 
 type Copilot3DCaseStudyProps = {
@@ -830,7 +831,7 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
           <div className="relative h-[92px]">
             <div className="absolute left-1/2 top-0 inline-flex -translate-x-1/2 items-center gap-3 sm:gap-4">
               <motion.div initial={false} animate={{ scale: compact ? 0.96 : 1, x: compact ? 10 : 0 }} transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }} className="shrink-0 pt-3">
-                <Link href="/#projects" aria-label={`Back to ${project.title.en} card`} className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(11,34,66,0.1)] bg-white/92 text-ink shadow-[0_12px_30px_rgba(25,48,118,0.12),0_2px_8px_rgba(25,48,118,0.06)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white">
+                <Link href="/projects" aria-label={`Back to ${project.title.en} card`} className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(11,34,66,0.1)] bg-white/92 text-ink shadow-[0_12px_30px_rgba(25,48,118,0.12),0_2px_8px_rgba(25,48,118,0.06)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white">
                   <ArrowLeft size={18} />
                 </Link>
               </motion.div>
@@ -845,13 +846,13 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
                     <>
                       <nav className="mx-5 hidden flex-1 items-center justify-center gap-5 lg:flex xl:gap-7">
                         {detailLinks.map((item) => (
-                          <Link key={item.href} href={item.href} className={navButtonClass(item.href === "/#projects")}>
+                          <Link key={item.href} href={item.href} className={navButtonClass(item.href === "/projects")}>
                             {item.label}
                           </Link>
                         ))}
                       </nav>
                       <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
-                        <Button href="/#contact">LET&apos;S TALK</Button>
+                        <Button href="/contact">LET&apos;S TALK</Button>
                       </div>
                       <div className="ml-auto flex items-center gap-2 lg:hidden">
                         <button type="button" onClick={() => setOpen((current) => !current)} className="rounded-full border border-[rgba(11,34,66,0.12)] bg-white/50 p-[11px] text-ink" aria-label="Toggle menu">
@@ -872,13 +873,12 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
                   {open ? (
                     <motion.div initial={{ opacity: 0, y: -8, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 360, damping: 28 } }} exit={{ opacity: 0, y: -8, scale: 0.98, transition: { duration: 0.16 } }} className={`absolute right-0 top-[calc(100%+12px)] w-[min(320px,calc(100vw-32px))] rounded-[24px] border border-white/80 bg-[rgba(251,248,244,0.96)] p-3 shadow-[0_28px_60px_rgba(18,31,58,0.16)] backdrop-blur-2xl ${compact ? "" : "lg:hidden"}`}>
                       <div className="grid gap-2">
-                        <Link href="/" onClick={() => setOpen(false)} className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}>HOME</Link>
                         {detailLinks.map((item) => (
-                          <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className={navButtonClass(item.href === "/#projects") + " rounded-full px-4 py-3 text-left"}>
+                          <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className={navButtonClass(item.href === "/projects") + " rounded-full px-4 py-3 text-left"}>
                             {item.label}
                           </Link>
                         ))}
-                        <Link href="/#contact" onClick={() => setOpen(false)} className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}>LET&apos;S TALK</Link>
+                        <Link href="/contact" onClick={() => setOpen(false)} className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}>LET&apos;S TALK</Link>
                       </div>
                     </motion.div>
                   ) : null}
@@ -1196,6 +1196,10 @@ export function Copilot3DCaseStudy({ project }: Copilot3DCaseStudyProps) {
             </div>
           </Section>
         </div>
+      </div>
+
+      <div className="mx-auto max-w-[1280px] px-4 pb-16 sm:px-6 lg:px-8">
+        <ProjectDetailFooterNav />
       </div>
 
       <JourneyLightbox

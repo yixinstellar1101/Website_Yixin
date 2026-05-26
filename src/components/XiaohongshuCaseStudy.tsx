@@ -6,14 +6,15 @@ import { ArrowLeft, Menu, MoreHorizontal, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import type { ProjectItem } from "@/data/site";
+import { ProjectDetailFooterNav } from "@/components/ProjectDetailFooterNav";
 import { Button } from "@/components/ui/Button";
 import { ZoomableImage } from "@/components/ZoomableImage";
 
 const detailLinks = [
-  { href: "/#about", label: "ABOUT" },
-  { href: "/#career", label: "CAREER" },
-  { href: "/#projects", label: "PROJECTS" },
-  { href: "/#beyond-work", label: "BEYOND WORK" }
+  { href: "/", label: "ABOUT" },
+  { href: "/career", label: "CAREER" },
+  { href: "/projects", label: "PROJECTS" },
+  { href: "/beyond-work", label: "BEYOND WORK" }
 ];
 
 type XiaohongshuCaseStudyProps = {
@@ -95,7 +96,7 @@ export function XiaohongshuCaseStudy({ project }: XiaohongshuCaseStudyProps) {
                 className="shrink-0 pt-3"
               >
                 <Link
-                  href="/#projects"
+                  href="/projects"
                   aria-label={`Back to ${project.title.en} card`}
                   className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(11,34,66,0.1)] bg-white/92 text-ink shadow-[0_12px_30px_rgba(25,48,118,0.12),0_2px_8px_rgba(25,48,118,0.06)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white"
                 >
@@ -126,7 +127,7 @@ export function XiaohongshuCaseStudy({ project }: XiaohongshuCaseStudyProps) {
                           <Link
                             key={item.href}
                             href={item.href}
-                            className={navButtonClass(item.href === "/#projects")}
+                            className={navButtonClass(item.href === "/projects")}
                           >
                             {item.label}
                           </Link>
@@ -134,7 +135,7 @@ export function XiaohongshuCaseStudy({ project }: XiaohongshuCaseStudyProps) {
                       </nav>
 
                       <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
-                        <Button href="/#contact">LET&apos;S TALK</Button>
+                        <Button href="/contact">LET&apos;S TALK</Button>
                       </div>
 
                       <div className="ml-auto flex items-center gap-2 lg:hidden">
@@ -183,25 +184,18 @@ export function XiaohongshuCaseStudy({ project }: XiaohongshuCaseStudyProps) {
                       }`}
                     >
                       <div className="grid gap-2">
-                        <Link
-                          href="/"
-                          onClick={() => setOpen(false)}
-                          className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}
-                        >
-                          HOME
-                        </Link>
                         {detailLinks.map((item) => (
                           <Link
                             key={item.href}
                             href={item.href}
                             onClick={() => setOpen(false)}
-                            className={navButtonClass(item.href === "/#projects") + " rounded-full px-4 py-3 text-left"}
+                            className={navButtonClass(item.href === "/projects") + " rounded-full px-4 py-3 text-left"}
                           >
                             {item.label}
                           </Link>
                         ))}
                         <Link
-                          href="/#contact"
+                          href="/contact"
                           onClick={() => setOpen(false)}
                           className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}
                         >
@@ -244,6 +238,10 @@ export function XiaohongshuCaseStudy({ project }: XiaohongshuCaseStudyProps) {
           />
         </motion.div>
       </motion.div>
+
+      <div className="mx-auto max-w-[1280px] px-4 pb-16 pt-10 sm:px-6 lg:px-8">
+        <ProjectDetailFooterNav />
+      </div>
     </main>
   );
 }

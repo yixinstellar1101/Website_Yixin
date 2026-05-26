@@ -19,14 +19,15 @@ import {
 import { useEffect, useState } from "react";
 
 import { ImageGalleryLightbox } from "@/components/ImageGalleryLightbox";
+import { ProjectDetailFooterNav } from "@/components/ProjectDetailFooterNav";
 import { Button } from "@/components/ui/Button";
 import type { ProjectItem } from "@/data/site";
 
 const detailLinks = [
-  { href: "/#about", label: "ABOUT" },
-  { href: "/#career", label: "CAREER" },
-  { href: "/#projects", label: "PROJECTS" },
-  { href: "/#beyond-work", label: "BEYOND WORK" }
+  { href: "/", label: "ABOUT" },
+  { href: "/career", label: "CAREER" },
+  { href: "/projects", label: "PROJECTS" },
+  { href: "/beyond-work", label: "BEYOND WORK" }
 ];
 
 type InsideOutCaseStudyProps = {
@@ -264,7 +265,7 @@ export function InsideOutCaseStudy({ project }: InsideOutCaseStudyProps) {
                 className="shrink-0 pt-3"
               >
                 <Link
-                  href="/#projects"
+                  href="/projects"
                   aria-label={`Back to ${project.title.en} card`}
                   className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(11,34,66,0.1)] bg-white/92 text-ink shadow-[0_12px_30px_rgba(25,48,118,0.12),0_2px_8px_rgba(25,48,118,0.06)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white"
                 >
@@ -289,14 +290,14 @@ export function InsideOutCaseStudy({ project }: InsideOutCaseStudyProps) {
                     <>
                       <nav className="mx-5 hidden flex-1 items-center justify-center gap-5 lg:flex xl:gap-7">
                         {detailLinks.map((item) => (
-                          <Link key={item.href} href={item.href} className={navButtonClass(item.href === "/#projects")}>
+                          <Link key={item.href} href={item.href} className={navButtonClass(item.href === "/projects")}>
                             {item.label}
                           </Link>
                         ))}
                       </nav>
 
                       <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
-                        <Button href="/#contact">LET&apos;S TALK</Button>
+                        <Button href="/contact">LET&apos;S TALK</Button>
                       </div>
 
                       <div className="ml-auto flex items-center gap-2 lg:hidden">
@@ -340,20 +341,17 @@ export function InsideOutCaseStudy({ project }: InsideOutCaseStudyProps) {
                       }`}
                     >
                       <div className="grid gap-2">
-                        <Link href="/" onClick={() => setOpen(false)} className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}>
-                          HOME
-                        </Link>
                         {detailLinks.map((item) => (
                           <Link
                             key={item.href}
                             href={item.href}
                             onClick={() => setOpen(false)}
-                            className={navButtonClass(item.href === "/#projects") + " rounded-full px-4 py-3 text-left"}
+                            className={navButtonClass(item.href === "/projects") + " rounded-full px-4 py-3 text-left"}
                           >
                             {item.label}
                           </Link>
                         ))}
-                        <Link href="/#contact" onClick={() => setOpen(false)} className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}>
+                        <Link href="/contact" onClick={() => setOpen(false)} className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}>
                           LET&apos;S TALK
                         </Link>
                       </div>
@@ -703,6 +701,10 @@ export function InsideOutCaseStudy({ project }: InsideOutCaseStudyProps) {
           </motion.section>
         </div>
 
+      </div>
+
+      <div className="mx-auto max-w-[1280px] px-4 pb-16 sm:px-6 lg:px-8">
+        <ProjectDetailFooterNav />
       </div>
 
       <ImageGalleryLightbox

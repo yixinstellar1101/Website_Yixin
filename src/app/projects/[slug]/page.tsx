@@ -9,6 +9,7 @@ import { InsideOutCaseStudy } from "@/components/InsideOutCaseStudy";
 import { ShipbuildingDigitalTwinCaseStudy } from "@/components/ShipbuildingDigitalTwinCaseStudy";
 import { XiaohongshuCaseStudy } from "@/components/XiaohongshuCaseStudy";
 import { ZoomableImage } from "@/components/ZoomableImage";
+import { ProjectDetailFooterNav } from "@/components/ProjectDetailFooterNav";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { getProjectBySlug } from "@/data/site";
@@ -60,11 +61,11 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
       <div className="mx-auto max-w-[1040px]">
         <div className="rounded-[32px] border border-white/70 bg-white/45 p-6 shadow-glass backdrop-blur-2xl sm:p-8">
           <Link
-            href="/"
+            href="/projects"
             className="inline-flex items-center gap-2 text-sm font-medium text-[rgba(11,34,66,0.68)] transition hover:text-ink"
           >
             <ArrowLeft size={16} />
-            Back to home
+            Back to projects
           </Link>
 
           <div
@@ -164,8 +165,9 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
             </p>
           </article>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/">Back Home</Button>
+          <ProjectDetailFooterNav className="mt-8" />
+
+          <div className="mt-4 flex flex-wrap gap-3">
             <a
               href="/resume.pdf"
               className="inline-flex items-center gap-2 rounded-full border border-[rgba(11,34,66,0.12)] bg-white/60 px-5 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-ink transition hover:bg-white/80"

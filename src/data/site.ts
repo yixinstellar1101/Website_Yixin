@@ -72,10 +72,10 @@ export const siteConfig = {
 };
 
 export const navItems: NavItem[] = [
-  { href: "#about", label: { en: "ABOUT", zh: "关于" } },
-  { href: "#career", label: { en: "CAREER", zh: "经历" } },
-  { href: "#projects", label: { en: "PROJECTS", zh: "项目" } },
-  { href: "#beyond-work", label: { en: "BEYOND WORK", zh: "工作之外" } }
+  { href: "/", label: { en: "ABOUT", zh: "关于" } },
+  { href: "/career", label: { en: "CAREER", zh: "经历" } },
+  { href: "/projects", label: { en: "PROJECTS", zh: "项目" } },
+  { href: "/beyond-work", label: { en: "BEYOND WORK", zh: "工作之外" } }
 ];
 
 export const pageCopy = {
@@ -324,7 +324,7 @@ export const careerItems: CareerItem[] = [
       en: "Enterprise 3D workflow for shipbuilding progress visibility and precision management.",
       zh: "服务船舶建造进度可视化与精度管理的企业级 3D 工作流。"
     },
-    linkHref: "#projects",
+    linkHref: "/projects/shipyard-digital-twin",
     accent: "from-cyan-200/70 via-emerald-100/50 to-white",
     logo: "U",
     logoClass: "bg-black text-white",
@@ -380,7 +380,7 @@ export const careerItems: CareerItem[] = [
       en: "From early visual concepts to shippable brand and retail experiences.",
       zh: "从早期视觉概念到可落地的品牌与零售体验。"
     },
-    linkHref: "#projects",
+    linkHref: "/projects/disney-spring-sketchbook",
     accent: "from-rose-200/75 via-orange-100/60 to-white",
     logo: "D",
     logoClass: "bg-[#425f96] text-white",

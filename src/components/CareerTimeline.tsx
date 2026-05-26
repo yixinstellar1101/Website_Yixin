@@ -34,9 +34,9 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
               const isRight = index % 2 === 1;
               const linkHost = item.linkHref.startsWith("http")
                 ? new URL(item.linkHref).hostname.replace(/^www\./, "")
-                : item.linkHref === "#projects"
+                : item.linkHref.startsWith("/projects")
                   ? "portfolio case study"
-                  : item.linkHref.replace("#", "");
+                  : item.linkHref.replace("/", "");
               const contentClass = isRight
                 ? "lg:col-start-3 lg:text-left"
                 : "lg:col-start-1 lg:text-right";

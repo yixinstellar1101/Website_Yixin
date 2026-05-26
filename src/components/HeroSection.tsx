@@ -7,12 +7,10 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
-import type { PageView } from "@/components/Navbar";
 import { pageCopy, siteConfig, type Locale } from "@/data/site";
 
 type HeroSectionProps = {
   locale: Locale;
-  onNavigate?: (view: PageView) => void;
 };
 
 function renderHeadline(text: string, italicWord: string) {
@@ -30,7 +28,7 @@ function renderHeadline(text: string, italicWord: string) {
   });
 }
 
-export function HeroSection({ locale, onNavigate }: HeroSectionProps) {
+export function HeroSection({ locale }: HeroSectionProps) {
   const [emailFeedback, setEmailFeedback] = useState<string | null>(null);
 
   const handleEmailClick = async (event: React.MouseEvent<HTMLElement>) => {
@@ -70,11 +68,11 @@ export function HeroSection({ locale, onNavigate }: HeroSectionProps) {
             {pageCopy.hero.intro[locale]}
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Button onClick={() => onNavigate?.("about")}>
+            <Button href="/#about">
               <span className="mr-2">{pageCopy.hero.primaryCta[locale]}</span>
               <ArrowRight size={16} />
             </Button>
-            <Button onClick={() => onNavigate?.("projects")} variant="secondary">
+            <Button href="/projects" variant="secondary">
               {pageCopy.hero.secondaryCta[locale]}
             </Button>
           </div>

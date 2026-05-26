@@ -2,30 +2,25 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, MoreHorizontal, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import type { Locale, NavItem } from "@/data/site";
 
-export type PageView = "home" | "about" | "career" | "projects" | "beyond-work" | "contact";
-
 type NavbarProps = {
   locale: Locale;
   navItems: NavItem[];
   letsTalkLabel: string;
-  activeView: PageView;
-  onNavigate: (view: PageView) => void;
 };
-
-const viewFromHref = (href: string): PageView => href.replace("#", "") as PageView;
 
 export function Navbar({
   locale,
   navItems,
-  letsTalkLabel,
-  activeView,
-  onNavigate
+  letsTalkLabel
 }: NavbarProps) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -45,7 +40,7 @@ export function Navbar({
 
     const timer = window.setTimeout(() => setOpen(false), 8000);
     return () => window.clearTimeout(timer);
-  }, [open, activeView]);
+  }, [open, pathname]);
 
   useEffect(() => {
     const updateScrollState = () => {
@@ -60,7 +55,7 @@ export function Navbar({
     window.addEventListener("scroll", updateScrollState, { passive: true });
 
     return () => window.removeEventListener("scroll", updateScrollState);
-  }, [activeView]);
+  }, [pathname]);
 
   useEffect(() => {
     if (!compact) {
@@ -68,14 +63,9 @@ export function Navbar({
     }
   }, [compact]);
 
-  const goTo = (view: PageView) => {
-    setOpen(false);
-    onNavigate(view);
-  };
-
-  const navButtonClass = (view: PageView) =>
+  const navButtonClass = (active: boolean) =>
     `text-xs font-semibold uppercase tracking-[0.2em] transition ${
-      activeView === view ? "text-ink" : "text-[rgba(11,34,66,0.58)] hover:text-ink"
+      active ? "text-ink" : "text-[rgba(11,34,66,0.58)] hover:text-ink"
     }`;
 
   const compactWidth = viewportWidth < 640 ? 212 : 252;
@@ -100,36 +90,30 @@ export function Navbar({
             }}
           >
             <div className="relative flex h-[72px] items-center overflow-visible px-5">
-              <button
-                type="button"
-                onClick={() => goTo("home")}
+              <Link
+                href="/"
                 className="shrink-0 text-[1.72rem] font-semibold tracking-[-0.035em] text-ink transition-opacity hover:opacity-80"
                 style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}
               >
                 Yixin Xia
-              </button>
+              </Link>
 
               {!compact ? (
                 <>
                   <nav className="mx-5 hidden flex-1 items-center justify-center gap-5 lg:flex xl:gap-7">
-                    {navItems.map((item) => {
-                      const view = viewFromHref(item.href);
-
-                      return (
-                        <button
-                          key={item.href}
-                          type="button"
-                          onClick={() => goTo(view)}
-                          className={navButtonClass(view)}
-                        >
-                          {item.label[locale]}
-                        </button>
-                      );
-                    })}
+                    {navItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={navButtonClass(pathname === item.href)}
+                      >
+                        {item.label[locale]}
+                      </Link>
+                    ))}
                   </nav>
 
                   <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
-                    <Button onClick={() => goTo("contact")}>{letsTalkLabel}</Button>
+                    <Button href="/contact">{letsTalkLabel}</Button>
                   </div>
 
                   <div className="ml-auto flex items-center gap-2 lg:hidden">
@@ -176,38 +160,27 @@ export function Navbar({
                   className={`absolute right-0 top-[calc(100%+12px)] w-[min(320px,calc(100vw-32px))] rounded-[24px] border border-white/80 bg-[rgba(251,248,244,0.96)] p-3 shadow-[0_28px_60px_rgba(18,31,58,0.16)] backdrop-blur-2xl ${
                     compact ? "" : "lg:hidden"
                   }`}
-                >
-                  <div className="grid gap-2">
-                    <button
-                      type="button"
-                      onClick={() => goTo("home")}
-                      className={navButtonClass("home") + " rounded-full px-4 py-3 text-left"}
                     >
-                      HOME
-                    </button>
-                    {navItems.map((item) => {
-                      const view = viewFromHref(item.href);
-
-                      return (
-                        <button
+                      <div className="grid gap-2">
+                      {navItems.map((item) => (
+                        <Link
                           key={item.href}
-                          type="button"
-                          onClick={() => goTo(view)}
-                          className={navButtonClass(view) + " rounded-full px-4 py-3 text-left"}
+                          href={item.href}
+                          onClick={() => setOpen(false)}
+                          className={navButtonClass(pathname === item.href) + " rounded-full px-4 py-3 text-left"}
                         >
                           {item.label[locale]}
-                        </button>
-                      );
-                    })}
-                    <button
-                      type="button"
-                      onClick={() => goTo("contact")}
-                      className={navButtonClass("contact") + " rounded-full px-4 py-3 text-left"}
-                    >
-                      {letsTalkLabel}
-                    </button>
-                  </div>
-                </motion.div>
+                        </Link>
+                      ))}
+                      <Link
+                        href="/contact"
+                        onClick={() => setOpen(false)}
+                        className={navButtonClass(pathname === "/contact") + " rounded-full px-4 py-3 text-left"}
+                      >
+                        {letsTalkLabel}
+                      </Link>
+                    </div>
+                  </motion.div>
               ) : null}
             </AnimatePresence>
           </motion.div>
