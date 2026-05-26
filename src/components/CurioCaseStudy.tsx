@@ -807,6 +807,7 @@ export function CurioCaseStudy({ project, videoSrc }: CurioCaseStudyProps) {
                   href={videoSrc}
                   thumbnailSrc={project.coverSrc}
                   thumbnailAlt="Curio demo preview thumbnail"
+                  embedSrc="https://www.youtube-nocookie.com/embed/FVQatjoiDss?rel=0"
                 />
               ) : (
                 <SlideCard slide={heroSlide} slideIndex={Number(heroSlide.id) - 1} onOpen={setActiveSlideIndex} className="rounded-none border-0 shadow-none" />

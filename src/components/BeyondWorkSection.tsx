@@ -76,11 +76,12 @@ const beyondWorkGroups: BeyondWorkGroup[] = [
           "Team moments, intern activities, and shared memories from my Microsoft internship experience.",
         tags: ["Internship Life", "Team Culture", "Microsoft"],
         images: [
-          toPublicSrc("/Beyond Work/MS Intern/IMG_7198.JPG"),
-          toPublicSrc("/Beyond Work/MS Intern/IMG_7201.jpeg"),
-          toPublicSrc("/Beyond Work/MS Intern/IMG_7202.jpeg"),
-          toPublicSrc("/Beyond Work/MS Intern/IMG_7202_副本.jpeg"),
-          toPublicSrc("/Beyond Work/MS Intern/IMG_7203.jpeg")
+          toPublicSrc("/Beyond Work/MS Intern/MS Intern 1.JPG"),
+          toPublicSrc("/Beyond Work/MS Intern/MS Intern 2.jpeg"),
+          toPublicSrc("/Beyond Work/MS Intern/MS Intern 3.jpeg"),
+          toPublicSrc("/Beyond Work/MS Intern/MS Intern 4.jpeg"),
+          toPublicSrc("/Beyond Work/MS Intern/MS Intern 5.jpeg"),
+          toPublicSrc("/Beyond Work/MS Intern/MS Intern 6.jpg")
         ]
       }
     ]
