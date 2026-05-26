@@ -5,6 +5,7 @@ import { ArrowRight, Github, Linkedin, Mail, ScrollText } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
+import { copyToClipboard } from "@/lib/copyToClipboard";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { pageCopy, siteConfig, type Locale } from "@/data/site";
@@ -34,14 +35,14 @@ export function HeroSection({ locale }: HeroSectionProps) {
   const handleEmailClick = async (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
 
-    try {
-      await navigator.clipboard.writeText(siteConfig.email);
+    const copied = await copyToClipboard(siteConfig.email);
+
+    if (copied) {
       setEmailFeedback(`Copied: ${siteConfig.email}`);
-    } catch {
+    } else {
       setEmailFeedback(`Email: ${siteConfig.email}`);
     }
 
-    window.location.href = `mailto:${siteConfig.email}`;
     window.setTimeout(() => setEmailFeedback(null), 2400);
   };
 
@@ -81,7 +82,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
               <Linkedin size={15} className="mr-2" />
               LinkedIn
             </Button>
-            <Button href={`mailto:${siteConfig.email}`} variant="ghost" onClick={handleEmailClick}>
+            <Button variant="ghost" onClick={handleEmailClick}>
               <Mail size={15} className="mr-2" />
               Email
             </Button>

@@ -24,6 +24,7 @@ export function ProjectCard({ locale, project, priority = false }: ProjectCardPr
 
   return (
     <motion.article
+      id={`project-${project.slug}`}
       role="link"
       tabIndex={0}
       onClick={() => router.push(`/projects/${project.slug}`)}
@@ -35,7 +36,7 @@ export function ProjectCard({ locale, project, priority = false }: ProjectCardPr
       }}
       whileHover={{ y: -10, scale: 1.012, boxShadow: "0 32px 88px rgba(29,57,128,0.14)" }}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
-      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[30px] border border-white/82 bg-white/56 shadow-[0_26px_72px_rgba(31,54,124,0.09)] backdrop-blur-2xl transition-colors duration-300 group-hover:bg-white/64 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
+      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[30px] border border-white/82 bg-white/56 shadow-[0_26px_72px_rgba(31,54,124,0.09)] backdrop-blur-2xl transition-colors duration-300 group-hover:bg-white/64 focus:outline-none"
       aria-label={`View ${project.title.en}`}
     >
         <div className="p-4 sm:p-5">

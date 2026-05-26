@@ -1,13 +1,31 @@
+"use client";
+
+import { useState } from "react";
 import { ArrowUpRight, Mail, MessageCircle, ScrollText } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { pageCopy, siteConfig, type Locale } from "@/data/site";
+import { copyToClipboard } from "@/lib/copyToClipboard";
 
 type FooterCtaProps = {
   locale: Locale;
 };
 
 export function FooterCta({ locale }: FooterCtaProps) {
+  const [emailFeedback, setEmailFeedback] = useState<string | null>(null);
+
+  const handleEmailClick = async () => {
+    const copied = await copyToClipboard(siteConfig.email);
+
+    if (copied) {
+      setEmailFeedback(`Copied: ${siteConfig.email}`);
+    } else {
+      setEmailFeedback(`Email: ${siteConfig.email}`);
+    }
+
+    window.setTimeout(() => setEmailFeedback(null), 2400);
+  };
+
   return (
     <section id="contact" className="px-4 pb-14 pt-6 sm:px-6 lg:px-8 lg:pb-16">
       <div className="mx-auto max-w-[1280px]">
@@ -29,9 +47,10 @@ export function FooterCta({ locale }: FooterCtaProps) {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="group rounded-[24px] border border-white/75 bg-white/68 p-5 shadow-[0_16px_40px_rgba(24,48,116,0.06)] transition hover:-translate-y-1 hover:bg-white/82"
+              <button
+                type="button"
+                onClick={handleEmailClick}
+                className="group rounded-[24px] border border-white/75 bg-white/68 p-5 text-left shadow-[0_16px_40px_rgba(24,48,116,0.06)] transition hover:-translate-y-1 hover:bg-white/82"
               >
                 <div className="flex items-center justify-between gap-3">
                   <Mail className="text-ink" size={19} />
@@ -43,7 +62,7 @@ export function FooterCta({ locale }: FooterCtaProps) {
                 <p className="mt-2 text-sm leading-6 text-[rgba(11,34,66,0.74)]">
                   {siteConfig.email}
                 </p>
-              </a>
+              </button>
 
               <a
                 href={siteConfig.linkedin}
@@ -81,8 +100,12 @@ export function FooterCta({ locale }: FooterCtaProps) {
             </div>
           </div>
 
+          {emailFeedback ? (
+            <p className="mt-5 text-sm font-medium text-[rgba(11,34,66,0.64)]">{emailFeedback}</p>
+          ) : null}
+
           <div className="mt-7 flex flex-wrap gap-3">
-            <Button href="/contact">Let&apos;s Talk</Button>
+            <Button href="/#contact">Let&apos;s Talk</Button>
             <Button href="/projects" variant="secondary">
               View Projects
             </Button>

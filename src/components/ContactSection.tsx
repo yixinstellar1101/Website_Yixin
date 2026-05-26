@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { pageCopy, siteConfig, type Locale } from "@/data/site";
+import { copyToClipboard } from "@/lib/copyToClipboard";
 
 type ContactSectionProps = {
   locale: Locale;
@@ -15,17 +16,17 @@ type ContactSectionProps = {
 export function ContactSection({ locale }: ContactSectionProps) {
   const [emailFeedback, setEmailFeedback] = useState<string | null>(null);
 
-  const handleEmailClick = async (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleEmailClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    try {
-      await navigator.clipboard.writeText(siteConfig.email);
+    const copied = await copyToClipboard(siteConfig.email);
+
+    if (copied) {
       setEmailFeedback(`Copied: ${siteConfig.email}`);
-    } catch {
+    } else {
       setEmailFeedback(`Email: ${siteConfig.email}`);
     }
 
-    window.location.href = `mailto:${siteConfig.email}`;
     window.setTimeout(() => setEmailFeedback(null), 2400);
   };
 
@@ -63,10 +64,10 @@ export function ContactSection({ locale }: ContactSectionProps) {
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <a
-                href={`mailto:${siteConfig.email}`}
+              <button
+                type="button"
                 onClick={handleEmailClick}
-                className="group rounded-[24px] border border-white/70 bg-white/55 p-5 transition duration-300 hover:-translate-y-1 hover:shadow-float"
+                className="group rounded-[24px] border border-white/70 bg-white/55 p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-float"
               >
                 <div className="flex items-center justify-between">
                   <Mail className="text-ink" />
@@ -75,7 +76,7 @@ export function ContactSection({ locale }: ContactSectionProps) {
                 <p className="mt-5 text-xl font-semibold tracking-normal text-ink">
                   {pageCopy.contact.email[locale]}
                 </p>
-              </a>
+              </button>
 
               <a
                 href={siteConfig.linkedin}

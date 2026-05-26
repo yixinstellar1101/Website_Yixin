@@ -304,7 +304,7 @@ export function DisneyLicensingCaseStudy({ project }: DisneyLicensingCaseStudyPr
                         ))}
                       </nav>
                       <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
-                        <Button href="/contact">LET&apos;S TALK</Button>
+                        <Button href="/#contact">LET&apos;S TALK</Button>
                       </div>
                       <div className="ml-auto flex items-center gap-2 lg:hidden">
                         <button type="button" onClick={() => setOpen((current) => !current)} className="rounded-full border border-[rgba(11,34,66,0.12)] bg-white/50 p-[11px] text-ink" aria-label="Toggle menu">
@@ -330,7 +330,7 @@ export function DisneyLicensingCaseStudy({ project }: DisneyLicensingCaseStudyPr
                             {item.label}
                           </Link>
                         ))}
-                        <Link href="/contact" onClick={() => setOpen(false)} className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}>LET&apos;S TALK</Link>
+                        <Link href="/#contact" onClick={() => setOpen(false)} className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}>LET&apos;S TALK</Link>
                       </div>
                     </motion.div>
                   ) : null}

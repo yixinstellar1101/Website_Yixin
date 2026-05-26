@@ -128,7 +128,7 @@ export function CaseStudyNavbar({
                     </nav>
 
                     <div className="ml-auto hidden shrink-0 items-center gap-2 lg:flex xl:gap-3">
-                      <Button href="/contact">{letsTalkLabel}</Button>
+                      <Button href="/#contact">{letsTalkLabel}</Button>
                     </div>
 
                     <div className="ml-auto flex items-center gap-2 lg:hidden">
@@ -186,7 +186,7 @@ export function CaseStudyNavbar({
                         </Link>
                       ))}
                       <Link
-                        href="/contact"
+                        href="/#contact"
                         onClick={() => setOpen(false)}
                         className={navButtonClass(false) + " rounded-full px-4 py-3 text-left"}
                       >

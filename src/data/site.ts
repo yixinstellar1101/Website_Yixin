@@ -165,8 +165,8 @@ export const pageCopy = {
         zh: "在 Microsoft、Unity、小红书和 Disney 的经历中，我参与过 AI 孵化、3D 创作工具、企业工作流与消费型创意体验。我尤其关注 AI 产品的早期阶段：识别真正的问题、搭建产品闭环、快速原型化、定义评估信号，并把产品价值讲清楚。"
       },
       {
-        en: "My work focuses on multimodal AI, agentic workflows, 3D interfaces, and products that make complex AI capabilities understandable and useful for real users.",
-        zh: "我的工作聚焦多模态 AI、Agentic Workflow、3D 界面，以及那些能把复杂 AI 能力转化成真实可理解、可使用体验的产品。"
+        en: "My work focuses on multimodal AI, agentic workflows, and products that make complex AI capabilities understandable and useful for real users.",
+        zh: "我的工作聚焦多模态 AI、Agentic Workflow，以及那些能把复杂 AI 能力转化成真实可理解、可使用体验的产品。"
       }
     ],
     cardTitle: {
@@ -367,7 +367,7 @@ export const careerItems: CareerItem[] = [
       en: "Enterprise 3D workflow for shipbuilding progress visibility and precision management.",
       zh: "服务船舶建造进度可视化与精度管理的企业级 3D 工作流。"
     },
-    linkHref: "/projects/shipyard-digital-twin",
+    linkHref: "/projects#project-shipyard-digital-twin",
     accent: "from-cyan-200/70 via-emerald-100/50 to-white",
     logo: "U",
     logoClass: "bg-black text-white",
@@ -423,7 +423,7 @@ export const careerItems: CareerItem[] = [
       en: "From early visual concepts to shippable brand and retail experiences.",
       zh: "从早期视觉概念到可落地的品牌与零售体验。"
     },
-    linkHref: "/projects/disney-spring-sketchbook",
+    linkHref: "/projects#project-disney-spring-sketchbook",
     accent: "from-rose-200/75 via-orange-100/60 to-white",
     logo: "D",
     logoClass: "bg-[#425f96] text-white",
