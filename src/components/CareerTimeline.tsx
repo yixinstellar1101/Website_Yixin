@@ -27,7 +27,7 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
         </div>
 
         <div className="relative mx-auto mt-24 max-w-[1080px]">
-          <div className="absolute left-10 top-0 h-full w-[2px] rounded-full bg-[linear-gradient(to_bottom,rgba(11,34,66,0.08),rgba(11,34,66,0.34),rgba(11,34,66,0.08))] lg:left-1/2" />
+          <div className="absolute left-10 top-0 h-full w-[2px] rounded-full bg-[linear-gradient(to_bottom,rgba(11,34,66,0.048),rgba(11,34,66,0.204),rgba(11,34,66,0.048))] lg:left-1/2" />
 
           <div className="space-y-20 lg:space-y-28">
             {careerItems.map((item, index) => {
