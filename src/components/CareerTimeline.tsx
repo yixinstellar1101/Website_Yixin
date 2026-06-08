@@ -27,7 +27,7 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
         </div>
 
         <div className="relative mx-auto mt-24 max-w-[1080px]">
-          <div className="absolute left-10 top-0 h-full w-px bg-[linear-gradient(to_bottom,rgba(11,34,66,0.04),rgba(11,34,66,0.16),rgba(11,34,66,0.04))] lg:left-1/2" />
+          <div className="absolute left-10 top-0 h-full w-[2px] rounded-full bg-[linear-gradient(to_bottom,rgba(11,34,66,0.08),rgba(11,34,66,0.34),rgba(11,34,66,0.08))] lg:left-1/2" />
 
           <div className="space-y-20 lg:space-y-28">
             {careerItems.map((item, index) => {
@@ -70,7 +70,7 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[rgba(11,34,66,0.5)]">
                       {item.date}
                     </p>
-                    <h3 className="mt-4 max-w-[16ch] text-[clamp(2.15rem,5.8vw,2.6rem)] font-semibold leading-[1.02] tracking-[-0.02em] text-ink" style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}>
+                    <h3 className="mt-4 whitespace-nowrap text-[clamp(1.75rem,5vw,2.35rem)] font-semibold leading-[1.02] tracking-normal text-ink lg:text-[clamp(1.9rem,3vw,2.35rem)]" style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}>
                       {item.role[locale]}
                     </h3>
                     <p className="mt-3 text-xl leading-8 text-[rgba(11,34,66,0.76)]">
