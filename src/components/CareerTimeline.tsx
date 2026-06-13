@@ -32,11 +32,13 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
           <div className="space-y-20 lg:space-y-28">
             {careerItems.map((item, index) => {
               const isRight = index % 2 === 1;
-              const linkHost = item.linkHref.startsWith("http")
-                ? new URL(item.linkHref).hostname.replace(/^www\./, "")
-                : item.linkHref.startsWith("/projects")
-                  ? "portfolio case study"
-                  : item.linkHref.replace("/", "");
+              const linkHost = item.linkHref
+                ? item.linkHref.startsWith("http")
+                  ? new URL(item.linkHref).hostname.replace(/^www\./, "")
+                  : item.linkHref.startsWith("/projects")
+                    ? "portfolio case study"
+                    : item.linkHref.replace("/", "")
+                : null;
               const contentClass = isRight
                 ? "lg:col-start-3 lg:text-left"
                 : "lg:col-start-1 lg:text-right";
@@ -80,46 +82,50 @@ export function CareerTimeline({ locale }: CareerTimelineProps) {
                       <MapPin size={13} />
                       {item.location[locale]}
                     </p>
-                    <p className="mt-6 text-base leading-8 text-[rgba(11,34,66,0.74)]">
-                      {item.description[locale]}
-                    </p>
+                    {item.description ? (
+                      <p className="mt-6 text-base leading-8 text-[rgba(11,34,66,0.74)]">
+                        {item.description[locale]}
+                      </p>
+                    ) : null}
 
-                    <a
-                      href={item.linkHref}
-                      target={item.linkHref.startsWith("http") ? "_blank" : undefined}
-                      rel={item.linkHref.startsWith("http") ? "noreferrer" : undefined}
-                      className="mt-8 block rounded-[24px] border border-[rgba(11,34,66,0.12)] bg-[rgba(255,255,255,0.985)] text-left shadow-[0_24px_58px_rgba(24,49,118,0.14)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white"
-                    >
-                      <div className="flex items-center justify-between gap-4 border-b border-[rgba(11,34,66,0.08)] px-5 py-4">
-                        <div className="flex min-w-0 items-center gap-3">
-                          <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[rgba(11,34,66,0.06)] bg-white shadow-[0_8px_20px_rgba(24,49,118,0.08)]">
-                            <Image
-                              src={cardLogoSrc}
-                              alt={cardLogoAlt}
-                              width={24}
-                              height={24}
-                              className="h-6 w-6 object-contain"
-                            />
+                    {item.linkHref && item.linkLabel && item.linkDescription && linkHost ? (
+                      <a
+                        href={item.linkHref}
+                        target={item.linkHref.startsWith("http") ? "_blank" : undefined}
+                        rel={item.linkHref.startsWith("http") ? "noreferrer" : undefined}
+                        className="mt-8 block rounded-[24px] border border-[rgba(11,34,66,0.12)] bg-[rgba(255,255,255,0.985)] text-left shadow-[0_24px_58px_rgba(24,49,118,0.14)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white"
+                      >
+                        <div className="flex items-center justify-between gap-4 border-b border-[rgba(11,34,66,0.08)] px-5 py-4">
+                          <div className="flex min-w-0 items-center gap-3">
+                            <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[rgba(11,34,66,0.06)] bg-white shadow-[0_8px_20px_rgba(24,49,118,0.08)]">
+                              <Image
+                                src={cardLogoSrc}
+                                alt={cardLogoAlt}
+                                width={24}
+                                height={24}
+                                className="h-6 w-6 object-contain"
+                              />
+                            </div>
+                            <p className="truncate text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-[rgba(11,34,66,0.62)]">
+                              {linkHost}
+                            </p>
                           </div>
-                          <p className="truncate text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-[rgba(11,34,66,0.62)]">
-                            {linkHost}
+                          <ArrowUpRight size={18} className="shrink-0 text-ink" />
+                        </div>
+
+                        <div className="px-5 py-5">
+                          <h4
+                            className="text-[1.8rem] font-semibold leading-none tracking-[-0.015em] text-ink"
+                            style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}
+                          >
+                            {item.linkLabel}
+                          </h4>
+                          <p className="mt-3 text-sm leading-7 text-[rgba(11,34,66,0.74)]">
+                            {item.linkDescription[locale]}
                           </p>
                         </div>
-                        <ArrowUpRight size={18} className="shrink-0 text-ink" />
-                      </div>
-
-                      <div className="px-5 py-5">
-                        <h4
-                          className="text-[1.8rem] font-semibold leading-none tracking-[-0.015em] text-ink"
-                          style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}
-                        >
-                          {item.linkLabel}
-                        </h4>
-                        <p className="mt-3 text-sm leading-7 text-[rgba(11,34,66,0.74)]">
-                          {item.linkDescription[locale]}
-                        </p>
-                      </div>
-                    </a>
+                      </a>
+                    ) : null}
                   </div>
                 </motion.article>
               );

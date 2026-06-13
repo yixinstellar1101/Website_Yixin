@@ -13,10 +13,10 @@ export type CareerItem = {
   role: LocalizedString;
   organization: string;
   location: LocalizedString;
-  description: LocalizedString;
-  linkLabel: string;
-  linkDescription: LocalizedString;
-  linkHref: string;
+  description?: LocalizedString;
+  linkLabel?: string;
+  linkDescription?: LocalizedString;
+  linkHref?: string;
   accent: string;
   logo: string;
   logoClass: string;
@@ -319,6 +319,24 @@ export const pageCopy = {
 
 export const careerItems: CareerItem[] = [
   {
+    id: "microsoft-ai",
+    date: "2026",
+    role: {
+      en: "AI Product Manager",
+      zh: "AI 产品经理"
+    },
+    organization: "Microsoft AI / Copilot",
+    location: {
+      en: "Suzhou",
+      zh: "苏州"
+    },
+    accent: "from-sky-200/80 via-blue-100/50 to-white",
+    logo: "MS",
+    logoClass: "bg-white",
+    logoSrc: "/logos/microsoft.png",
+    logoAlt: "Microsoft logo"
+  },
+  {
     id: "microsoft",
     date: "2025",
     role: {
@@ -375,36 +393,8 @@ export const careerItems: CareerItem[] = [
     logoAlt: "Unity logo"
   },
   {
-    id: "xiaohongshu",
-    date: "2024",
-    role: {
-      en: "Product Design Intern",
-      zh: "产品设计实习生"
-    },
-    organization: "Xiaohongshu",
-    location: {
-      en: "Shanghai",
-      zh: "上海"
-    },
-    description: {
-      en: "Worked on content-community product research and product analysis, translating user behavior, creator needs, and platform scenarios into clearer product opportunities and execution notes.",
-      zh: "参与内容社区方向的产品调研与产品分析，将用户行为、创作者需求和平台场景转化为更清晰的产品机会与执行记录。"
-    },
-    linkLabel: "Xiaohongshu",
-    linkDescription: {
-      en: "Lifestyle community platform centered on content discovery, sharing, commerce, and creator ecosystems.",
-      zh: "以内容发现、分享、交易与创作者生态为核心的生活方式社区平台。"
-    },
-    linkHref: "https://www.xiaohongshu.com/en",
-    accent: "from-rose-200/75 via-red-100/60 to-white",
-    logo: "RED",
-    logoClass: "bg-[#ff2442] text-white",
-    logoSrc: "/logos/xiaohongshu.png",
-    logoAlt: "Xiaohongshu logo"
-  },
-  {
     id: "disney",
-    date: "2023–2024",
+    date: "2024",
     role: {
       en: "Creative Design Intern",
       zh: "创意设计实习生"
@@ -429,6 +419,34 @@ export const careerItems: CareerItem[] = [
     logoClass: "bg-[#425f96] text-white",
     logoSrc: "/logos/disney.png",
     logoAlt: "The Walt Disney Company logo"
+  },
+  {
+    id: "xiaohongshu",
+    date: "2023",
+    role: {
+      en: "Product Design Intern",
+      zh: "产品设计实习生"
+    },
+    organization: "Xiaohongshu",
+    location: {
+      en: "Shanghai",
+      zh: "上海"
+    },
+    description: {
+      en: "Worked on content-community product research and product analysis, translating user behavior, creator needs, and platform scenarios into clearer product opportunities and execution notes.",
+      zh: "参与内容社区方向的产品调研与产品分析，将用户行为、创作者需求和平台场景转化为更清晰的产品机会与执行记录。"
+    },
+    linkLabel: "Xiaohongshu",
+    linkDescription: {
+      en: "Lifestyle community platform centered on content discovery, sharing, commerce, and creator ecosystems.",
+      zh: "以内容发现、分享、交易与创作者生态为核心的生活方式社区平台。"
+    },
+    linkHref: "https://www.xiaohongshu.com/en",
+    accent: "from-rose-200/75 via-red-100/60 to-white",
+    logo: "RED",
+    logoClass: "bg-[#ff2442] text-white",
+    logoSrc: "/logos/xiaohongshu.png",
+    logoAlt: "Xiaohongshu logo"
   }
 ];
 

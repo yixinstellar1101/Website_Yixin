@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { ImageGalleryLightbox } from "@/components/ImageGalleryLightbox";
 import { Pill } from "@/components/ui/Pill";
@@ -153,45 +153,15 @@ function PhotoRail({
   imageIndexes: number[];
   onOpen: (index: number) => void;
 }) {
-  const railRef = useRef<HTMLDivElement>(null);
-  const duplicated = images.length > 1 ? [...images, ...images] : images;
-
-  useEffect(() => {
-    const node = railRef.current;
-    if (!node || images.length <= 1) return;
-
-    let rafId = 0;
-    let lastTime = performance.now();
-    const speed = 0.024;
-
-    const step = (now: number) => {
-      const delta = now - lastTime;
-      lastTime = now;
-      node.scrollLeft += delta * speed;
-      const loopPoint = node.scrollWidth / 2;
-
-      if (node.scrollLeft >= loopPoint) {
-        node.scrollLeft -= loopPoint;
-      }
-
-      rafId = window.requestAnimationFrame(step);
-    };
-
-    rafId = window.requestAnimationFrame(step);
-
-    return () => window.cancelAnimationFrame(rafId);
-  }, [images]);
-
   return (
     <div className="relative overflow-hidden rounded-[26px] border border-white/78 bg-[rgba(247,243,238,0.84)] p-3 shadow-[0_18px_44px_rgba(31,45,96,0.08)]">
       <div
-        ref={railRef}
         className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         aria-label={`${title} photo gallery`}
       >
         <div className="flex w-max gap-4">
-          {duplicated.map((src, index) => {
-            const imageIndex = imageIndexes[index % imageIndexes.length];
+          {images.map((src, index) => {
+            const imageIndex = imageIndexes[index];
 
             return (
               <button
@@ -203,7 +173,7 @@ function PhotoRail({
               >
                 <Image
                   src={src}
-                  alt={`${title} photo ${(index % images.length) + 1}`}
+                  alt={`${title} photo ${index + 1}`}
                   fill
                   sizes="(min-width: 1280px) 760px, (min-width: 640px) 620px, 88vw"
                   quality={88}
@@ -255,17 +225,19 @@ export function BeyondWorkSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
-          className="mx-auto max-w-4xl text-center"
+          className="mx-auto max-w-[1120px] text-center"
         >
           <Pill>BEYOND WORK</Pill>
           <h2
-            className="mt-6 text-[clamp(2.5rem,5vw,4.2rem)] leading-[1.04] tracking-[-0.03em] text-ink"
+            className="mt-6 text-[clamp(2.5rem,4.6vw,4.2rem)] leading-[1.04] tracking-[-0.03em] text-ink"
             style={{ fontFamily: "ABC Ginto Career, Inter, sans-serif" }}
           >
-            Moments of mentorship, community, creativity, and growth.
+            <span className="block text-center">Moments of mentorship,</span>
+            <span className="block text-center sm:whitespace-nowrap">community, creativity, and growth.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-[rgba(11,34,66,0.7)]">
-            Moments of mentorship, community, creativity, and growth across the places I've learned and built.
+          <p className="mx-auto mt-5 max-w-[920px] text-lg leading-8 text-[rgba(11,34,66,0.7)]">
+            <span className="block text-center">Moments of mentorship, community, creativity, and growth</span>
+            <span className="block text-center sm:whitespace-nowrap">across the places I&apos;ve learned and built.</span>
           </p>
         </motion.div>
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
+  ArrowUpRight,
   ArrowLeft,
   BarChart3,
   Brush,
@@ -49,6 +50,15 @@ type IconCard = {
   title: string;
   body: string;
   icon: LucideIcon;
+};
+
+type ExternalPreviewCardData = {
+  label: string;
+  title: string;
+  description: string;
+  href: string;
+  embedSrc: string;
+  chips: string[];
 };
 
 const disneySlides: Slide[] = [
@@ -100,6 +110,25 @@ const impactCards = [
   { value: "APAC", label: "Cross-region creative and legal collaboration" },
   { value: "Retail", label: "Directions applied to merchandise and store experiences" },
   { value: "100%", label: "Supported on-schedule creative delivery" }
+] as const;
+
+const retailPreviewCards: ExternalPreviewCardData[] = [
+  {
+    label: "Korea Store Display",
+    title: "Offline retail application in Korea",
+    description: "A real-world glimpse of the licensing direction appearing in regional store display and product touchpoints.",
+    href: "https://www.instagram.com/p/DWWGAdlgWkb/?img_index=4&igsh=MWFjaHNvOTRyOXliNA==",
+    embedSrc: "https://www.instagram.com/p/DWWGAdlgWkb/embed/captioned/",
+    chips: ["Store display", "Korea", "Retail execution"]
+  },
+  {
+    label: "Social Reach",
+    title: "Audience response and repost momentum",
+    description: "A social post that helps show how the product application traveled beyond the shelf into public sharing and discussion.",
+    href: "https://www.instagram.com/reel/DXDu8wxkQdb/?igsh=MXJza2hoYno5aXZlOQ==",
+    embedSrc: "https://www.instagram.com/reel/DXDu8wxkQdb/embed/captioned/",
+    chips: ["Public response", "Sharing", "Campaign visibility"]
+  }
 ] as const;
 
 const learningCards: IconCard[] = [
@@ -161,6 +190,62 @@ function BulletCloud({ items }: { items: readonly string[] }) {
         </Pill>
       ))}
     </div>
+  );
+}
+
+function ExternalPreviewCard({
+  label,
+  title,
+  description,
+  href,
+  embedSrc,
+  chips
+}: ExternalPreviewCardData) {
+  return (
+    <article className="overflow-hidden rounded-[28px] border border-white/76 bg-[rgba(255,255,255,0.72)] shadow-[0_18px_52px_rgba(24,48,116,0.07)]">
+      <div className="relative aspect-[4/5] overflow-hidden bg-[linear-gradient(135deg,rgba(244,247,255,0.92),rgba(255,249,242,0.9))]">
+        <iframe
+          src={embedSrc}
+          title={title}
+          className="h-full w-full"
+          loading="lazy"
+          allow="clipboard-write; encrypted-media; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
+      </div>
+      <div className="border-t border-white/70 px-5 py-5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[rgba(11,34,66,0.46)]">
+              {label}
+            </p>
+            <h3
+              className="mt-3 text-[1.15rem] leading-7 text-ink"
+              style={{ fontFamily: "ABC Ginto Normal Medium, Inter, sans-serif", fontWeight: 500 }}
+            >
+              {title}
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-[rgba(11,34,66,0.72)]">{description}</p>
+          </div>
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/80 bg-white/88 text-ink shadow-[0_10px_24px_rgba(24,48,116,0.10)] transition duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(23,59,120,0.34)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
+            aria-label={`Open ${title} on Instagram`}
+          >
+            <ArrowUpRight size={18} />
+          </a>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {chips.map((chip) => (
+            <Pill key={chip} className="bg-white/80">
+              {chip}
+            </Pill>
+          ))}
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -473,6 +558,11 @@ export function DisneyLicensingCaseStudy({ project }: DisneyLicensingCaseStudyPr
                 <p>Some of the visual directions were applied to offline retail displays and merchandise in regional markets, including Korea, where the design direction appeared in store applications and consumer product touchpoints.</p>
               </div>
               <BulletCloud items={applicationAreas} />
+              <div className="grid gap-5 xl:grid-cols-2">
+                {retailPreviewCards.map((card) => (
+                  <ExternalPreviewCard key={card.href} {...card} />
+                ))}
+              </div>
               <div className="rounded-[28px] border border-white/76 bg-[linear-gradient(135deg,rgba(255,248,240,0.9),rgba(255,255,255,0.72))] p-6 shadow-[0_18px_52px_rgba(24,48,116,0.07)]">
                 <div className="grid gap-5 md:grid-cols-3">
                   <div className="rounded-[22px] border border-white/80 bg-white/70 p-5">

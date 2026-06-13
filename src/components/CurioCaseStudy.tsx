@@ -801,7 +801,6 @@ export function CurioCaseStudy({ project, videoSrc }: CurioCaseStudyProps) {
               {videoSrc ? (
                 <VideoPreviewCard
                   title="Curio Demo Walkthrough"
-                  description="Watch the lightweight external demo instead of loading the original local MP4 directly on the page."
                   href={videoSrc}
                   thumbnailSrc={project.coverSrc}
                   thumbnailAlt="Curio demo preview thumbnail"
